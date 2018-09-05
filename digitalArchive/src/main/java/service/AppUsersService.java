@@ -31,4 +31,18 @@ public class AppUsersService {
     public List<AppUsers> getAllAppUsers() {
         return (ArrayList<AppUsers>)appUsersRepository.findAll();
     }
+
+    public void addAppUsers(AppUsers appUsers) {
+        appUsersRepository.save(appUsers);
+    }
+
+    public void updateAppUsers(AppUsers appUsers, Integer userId) {
+        appUsersRepository.save(appUsers);
+    }
+
+    public void deleteAppUsers(Integer userId) {
+        appUsersRepository.delete(userId);
+    }
+
+
 }
