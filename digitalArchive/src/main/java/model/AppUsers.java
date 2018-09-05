@@ -28,16 +28,20 @@ public class AppUsers {
     @Column(name="userrole")
     private String userrole;
 
+    @Column(name = "useremail")
+    private String useremail;
+
     public AppUsers() {
     }
 
-    public AppUsers(Integer userId, String username, String userpassword, String firstname, String lastname, String userrole) {
+    public AppUsers(Integer userId, String username, String userpassword, String firstname, String lastname, String userrole, String useremail) {
         this.userId = userId;
         this.username = username;
         this.userpassword = userpassword;
         this.firstname = firstname;
         this.lastname = lastname;
         this.userrole = userrole;
+        this.useremail = useremail;
     }
 
     public Integer getUserId() {
@@ -84,7 +88,16 @@ public class AppUsers {
         return userrole;
     }
 
-    public void setUserole(String userrole) {
+    public void setUserrole(String userrole) {
         this.userrole = userrole;
+    }
+
+
+    public String getUseremail() {
+        return useremail;
+    }
+
+    public void setUseremail(String useremail) {
+        this.useremail = useremail;
     }
 }

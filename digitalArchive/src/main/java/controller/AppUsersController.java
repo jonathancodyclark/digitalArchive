@@ -3,9 +3,7 @@ package controller;
 import model.AppUsers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import service.AppUsersService;
 
 import java.util.List;
@@ -21,12 +19,27 @@ public class AppUsersController {
 
 
     @RequestMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<AppUsers> getAllCandidates() {
+    public List<AppUsers> getAllAppUsers() {
         return aus.getAllAppUsers();
     }
 
     @RequestMapping(value = "/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public AppUsers getCandidate(@PathVariable("userId") Integer userId) {
+    public AppUsers getAppUsers(@PathVariable("userId") Integer userId) {
         return aus.getAppUsers(userId);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value="/postAppUsers")
+    public void addAppUsers(@RequestBody AppUsers appUsers) {
+        aus.addAppUsers(appUsers);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value="update/{userId}")
+    public void updateAppUsers(@RequestBody AppUsers appUsers, @PathVariable("userId") Integer userId) {
+        aus.updateAppUsers(appUsers, userId);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value="delete/{userId}")
+    public void deleteAppUsers(@PathVariable("userId")Integer userId) {
+        aus.deleteAppUsers(userId);
     }
 }
