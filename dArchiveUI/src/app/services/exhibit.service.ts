@@ -35,11 +35,11 @@ export class ExhibitService {
 
     addExhibit(exhibit: Exhibit) { 
         console.log(exhibit);
-        return this.http.post(this.backendUrl + 'addExhibits', exhibit);
+        return this.http.post(this.backendUrl + 'addExhibits', JSON.stringify(exhibit));
     }
 
     updateExhibit(exhibit: Exhibit) { 
-        this.http.post(this.backendUrl + 'update/' + exhibit.exhibitId, {body: exhibit});
+        this.http.post(this.backendUrl + 'update/' + exhibit.exhibitId, JSON.stringify(exhibit));
     }
 
     deleteExhibit(row: Exhibit) {
