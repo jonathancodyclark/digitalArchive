@@ -1,0 +1,22 @@
+.title {
+    text-align: center;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container > * {
+  width: 100%;
+}
+
+.save-button {
+    margin: 10px;
+    float: right;
+}
+
+.cancel-button {
+    margin: 10px;
+    float: right;
+}
