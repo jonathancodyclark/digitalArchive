@@ -14,7 +14,7 @@ import { ArtifactService } from '../services/artifact.service';
 })
 export class ExhibitsComponent implements OnInit {
 
-  displayedColumns: string[] = ['open', 'position', 'name', 'weight', 'symbol',  'edit', 'delete'];
+  displayedColumns: string[] = ['open', 'id', 'name', 'desc',  'edit', 'delete'];
   dataSource = new UserDataSource(this.exhibitService);
   exhibit$: Observable<Exhibit[]>;
   title = "Exhibits"
@@ -32,8 +32,8 @@ export class ExhibitsComponent implements OnInit {
   }
 
   openExhibit(row: any) {
-    this.artifactService.selectedExhibit = row.name;
-    this.router.navigate(['artifacts/' + row.name]); 
+    this.artifactService.selectedExhibit = row.exhibitId;
+    this.router.navigate(['artifacts/' + row.exhibitId]); 
   }
 
   addExhibit() {

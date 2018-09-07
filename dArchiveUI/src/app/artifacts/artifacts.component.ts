@@ -12,7 +12,7 @@ import { ArtifactService, Artifact } from '../services/artifact.service'
   styleUrls: ['./artifacts.component.css']
 })
 export class ArtifactsComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'edit', 'delete'];
+  displayedColumns: string[] = ['id', 'name', 'exhibitId', 'desc', 'onDisplay', 'edit', 'delete'];
   dataSource = new UserDataSource(this.artifactService);
   exhibit$: Observable<Artifact[]>;
   title = this.router.url.replace('/artifacts/', '');
