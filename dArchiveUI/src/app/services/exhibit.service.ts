@@ -36,11 +36,15 @@ export class ExhibitService {
         {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
     ];
 
+    editedExhibit = undefined;
+
   getExhibits() { return of(this.ELEMENT_DATA); }
 
   addExhibit(exhibit: Exhibit) { 
-      exhibit.position = this.ELEMENT_DATA.length + 1;
-      this.ELEMENT_DATA.push(exhibit)
+      if(exhibit.position == undefined) {
+          exhibit.position = this.ELEMENT_DATA.length + 1;
+          this.ELEMENT_DATA.push(exhibit)
+      }//shorthand for 'not in the list already'
   }
 
   getExhibit(name: string) {

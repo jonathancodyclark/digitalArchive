@@ -13,7 +13,7 @@ import { ExhibitService, Exhibit } from '../services/exhibit.service'
 })
 export class ExhibitsComponent implements OnInit {
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'edit', 'delete'];
   dataSource = new UserDataSource(this.exhibitService);
   exhibit$: Observable<Exhibit[]>;
   title = "Exhibits"
@@ -26,7 +26,7 @@ export class ExhibitsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
-    
+   
   }
 
   openExhibit(row: any) {
@@ -34,6 +34,15 @@ export class ExhibitsComponent implements OnInit {
   }
 
   addExhibit() {
+    this.router.navigate(['exhibit-detail/']); 
+  }
+
+  editExhibit(row: any) {
+    this.exhibitService.editedExhibit = row;
+    this.router.navigate(['exhibit-detail/']); 
+  }
+
+  deleteExhibit(row: any) {
     this.router.navigate(['exhibit-detail/']); 
   }
 

@@ -27,7 +27,10 @@ export class ExhibitDetailComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
     ngOnInit() {
-    
+        if(this.exhibitService.editedExhibit != undefined) {
+            this.exhibit = this.exhibitService.editedExhibit;
+            this.exhibitService.editedExhibit = undefined;
+        }
     }
 
     backToExhibits() {
