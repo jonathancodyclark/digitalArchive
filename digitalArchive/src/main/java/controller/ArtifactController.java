@@ -3,9 +3,7 @@ package controller;
 import model.Artifacts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import service.ArtifactService;
 
 import java.util.List;
@@ -28,5 +26,20 @@ public class ArtifactController {
     @RequestMapping(value = "/{artifactid}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Artifacts getArtifact(@PathVariable("artifactid") Integer artifactid) {
         return artifactService.getArtifacts(artifactid);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value="/postArtifacts")
+    public void addArtifacts(@RequestBody Artifacts artifact) {
+        artifactService.addArtifact(artifact);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value="/update/{artifactId}")
+    public void updateArtifacts(@RequestBody Artifacts artifact, @PathVariable("artifactId") Integer artifactId) {
+        artifactService.updateArtifacts(artifact, artifactId);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value="/delete/{artifactId}")
+    public void deleteAppUsers(@PathVariable("artifactId")Integer artifactId) {
+        artifactService.deleteArtifacts(artifactId);
     }
 }
