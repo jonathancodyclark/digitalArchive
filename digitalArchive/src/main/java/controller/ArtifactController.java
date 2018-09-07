@@ -43,4 +43,9 @@ public class ArtifactController {
     public void deleteAppUsers(@PathVariable("artifactId")Integer artifactId) {
         artifactService.deleteArtifacts(artifactId);
     }
+
+    @RequestMapping(value = "/exhibits/{exhibitId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Artifacts> findArtifactsInExhibit(@PathVariable("exhibitId") Integer exhibitId) {
+        return artifactService.findArtifactsInExhibits(exhibitId);
+    }
 }

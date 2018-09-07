@@ -46,7 +46,5 @@ public class ExhibitService {
         exhibitsRepository.delete(exhibitId);
     }
 
-    public List<Artifacts> findArtifactsInExhibits(Integer exhibitId) {
-        return (ArrayList<Artifacts>)exhibitsRepository.findArtifactsInExhibits(exhibitId);
-    }
+
 }

@@ -45,8 +45,5 @@ public class ExhibitController {
         es.deleteExhibits(exhibitId);
     }
 
-    @RequestMapping(value = "/artifacts/{exhibitId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Artifacts> findArtifactsInExhibit(@PathVariable("exhibitId") Integer exhibitId) {
-        return es.findArtifactsInExhibits(exhibitId);
-    }
+
 }

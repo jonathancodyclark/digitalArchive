@@ -11,6 +11,5 @@ import java.util.List;
  * Created by Neeraj on 9/7/18.
  */
 public interface ExhibitsRepositoryInterface extends CrudRepository<Exhibits, Integer> {
-    @Query(value="Select * from Artifacts where exhibit_id =?1", nativeQuery = true)
-    List<Artifacts> findArtifactsInExhibits(Integer exhibitId);
+
 }

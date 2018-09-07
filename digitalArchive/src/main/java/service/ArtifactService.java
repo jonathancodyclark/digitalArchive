@@ -43,4 +43,8 @@ public class ArtifactService {
     public void deleteArtifacts(Integer artifactId) {
         artifactRepository.delete(artifactId);
     }
+
+    public List<Artifacts> findArtifactsInExhibits(Integer exhibitId) {
+        return (ArrayList<Artifacts>)artifactRepository.findArtifactsInExhibits(exhibitId);
+    }
 }
