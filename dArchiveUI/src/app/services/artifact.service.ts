@@ -35,12 +35,15 @@ export class ArtifactService {
   ];
 
   selectedExhibit;
+  editedArtifact;
 
   getArtifacts() { return of(this.ELEMENT_DATA); }
 
   addArtifact(artifact: Artifact) { 
-    artifact.position = this.ELEMENT_DATA.length + 1;
-    this.ELEMENT_DATA.push(artifact)
+    if(artifact.position == undefined) {
+      artifact.position = this.ELEMENT_DATA.length + 1;
+      this.ELEMENT_DATA.push(artifact);
+    }
   }
 
   getArtifact(name: string) {

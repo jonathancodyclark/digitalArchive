@@ -27,7 +27,11 @@ export class ArtifactDetailComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
     ngOnInit() {
-    
+        console.log(this.artifactService.selectedExhibit)
+        if(this.artifactService.editedArtifact != undefined) {
+            this.artifact = this.artifactService.editedArtifact;
+            this.artifactService.editedArtifact = undefined;
+        }
     }
 
     backToExhibits() {
@@ -36,6 +40,10 @@ export class ArtifactDetailComponent implements OnInit {
 
     saveArtifact() {
         this.artifactService.addArtifact(this.artifact);
+        this.router.navigate(['/artifacts/' + this.artifactService.selectedExhibit]); 
+    }
+
+    backToArtifacts() {
         this.router.navigate(['/artifacts/' + this.artifactService.selectedExhibit]); 
     }
 }

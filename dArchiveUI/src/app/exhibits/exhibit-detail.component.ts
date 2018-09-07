@@ -30,6 +30,7 @@ export class ExhibitDetailComponent implements OnInit {
         if(this.exhibitService.editedExhibit != undefined) {
             this.exhibit = this.exhibitService.editedExhibit;
             this.exhibitService.editedExhibit = undefined;
+            this.title = "Edit " + this.exhibit.name;
         }
     }
 

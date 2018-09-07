@@ -2,9 +2,10 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import {DataSource} from '@angular/cdk/collections';
+import { DataSource } from '@angular/cdk/collections';
 
 import { ExhibitService, Exhibit } from '../services/exhibit.service'
+import { ArtifactService } from '../services/artifact.service';
 
 @Component({
   selector: 'exhibits-page',
@@ -13,13 +14,14 @@ import { ExhibitService, Exhibit } from '../services/exhibit.service'
 })
 export class ExhibitsComponent implements OnInit {
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'edit', 'delete'];
+  displayedColumns: string[] = ['open', 'position', 'name', 'weight', 'symbol',  'edit', 'delete'];
   dataSource = new UserDataSource(this.exhibitService);
   exhibit$: Observable<Exhibit[]>;
   title = "Exhibits"
 
   constructor(
     private exhibitService: ExhibitService,
+    private artifactService: ArtifactService,
     private router: Router
   ) {}
 
@@ -30,6 +32,7 @@ export class ExhibitsComponent implements OnInit {
   }
 
   openExhibit(row: any) {
+    this.artifactService.selectedExhibit = row.name;
     this.router.navigate(['artifacts/' + row.name]); 
   }
 
@@ -43,9 +46,8 @@ export class ExhibitsComponent implements OnInit {
   }
 
   deleteExhibit(row: any) {
-    this.router.navigate(['exhibit-detail/']); 
+    this.exhibitService.deleteExhibit(row);
   }
-
 }
 
 export class UserDataSource extends DataSource<any> {

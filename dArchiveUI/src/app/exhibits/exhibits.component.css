@@ -16,3 +16,10 @@ table {
 .footer-button {
     margin: 10px;
 }
+
+.mat-column-edit {
+    flex: 0 0 20px;
+}
+.mat-column-delete {
+    flex: 0 0 20px;
+}

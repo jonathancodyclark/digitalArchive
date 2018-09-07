@@ -25,11 +25,16 @@ export class ArtifactsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
-
+    
   }
 
   backToExhibits() {
     this.router.navigate(['/exhibits']); 
+  }
+
+  editArtifact(row: any) {
+    this.artifactService.editedArtifact = row;
+    this.router.navigate(['artifact-detail/']); 
   }
 
   addArtifact() {

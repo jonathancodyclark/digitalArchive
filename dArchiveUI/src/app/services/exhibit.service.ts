@@ -52,4 +52,12 @@ export class ExhibitService {
       map(exhibits => exhibits.find(exhibit => exhibit.name === name))
     );
   }
+
+  deleteExhibit(row: Exhibit) {
+      console.log(row);
+      console.log(this.ELEMENT_DATA.indexOf(row));
+      this.ELEMENT_DATA.splice(this.ELEMENT_DATA.indexOf(row), 1);
+      console.log(this.ELEMENT_DATA);
+
+  }
 }
