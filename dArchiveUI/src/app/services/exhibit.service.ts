@@ -20,6 +20,8 @@ export class ExhibitService {
 
     editedExhibit = undefined;
     backendUrl = 'http://localhost:8080/';
+    headers = new HttpHeaders({'Content-Type':'application/json'});
+    options = {headers: this.headers};
 
     constructor(
         private http : HttpClient
@@ -34,20 +36,12 @@ export class ExhibitService {
     }
 
     addExhibit(exhibit: Exhibit) { 
-        var headers : HttpHeaders = new HttpHeaders();
-        headers.append('Content-Type', 'application/json');
         console.log(JSON.stringify(exhibit));
-        console.log(headers);
-        return this.http.post(this.backendUrl + 'exhibits/postExhibits', JSON.stringify(exhibit), {headers: headers})
-        .pipe(map(res => 
-            {
-                console.log(res);
-            }
-        ));
+        return this.http.post(this.backendUrl + 'exhibits/postExhibits', JSON.stringify(exhibit), this.options);
     }
 
     updateExhibit(exhibit: Exhibit) { 
-       this.http.post(this.backendUrl + 'exhibits/update/' + exhibit.exhibitId, JSON.stringify(exhibit));
+        this.http.put(this.backendUrl + 'exhibits/update/' + exhibit.exhibitId, JSON.stringify(exhibit), this.options);
     }
 
     deleteExhibit(row: Exhibit) {
