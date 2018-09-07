@@ -28,21 +28,18 @@ export class ExhibitService {
     getExhibits() : Observable<Exhibit[]> { 
         return this.http.get(this.backendUrl + 'exhibits/all')
             .pipe(map(res => {
-                return res["data"].map(item => { 
-                    return new Exhibit( 
-                        item.exhibitId,
-                        item.name,
-                        item.description,
-                    );
-                  });
-            }));
+                console.log(res);
+                return <Exhibit[]>res
+        }));
     }
 
     addExhibit(exhibit: Exhibit) { 
-        if(exhibit == undefined) {
-            exhibit.position = this.ELEMENT_DATA.length + 1;
-            this.ELEMENT_DATA.push(exhibit)
-        }//shorthand for 'not in the list already'
+        console.log(exhibit);
+        return this.http.post(this.backendUrl + 'addExhibits', exhibit);
+    }
+
+    updateExhibit(exhibit: Exhibit) { 
+        this.http.post(this.backendUrl + 'update/' + exhibit.exhibitId, {body: exhibit});
     }
 
     deleteExhibit(row: Exhibit) {

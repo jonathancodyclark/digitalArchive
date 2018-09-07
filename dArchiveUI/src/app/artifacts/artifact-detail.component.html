@@ -7,12 +7,19 @@
             <input matInput [(ngModel)]=artifact.name placeholder="Artifact Name" type="string">
     </mat-form-field>
     <mat-form-field>
-            <input matInput [(ngModel)]=artifact.weight placeholder="Weight" type="number">
+            <input matInput [(ngModel)]=artifact.artifactid placeholder="Artifact ID" type="number">
     </mat-form-field>
     <mat-form-field>
-            <input matInput [(ngModel)]=artifact.symbol placeholder="Symbol" type="string">
+            <input matInput [(ngModel)]=artifact.description placeholder="Description" type="string">
+    </mat-form-field>
+    <mat-form-field>
+            <input matInput [(ngModel)]=artifact.onDisplay placeholder="onDisplay" type="number">
     </mat-form-field>
 </div>
 
-<button class="save-button" (click)="saveArtifact()" [disabled]="artifact.symbol == '' || artifact.weight == undefined || artifact.name == ''" mat-button>Save</button>
+<button class="save-button" (click)="saveArtifact()" [disabled]="artifact.name == ''
+                                                              || artifact.artifactid == undefined
+                                                              || artifact.description == ''
+                                                              || !(artifact.onDisplay == 1 || artifact.onDisplay == 0)"
+        mat-button>Save</button>
 <button class="cancel-button" (click)="backToArtifacts()" mat-button>Cancel</button>

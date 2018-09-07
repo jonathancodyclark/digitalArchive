@@ -13,10 +13,11 @@ export class ArtifactDetailComponent implements OnInit {
 
     title = "New Artifact"
     artifact : Artifact = {
-    name: "",
-    position: undefined,
-    weight: undefined,
-    symbol: ''
+    artifactid : undefined,
+    name : '',
+    exhibitId : this.artifactService.selectedExhibit,
+    description: '',
+    onDisplay: undefined
     }
 
     constructor(
