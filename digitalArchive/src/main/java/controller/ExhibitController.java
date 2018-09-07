@@ -1,5 +1,6 @@
 package controller;
 
+import model.Artifacts;
 import model.Exhibits;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -42,5 +43,10 @@ public class ExhibitController {
     @RequestMapping(method = RequestMethod.DELETE, value="/delete/{exhibitId}")
     public void deleteExhibits(@PathVariable("exhibitId")Integer exhibitId) {
         es.deleteExhibits(exhibitId);
+    }
+
+    @RequestMapping(value = "/artifacts/{exhibitId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Artifacts> findArtifactsInExhibit(@PathVariable("exhibitId") Integer exhibitId) {
+        return es.findArtifactsInExhibits(exhibitId);
     }
 }
