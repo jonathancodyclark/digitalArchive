@@ -13,6 +13,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/exhibits")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 public class ExhibitController {
     @Autowired
     ExhibitService es;
