@@ -31,7 +31,7 @@ export class ArtifactService {
   ){}
 
   getArtifacts() { 
-    return this.http.get(this.backendUrl + 'artifacts/' + this.selectedExhibit)
+    return this.http.get(this.backendUrl + 'exhibits/' + this.selectedExhibit)
         .pipe(map(res => {
             console.log(res);
             return <Artifact[]>res
