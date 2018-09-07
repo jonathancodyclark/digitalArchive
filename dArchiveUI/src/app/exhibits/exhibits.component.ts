@@ -12,7 +12,6 @@ import { ExhibitService, Exhibit } from '../services/exhibit.service'
   styleUrls: ['./exhibits.component.css']
 })
 export class ExhibitsComponent implements OnInit {
-<<<<<<< HEAD
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'edit', 'delete'];
   dataSource = new UserDataSource(this.exhibitService);
@@ -23,10 +22,6 @@ export class ExhibitsComponent implements OnInit {
     private exhibitService: ExhibitService,
     private router: Router
   ) {}
-=======
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'edit', 'delete'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
->>>>>>> 795f75ea85006ac76a878a2b9521136f0db4fcd6
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
