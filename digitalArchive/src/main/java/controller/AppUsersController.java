@@ -13,6 +13,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/users")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 public class AppUsersController {
     @Autowired
     AppUsersService aus;

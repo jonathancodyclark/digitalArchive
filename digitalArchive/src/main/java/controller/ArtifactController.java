@@ -13,6 +13,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/artifacts")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 public class ArtifactController {
     @Autowired
     ArtifactService artifactService;
