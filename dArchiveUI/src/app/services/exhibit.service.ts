@@ -34,12 +34,20 @@ export class ExhibitService {
     }
 
     addExhibit(exhibit: Exhibit) { 
-        console.log(exhibit);
-        return this.http.post(this.backendUrl + 'addExhibits', JSON.stringify(exhibit));
+        var headers : HttpHeaders = new HttpHeaders();
+        headers.append('Content-Type', 'application/json');
+        console.log(JSON.stringify(exhibit));
+        console.log(headers);
+        return this.http.post(this.backendUrl + 'exhibits/postExhibits', JSON.stringify(exhibit), {headers: headers})
+        .pipe(map(res => 
+            {
+                console.log(res);
+            }
+        ));
     }
 
     updateExhibit(exhibit: Exhibit) { 
-        this.http.post(this.backendUrl + 'update/' + exhibit.exhibitId, JSON.stringify(exhibit));
+       this.http.post(this.backendUrl + 'exhibits/update/' + exhibit.exhibitId, JSON.stringify(exhibit));
     }
 
     deleteExhibit(row: Exhibit) {

@@ -13,8 +13,9 @@ export class ExhibitDetailComponent implements OnInit {
 
     title = "New Exhibit"
     exhibit : Exhibit = {
-        name: '',
+        
         exhibitId: undefined,
+        name: '',
         description: ''
     }
     editing;
@@ -42,9 +43,9 @@ export class ExhibitDetailComponent implements OnInit {
 
     saveExhibit() {
         if(this.editing) {
-            this.exhibitService.addExhibit(this.exhibit);
-        } else {
             this.exhibitService.updateExhibit(this.exhibit);
+        } else {
+            this.exhibitService.addExhibit(this.exhibit);
         }
         
         this.router.navigate(['/exhibits']); 
