@@ -1,5 +1,6 @@
 package service;
 
+import model.Artifacts;
 import model.Exhibits;
 import repository.ExhibitsRepositoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,9 @@ public class ExhibitService {
 
     public void deleteExhibits(Integer exhibitId) {
         exhibitsRepository.delete(exhibitId);
+    }
+
+    public List<Artifacts> findArtifactsInExhibits(Integer exhibitId) {
+        return (ArrayList<Artifacts>)exhibitsRepository.findArtifactsInExhibits(exhibitId);
     }
 }
