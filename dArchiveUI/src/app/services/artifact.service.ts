@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 export class Artifact {
   artifactid : number;
@@ -24,21 +25,29 @@ export class ArtifactService {
 
   selectedExhibit;
   editedArtifact;
-  backendUrl = 'http://localhost:8080/';
+  backendUrl = 'http://localhost:8080/artifacts';
+  headers = new HttpHeaders({'Content-Type':'application/json'});
+  options = {headers: this.headers};
 
   constructor(
-    private http : HttpClient
+    private http : HttpClient,
+    private router: Router
   ){}
 
   getArtifacts() { 
-    return this.http.get(this.backendUrl + 'artifacts/exhibits/' + this.selectedExhibit)
-        .pipe(map(res => {
-            console.log(res);
-            return <Artifact[]>res
-    }));
+    let id = this.router.url.replace('/artifacts/', '');
+    return this.http.get<Artifact[]>(this.backendUrl + '/exhibits/' + id, this.options);
   }
 
   addArtifact(artifact: Artifact) { 
+    return this.http.post(this.backendUrl + '/postArtifacts', JSON.stringify(artifact), this.options).pipe();
+  }
 
+  updateArtifact(artifact : Artifact) {
+    return this.http.put(this.backendUrl + '/update/' + artifact.artifactid, JSON.stringify(artifact), this.options).pipe();
+  }
+
+  deleteArtifact(row : Artifact) {
+    return this.http.delete(this.backendUrl + '/delete/' + row.artifactid, this.options).pipe();
   }
 }

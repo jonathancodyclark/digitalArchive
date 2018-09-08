@@ -3,6 +3,7 @@ import {MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DataSource } from '@angular/cdk/collections';
+import { MatTableDataSource } from '@angular/material/table'
 
 import { ExhibitService, Exhibit } from '../services/exhibit.service'
 import { ArtifactService } from '../services/artifact.service';
@@ -15,20 +16,24 @@ import { ArtifactService } from '../services/artifact.service';
 export class ExhibitsComponent implements OnInit {
 
   displayedColumns: string[] = ['open', 'id', 'name', 'desc',  'edit', 'delete'];
-  dataSource = new UserDataSource(this.exhibitService);
-  exhibit$: Observable<Exhibit[]>;
+  dataSource: MatTableDataSource<Exhibit>;
   title = "Exhibits"
 
   constructor(
     private exhibitService: ExhibitService,
     private artifactService: ArtifactService,
     private router: Router
+    
   ) {}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
-   
+    this.exhibitService.getExhibits().subscribe(res => {
+      this.dataSource = new MatTableDataSource<Exhibit>(res);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.data.sort();
+    });
   }
 
   openExhibit(row: any) {
@@ -46,16 +51,13 @@ export class ExhibitsComponent implements OnInit {
   }
 
   deleteExhibit(row: any) {
-    this.exhibitService.deleteExhibit(row);
+    this.exhibitService.deleteExhibit(row).subscribe(exhibit => {
+      this.deleteRowDataTable(row, this.dataSource, this.dataSource.paginator);
+    });
   }
-}
 
-export class UserDataSource extends DataSource<any> {
-  constructor(private exhibitService: ExhibitService) {
-    super();
+  private deleteRowDataTable(row, dataSource, paginator) {
+    dataSource.data.splice(dataSource.data.indexOf(row), 1);
+    dataSource.paginator = paginator;
   }
-  connect(): Observable<Exhibit[]> {
-    return this.exhibitService.getExhibits();
-  }
-  disconnect() {}
 }

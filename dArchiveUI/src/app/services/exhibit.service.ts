@@ -19,7 +19,7 @@ export class Exhibit {
 export class ExhibitService {
 
     editedExhibit = undefined;
-    backendUrl = 'http://localhost:8080/';
+    backendUrl = 'http://localhost:8080/exhibits';
     headers = new HttpHeaders({'Content-Type':'application/json'});
     options = {headers: this.headers};
 
@@ -28,23 +28,19 @@ export class ExhibitService {
     ){}
 
     getExhibits() : Observable<Exhibit[]> { 
-        return this.http.get(this.backendUrl + 'exhibits/all')
-            .pipe(map(res => {
-                console.log(res);
-                return <Exhibit[]>res
-        }));
+        return this.http.get<Exhibit[]>(this.backendUrl + '/all', this.options);
     }
 
     addExhibit(exhibit: Exhibit) { 
         console.log(JSON.stringify(exhibit));
-        return this.http.post(this.backendUrl + 'exhibits/postExhibits', JSON.stringify(exhibit), this.options);
+        return this.http.post(this.backendUrl + '/postExhibits', JSON.stringify(exhibit), this.options).pipe();
     }
 
     updateExhibit(exhibit: Exhibit) { 
-        this.http.put(this.backendUrl + 'exhibits/update/' + exhibit.exhibitId, JSON.stringify(exhibit), this.options);
+        return this.http.put(this.backendUrl + '/update/' + exhibit.exhibitId, JSON.stringify(exhibit), this.options);
     }
 
     deleteExhibit(row: Exhibit) {
-
+        return this.http.delete(this.backendUrl + '/delete/' + row.exhibitId, this.options).pipe();
     }
 }

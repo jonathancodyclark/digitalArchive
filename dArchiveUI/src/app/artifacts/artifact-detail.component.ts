@@ -11,6 +11,8 @@ import { ArtifactService, Artifact } from '../services/artifact.service'
 })
 export class ArtifactDetailComponent implements OnInit {
 
+    
+    editing;
     title = "New Artifact"
     artifact : Artifact = {
     artifactid : undefined,
@@ -28,20 +30,29 @@ export class ArtifactDetailComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
     ngOnInit() {
+        this.editing = false;
         console.log(this.artifactService.selectedExhibit)
         if(this.artifactService.editedArtifact != undefined) {
+            this.editing = true;
             this.artifact = this.artifactService.editedArtifact;
             this.artifactService.editedArtifact = undefined;
         }
     }
 
     backToExhibits() {
-        this.router.navigate(['/exhibits']); 
+        this.router.navigate(['/exhibits']);
     }
 
     saveArtifact() {
-        this.artifactService.addArtifact(this.artifact);
-        this.router.navigate(['/artifacts/' + this.artifactService.selectedExhibit]); 
+        if(this.editing) {
+            this.artifactService.updateArtifact(this.artifact).subscribe(exhibit => {
+                this.router.navigate(['/artifacts/' + this.artifact.exhibitId]);
+            });
+        } else {
+            this.artifactService.addArtifact(this.artifact).subscribe(artifact => {
+                this.router.navigate(['/artifacts/' + this.artifact.exhibitId]);
+            });
+        }
     }
 
     backToArtifacts() {

@@ -43,11 +43,13 @@ export class ExhibitDetailComponent implements OnInit {
 
     saveExhibit() {
         if(this.editing) {
-            this.exhibitService.updateExhibit(this.exhibit);
+            this.exhibitService.updateExhibit(this.exhibit).subscribe(exhibit => {
+                this.router.navigate(['/exhibits']);
+            });
         } else {
-            this.exhibitService.addExhibit(this.exhibit);
+            this.exhibitService.addExhibit(this.exhibit).subscribe(exhibit => {
+                this.router.navigate(['/exhibits']);
+            });
         }
-        
-        this.router.navigate(['/exhibits']); 
     }
 }
