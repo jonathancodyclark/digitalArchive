@@ -7,3 +7,19 @@ table {
     width: 100%;
     background-color: primary;
 }
+
+#exhibit_table {
+    height: 300px;
+    overflow: scroll;
+}
+
+.footer-button {
+    margin: 10px;
+}
+
+.mat-column-edit {
+    flex: 0 0 20px;
+}
+.mat-column-delete {
+    flex: 0 0 20px;
+}

@@ -1,0 +1,18 @@
+<h1 class="title">
+        {{title}}
+</h1>
+
+<div class="form-container">
+    <mat-form-field>
+            <input matInput [(ngModel)]=exhibit.name placeholder="Exhibit Name" type="string">
+    </mat-form-field>
+    <mat-form-field>
+            <input matInput [(ngModel)]=exhibit.exhibitId placeholder="Exhibit ID" type="number">
+    </mat-form-field>
+    <mat-form-field>
+            <input matInput [(ngModel)]=exhibit.description placeholder="Description" type="string">
+    </mat-form-field>
+</div>
+
+<button class="save-button" (click)="saveExhibit()" [disabled]="exhibit.name == '' || exhibit.exhibitId == undefined" mat-button>Save</button>
+<button class="cancel-button" (click)="backToExhibits()" mat-button>Cancel</button>

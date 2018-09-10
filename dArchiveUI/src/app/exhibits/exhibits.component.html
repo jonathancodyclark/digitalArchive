@@ -5,13 +5,13 @@
 <div class="image">
     <img src="../../assets/image/ssbcLogo.png" id="logo" height="30" width="auto" onclick="location.href='/exhibits'">
 </div>
-<div class="mat-elevation-z8">
+<div id="exhibit_table" class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">
 
-        <!-- Position Column -->
-        <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.exhibitId}} </td>
         </ng-container>
 
         <!-- Name Column -->
@@ -20,16 +20,28 @@
         <td mat-cell *matCellDef="let element"> {{element.name}} </td>
         </ng-container>
 
-        <!-- Weight Column -->
-        <ng-container matColumnDef="weight">
-        <th mat-header-cell *matHeaderCellDef> Weight </th>
-        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        <!-- Desc Column -->
+        <ng-container matColumnDef="desc">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
         </ng-container>
 
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="symbol">
-        <th mat-header-cell *matHeaderCellDef> Symbol </th>
-        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        <!-- Open Button Column -->
+        <ng-container matColumnDef="open">
+                <th mat-header-cell  *matHeaderCellDef ></th>
+                <td mat-cell *matCellDef="let row" (click)="openExhibit(row)"><button mat-button >OPEN</button></td>
+        </ng-container>
+
+        <!-- Edit Button Column -->
+        <ng-container matColumnDef="edit">
+                <th mat-header-cell  *matHeaderCellDef ></th>
+                <td mat-cell *matCellDef="let row" (click)="editExhibit(row)"><button mat-button >EDIT</button></td>
+        </ng-container>
+
+        <!-- Delete Button Column -->
+        <ng-container matColumnDef="delete">
+                <th mat-header-cell  *matHeaderCellDef ></th>
+                <td mat-cell *matCellDef="let row" (click)="deleteExhibit(row)"><button mat-button >DELETE</button></td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -38,3 +50,4 @@
 
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
+<button class="footer-button" mat-button (click)="addExhibit()">Add Exhibit</button>
