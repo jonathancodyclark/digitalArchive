@@ -1,5 +1,7 @@
 package model;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -37,7 +39,8 @@ public class AppUsers {
     public AppUsers(Integer userId, String username, String userpassword, String firstname, String lastname, String userrole, String useremail) {
         this.userId = userId;
         this.username = username;
-        this.userpassword = userpassword;
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        this.userpassword = encoder.encode(userpassword);
         this.firstname = firstname;
         this.lastname = lastname;
         this.userrole = userrole;
@@ -65,7 +68,8 @@ public class AppUsers {
     }
 
     public void setUserpassword(String userpassword) {
-        this.userpassword = userpassword;
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        this.userpassword = encoder.encode(userpassword);
     }
 
     public String getFirstname() {

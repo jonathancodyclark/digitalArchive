@@ -13,7 +13,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/users")
-@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
+//@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 public class AppUsersController {
     @Autowired
     AppUsersService aus;
@@ -42,5 +42,10 @@ public class AppUsersController {
     @RequestMapping(method = RequestMethod.DELETE, value="/delete/{userId}")
     public void deleteAppUsers(@PathVariable("userId")Integer userId) {
         aus.deleteAppUsers(userId);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value="/login/{username}/{password}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public AppUsers login(@PathVariable("username") String username,@PathVariable("password") String password) {
+        return aus.login(username, password);
     }
 }
