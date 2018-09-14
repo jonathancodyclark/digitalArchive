@@ -2,7 +2,7 @@
     {{title}}
 </h1>
 
-<div class="mat-elevation-z8">
+<div id="artifact_table" class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">
 
         <!-- Position Column -->
@@ -45,5 +45,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    <!--<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>-->
 </div>
+<button class="footer-button" mat-button (click)="addArtifact()">Add Artifact</button>
+<button class="footer-button" mat-button (click)="backToExhibits()">Back</button>

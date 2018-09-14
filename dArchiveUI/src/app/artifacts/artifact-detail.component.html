@@ -1,0 +1,18 @@
+<h1 class="title">
+        {{title}}
+</h1>
+
+<div class="form-container">
+    <mat-form-field>
+            <input matInput [(ngModel)]=artifact.name placeholder="Artifact Name" type="string">
+    </mat-form-field>
+    <mat-form-field>
+            <input matInput [(ngModel)]=artifact.weight placeholder="Weight" type="number">
+    </mat-form-field>
+    <mat-form-field>
+            <input matInput [(ngModel)]=artifact.symbol placeholder="Symbol" type="string">
+    </mat-form-field>
+</div>
+
+<button class="save-button" (click)="saveArtifact()" [disabled]="artifact.symbol == '' || artifact.weight == undefined || artifact.name == ''" mat-button>Save</button>
+<button class="cancel-button" (click)="backToArtifacts()" mat-button>Cancel</button>

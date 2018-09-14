@@ -7,3 +7,18 @@ table {
     width: 100%;
     background-color: primary;
 }
+
+.header {
+    align-content: center;
+    display: flex;
+    flex-direction: row;
+}
+
+#artifact_table {
+    height: 300px;
+    overflow: scroll;
+}
+
+.footer-button {
+    margin: 10px;
+}

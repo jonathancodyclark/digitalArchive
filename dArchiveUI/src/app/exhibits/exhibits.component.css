@@ -7,3 +7,12 @@ table {
     width: 100%;
     background-color: primary;
 }
+
+#exhibit_table {
+    height: 300px;
+    overflow: scroll;
+}
+
+.footer-button {
+    margin: 10px;
+}

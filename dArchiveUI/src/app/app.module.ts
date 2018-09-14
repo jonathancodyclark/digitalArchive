@@ -13,6 +13,7 @@ import { MatButtonModule,
         MatTableModule,
         MatPaginatorModule
 } from '@angular/material';
+import { AppRoutingModule } from './app-routing.module';
 
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -23,12 +24,22 @@ import {RouterModule} from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { ExhibitsComponent } from './exhibits/exhibits.component';
+import { ExhibitDetailComponent } from './exhibits/exhibit-detail.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { PageNotFoundComponent } from './not-found/not-found.component';
+import { ArtifactsComponent } from './artifacts/artifacts.component';
+import { ArtifactDetailComponent } from './artifacts/artifact-detail.component';
+import { ExhibitService } from "./services/exhibit.service";
+import { ArtifactService } from "./services/artifact.service";
 
 @NgModule({
   declarations: [
     AppComponent,
-    ExhibitsComponent
+    ExhibitsComponent,
+    ArtifactsComponent,
+    PageNotFoundComponent,
+    ExhibitDetailComponent,
+    ArtifactDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -51,9 +62,10 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     MatSelectModule,
     MatSortModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [AppRoutingModule, ExhibitService, ArtifactService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

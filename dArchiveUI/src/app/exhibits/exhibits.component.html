@@ -2,7 +2,7 @@
     {{title}}
 </h1>
 
-<div class="mat-elevation-z8">
+<div id="exhibit_table" class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">
 
         <!-- Position Column -->
@@ -42,8 +42,9 @@
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openExhibit(row)"></tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    <!--<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>-->
 </div>
+<button class="footer-button" mat-button (click)="addExhibit()">Add Exhibit</button>
