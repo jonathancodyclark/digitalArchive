@@ -2,9 +2,11 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import {DataSource} from '@angular/cdk/collections';
+import { DataSource } from '@angular/cdk/collections';
+import { MatTableDataSource } from '@angular/material/table'
 
 import { ExhibitService, Exhibit } from '../services/exhibit.service'
+import { ArtifactService } from '../services/artifact.service';
 
 @Component({
   selector: 'exhibits-page',
@@ -13,38 +15,49 @@ import { ExhibitService, Exhibit } from '../services/exhibit.service'
 })
 export class ExhibitsComponent implements OnInit {
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new UserDataSource(this.exhibitService);
-  exhibit$: Observable<Exhibit[]>;
+  displayedColumns: string[] = ['open', 'id', 'name', 'desc',  'edit', 'delete'];
+  dataSource: MatTableDataSource<Exhibit>;
   title = "Exhibits"
 
   constructor(
     private exhibitService: ExhibitService,
+    private artifactService: ArtifactService,
     private router: Router
+    
   ) {}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
-    
+    this.exhibitService.getExhibits().subscribe(res => {
+      this.dataSource = new MatTableDataSource<Exhibit>(res);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.data.sort();
+    });
   }
 
   openExhibit(row: any) {
-    this.router.navigate(['artifacts/' + row.name]); 
+    this.artifactService.selectedExhibit = row.exhibitId;
+    this.router.navigate(['artifacts/' + row.exhibitId]); 
   }
 
   addExhibit() {
     this.router.navigate(['exhibit-detail/']); 
   }
 
-}
+  editExhibit(row: any) {
+    this.exhibitService.editedExhibit = row;
+    this.router.navigate(['exhibit-detail/']); 
+  }
 
-export class UserDataSource extends DataSource<any> {
-  constructor(private exhibitService: ExhibitService) {
-    super();
+  deleteExhibit(row: any) {
+    this.exhibitService.deleteExhibit(row).subscribe(exhibit => {
+      this.deleteRowDataTable(row, this.dataSource, this.dataSource.paginator);
+    });
   }
-  connect(): Observable<Exhibit[]> {
-    return this.exhibitService.getExhibits();
+
+  private deleteRowDataTable(row, dataSource, paginator) {
+    dataSource.data.splice(dataSource.data.indexOf(row), 1);
+    dataSource.paginator = paginator;
   }
-  disconnect() {}
 }

@@ -13,11 +13,12 @@ export class ExhibitDetailComponent implements OnInit {
 
     title = "New Exhibit"
     exhibit : Exhibit = {
-    name: "",
-    position: undefined,
-    weight: undefined,
-    symbol: ''
-}
+        
+        exhibitId: undefined,
+        name: '',
+        description: ''
+    }
+    editing;
 
     constructor(
         private exhibitService: ExhibitService,
@@ -27,7 +28,13 @@ export class ExhibitDetailComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
     ngOnInit() {
-    
+        this.editing = false;
+        if(this.exhibitService.editedExhibit != undefined) {
+            this.exhibit = this.exhibitService.editedExhibit;
+            this.exhibitService.editedExhibit = undefined;
+            this.title = "Edit " + this.exhibit.name;
+            this.editing = true;
+        }
     }
 
     backToExhibits() {
@@ -35,7 +42,14 @@ export class ExhibitDetailComponent implements OnInit {
     }
 
     saveExhibit() {
-        this.exhibitService.addExhibit(this.exhibit);
-        this.router.navigate(['/exhibits']); 
+        if(this.editing) {
+            this.exhibitService.updateExhibit(this.exhibit).subscribe(exhibit => {
+                this.router.navigate(['/exhibits']);
+            });
+        } else {
+            this.exhibitService.addExhibit(this.exhibit).subscribe(exhibit => {
+                this.router.navigate(['/exhibits']);
+            });
+        }
     }
 }

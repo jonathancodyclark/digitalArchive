@@ -13,6 +13,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/users")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 public class AppUsersController {
     @Autowired
     AppUsersService aus;
@@ -33,12 +34,12 @@ public class AppUsersController {
         aus.addAppUsers(appUsers);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value="update/{userId}")
+    @RequestMapping(method = RequestMethod.PUT, value="/update/{userId}")
     public void updateAppUsers(@RequestBody AppUsers appUsers, @PathVariable("userId") Integer userId) {
         aus.updateAppUsers(appUsers, userId);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value="delete/{userId}")
+    @RequestMapping(method = RequestMethod.DELETE, value="/delete/{userId}")
     public void deleteAppUsers(@PathVariable("userId")Integer userId) {
         aus.deleteAppUsers(userId);
     }

@@ -10,7 +10,7 @@ import { ArtifactDetailComponent } from './artifacts/artifact-detail.component';
 const appRoutes: Routes = [
   { path: 'exhibits', component: ExhibitsComponent },
   { path: 'exhibit-detail', component: ExhibitDetailComponent },
-  { path: 'artifacts/:name', component: ArtifactsComponent },
+  { path: 'artifacts/:id', component: ArtifactsComponent },
   { path: 'artifact-detail', component: ArtifactDetailComponent },
   { path: '',   redirectTo: '/exhibits', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }

@@ -31,4 +31,20 @@ public class ArtifactService {
     public List<Artifacts> getAllArtifacts() {
         return (ArrayList<Artifacts>)artifactRepository.findAll();
     }
+
+    public void addArtifact(Artifacts artifact) {
+        artifactRepository.save(artifact);
+    }
+
+    public void updateArtifacts(Artifacts artifact, Integer artifactId) {
+        artifactRepository.save(artifact);
+    }
+
+    public void deleteArtifacts(Integer artifactId) {
+        artifactRepository.delete(artifactId);
+    }
+
+    public List<Artifacts> findArtifactsInExhibits(Integer exhibitId) {
+        return (ArrayList<Artifacts>)artifactRepository.findArtifactsInExhibits(exhibitId);
+    }
 }

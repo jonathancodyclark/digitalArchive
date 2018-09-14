@@ -16,43 +16,23 @@ public class Artifacts {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "exhibit")
-    private String exhibit;
-
-    @Column(name="origin_city")
-    private String origin_city;
-
-    @Column(name= "origin_country")
-    private String origin_country;
-
-    @Column(name="origin_state")
-    private String origin_state;
-
-    @Column(name="on_display")
-    private String on_display;
-
-    @Column(name="year_start")
-    private String year_start;
-
-    @Column(name="year_end")
-    private String year_end;
-
-
+    @Column(name = "exhibit_id")
+    private int exhibitId;
 
     @Column(name="description")
     private String description;
 
-    public Artifacts(Integer artifactid, String name, String exhibit, String origin_city, String origin_country, String origin_state, String on_display, String year_start, String year_end, String description) {
+    @Column(name="on_display")
+    private int onDisplay;
+
+    public Artifacts() {}
+
+    public Artifacts(Integer artifactid, String name, int exhibitId, String description, int onDisplay) {
         this.artifactid = artifactid;
         this.name = name;
-        this.exhibit = exhibit;
-        this.origin_city = origin_city;
-        this.origin_country = origin_country;
-        this.origin_state = origin_state;
-        this.on_display = on_display;
-        this.year_start = year_start;
-        this.year_end = year_end;
+        this.exhibitId = exhibitId;
         this.description = description;
+        this.onDisplay = onDisplay;
     }
 
     public Integer getArtifactid() {
@@ -63,33 +43,10 @@ public class Artifacts {
         return name;
     }
 
-    public String getExhibit() {
-        return exhibit;
+    public int getExhibitId() {
+        return exhibitId;
     }
 
-    public String getOrigin_city() {
-        return origin_city;
-    }
-
-    public String getOrigin_country() {
-        return origin_country;
-    }
-
-    public String getOrigin_state() {
-        return origin_state;
-    }
-
-    public String getOn_display() {
-        return on_display;
-    }
-
-    public String getYear_start() {
-        return year_start;
-    }
-
-    public String getYear_end() {
-        return year_end;
-    }
 
     public String getDescription() {
         return description;
@@ -103,35 +60,19 @@ public class Artifacts {
         this.name = name;
     }
 
-    public void setExhibit(String exhibit) {
-        this.exhibit = exhibit;
-    }
-
-    public void setOrigin_city(String origin_city) {
-        this.origin_city = origin_city;
-    }
-
-    public void setOrigin_country(String origin_country) {
-        this.origin_country = origin_country;
-    }
-
-    public void setOrigin_state(String origin_state) {
-        this.origin_state = origin_state;
-    }
-
-    public void setOn_display(String on_display) {
-        this.on_display = on_display;
-    }
-
-    public void setYear_start(String year_start) {
-        this.year_start = year_start;
-    }
-
-    public void setYear_end(String year_end) {
-        this.year_end = year_end;
+    public void setExhibitId(int exhibitId) {
+        this.exhibitId = exhibitId;
     }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getOnDisplay() {
+        return onDisplay;
+    }
+
+    public void setOnDisplay(int onDisplay) {
+        this.onDisplay = onDisplay;
     }
 }
