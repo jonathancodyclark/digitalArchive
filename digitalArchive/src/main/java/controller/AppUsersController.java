@@ -13,7 +13,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/users")
-@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
+//@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 public class AppUsersController {
     @Autowired
     AppUsersService aus;
@@ -43,4 +43,5 @@ public class AppUsersController {
     public void deleteAppUsers(@PathVariable("userId")Integer userId) {
         aus.deleteAppUsers(userId);
     }
+
 }

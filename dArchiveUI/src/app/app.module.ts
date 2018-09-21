@@ -28,9 +28,12 @@ import { ExhibitDetailComponent } from './exhibits/exhibit-detail.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { PageNotFoundComponent } from './not-found/not-found.component';
 import { ArtifactsComponent } from './artifacts/artifacts.component';
+import { HomePageComponent } from './homePage/homePage.component';
 import { ArtifactDetailComponent } from './artifacts/artifact-detail.component';
 import { ExhibitService } from "./services/exhibit.service";
 import { ArtifactService } from "./services/artifact.service";
+import { AppusersService } from './services/appusers.service';
+import { AppusersComponent } from './appusers/appusers.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,9 @@ import { ArtifactService } from "./services/artifact.service";
     ArtifactsComponent,
     PageNotFoundComponent,
     ExhibitDetailComponent,
-    ArtifactDetailComponent
+    ArtifactDetailComponent,
+    HomePageComponent,
+    AppusersComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +70,7 @@ import { ArtifactService } from "./services/artifact.service";
     MatPaginatorModule,
     AppRoutingModule
   ],
-  providers: [AppRoutingModule, ExhibitService, ArtifactService],
+  providers: [AppRoutingModule, ExhibitService, ArtifactService, AppusersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
