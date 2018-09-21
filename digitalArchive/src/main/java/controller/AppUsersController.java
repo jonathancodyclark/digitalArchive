@@ -44,8 +44,4 @@ public class AppUsersController {
         aus.deleteAppUsers(userId);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/login/{username}/{password}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public AppUsers login(@PathVariable("username") String username,@PathVariable("password") String password) {
-        return aus.login(username, password);
-    }
 }

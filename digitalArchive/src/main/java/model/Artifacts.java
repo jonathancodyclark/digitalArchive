@@ -56,7 +56,11 @@ public class Artifacts {
         return exhibitId;
     }
 
-    public void setExhibitId(int exhibitId) {
+    public void setExhibitId(Integer exhibitId) {
+        if (exhibitId == null)
+        {
+            exhibitId = 0;
+        }
         this.exhibitId = exhibitId;
     }
 

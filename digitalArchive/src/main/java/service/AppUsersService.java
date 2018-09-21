@@ -45,14 +45,7 @@ public class AppUsersService {
         appUsersRepository.delete(userId);
     }
 
-    public AppUsers login(String username, String password) {
-        AppUsers user = appUsersRepository.findByUsername(username);
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        if (user != null && encoder.matches(password, user.getUserpassword())) {
-            return user;
-        }
-        return null;
-    }
+
 
 
 }
