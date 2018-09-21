@@ -3,13 +3,12 @@
 }
 
 table {
-    align-content: center;
     width: 100%;
     background-color: primary;
 }
 
 #exhibit_table {
-    height: 300px;
+    height: 360px;
     overflow: scroll;
 }
 
@@ -17,9 +16,30 @@ table {
     margin: 10px;
 }
 
+.mat-column-id {
+    width: 15%;
+}
+
+.mat-column-name {
+    width: 20%;
+}
+
+.mat-column-desc {
+    width: 60%;
+}
+
+.mat-column-open {
+    text-align: right;
+    padding-right: 2%;
+}
+
 .mat-column-edit {
-    flex: 0 0 20px;
+    text-align: right;
+    padding-right: 2%;
 }
+
 .mat-column-delete {
-    flex: 0 0 20px;
+    text-align: right;
+    padding-right: 2%;
 }
+

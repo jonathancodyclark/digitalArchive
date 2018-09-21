@@ -15,9 +15,9 @@ import { ArtifactService } from '../services/artifact.service';
 })
 export class ExhibitsComponent implements OnInit {
 
-  displayedColumns: string[] = ['open', 'id', 'name', 'desc',  'edit', 'delete'];
+  displayedColumns: string[] = ['id', 'name', 'desc', 'open', 'edit', 'delete'];
   dataSource: MatTableDataSource<Exhibit>;
-  title = "Exhibits"
+  title = "EXHIBITS"
 
   constructor(
     private exhibitService: ExhibitService,
