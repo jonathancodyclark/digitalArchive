@@ -17,7 +17,7 @@ public class Artifacts {
     private String name;
 
     @Column(name = "exhibit_id")
-    private int exhibitId;
+    private Integer exhibitId;
 
     @Column(name="description")
     private String description;
@@ -28,9 +28,13 @@ public class Artifacts {
     public Artifacts() {}
 
 
-    public Artifacts(Integer artifactid, String name, int exhibitId, String description, int onDisplay) {
+    public Artifacts(Integer artifactid, String name, Integer exhibitId, String description, int onDisplay) {
         this.artifactid = artifactid;
         this.name = name;
+        if (exhibitId == null)
+        {
+            exhibitId = 0;
+        }
         this.exhibitId = exhibitId;
         this.description = description;
         this.onDisplay = onDisplay;
@@ -52,7 +56,7 @@ public class Artifacts {
         this.name = name;
     }
 
-    public int getExhibitId() {
+    public Integer getExhibitId() {
         return exhibitId;
     }
 
