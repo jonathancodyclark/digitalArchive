@@ -27,6 +27,7 @@ public class Artifacts {
 
     public Artifacts() {}
 
+
     public Artifacts(Integer artifactid, String name, int exhibitId, String description, int onDisplay) {
         this.artifactid = artifactid;
         this.name = name;
@@ -39,29 +40,32 @@ public class Artifacts {
         return artifactid;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getExhibitId() {
-        return exhibitId;
-    }
-
-
-    public String getDescription() {
-        return description;
-    }
-
     public void setArtifactid(Integer artifactid) {
         this.artifactid = artifactid;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setExhibitId(int exhibitId) {
+    public int getExhibitId() {
+        return exhibitId;
+    }
+
+    public void setExhibitId(Integer exhibitId) {
+        if (exhibitId == null)
+        {
+            exhibitId = 0;
+        }
         this.exhibitId = exhibitId;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public void setDescription(String description) {

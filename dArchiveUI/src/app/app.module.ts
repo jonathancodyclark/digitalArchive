@@ -28,6 +28,7 @@ import { ExhibitDetailComponent } from './exhibits/exhibit-detail.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { PageNotFoundComponent } from './not-found/not-found.component';
 import { ArtifactsComponent } from './artifacts/artifacts.component';
+import { HomePageComponent } from './homePage/homePage.component';
 import { ArtifactDetailComponent } from './artifacts/artifact-detail.component';
 import { LoginComponent } from './login/login.component';
 import { ExhibitService } from "./services/exhibit.service";
@@ -42,7 +43,8 @@ import { LoginService } from "./services/login.service";
     PageNotFoundComponent,
     ExhibitDetailComponent,
     ArtifactDetailComponent,
-    LoginComponent
+    LoginComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
