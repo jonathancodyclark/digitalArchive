@@ -15,7 +15,7 @@
     "@angular/cdk": "^6.4.7",
     "@angular/common": "^6.1.0",
     "@angular/compiler": "^6.1.0",
-    "@angular/core": "^6.1.0",
+    "@angular/core": "^6.1.7",
     "@angular/forms": "^6.1.0",
     "@angular/http": "^6.1.0",
     "@angular/material": "^6.4.7",
@@ -23,7 +23,9 @@
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
     "@swimlane/ngx-datatable": "^13.1.0",
+    "angular": "^1.7.3",
     "core-js": "^2.5.4",
+    "ng": "0.0.0",
     "rxjs": "^6.0.0",
     "zone.js": "~0.8.26"
   },
