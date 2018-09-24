@@ -35,13 +35,17 @@
         <!-- Edit Button Column -->
         <ng-container matColumnDef="edit">
                 <th mat-header-cell  *matHeaderCellDef ></th>
-                <td mat-cell *matCellDef="let row" (click)="editExhibit(row)"><button mat-button >EDIT</button></td>
+                <td mat-cell *matCellDef="let row" (click)="editExhibit(row)"><button mat-button >
+                    <img src="../../assets/image/edit.png" id="edit" height="20" width="auto">
+                </button></td>
         </ng-container>
 
         <!-- Delete Button Column -->
         <ng-container matColumnDef="delete">
                 <th mat-header-cell  *matHeaderCellDef ></th>
-                <td mat-cell *matCellDef="let row" (click)="deleteExhibit(row)"><button mat-button >DELETE</button></td>
+                <td mat-cell *matCellDef="let row" (click)="deleteExhibit(row)"><button mat-button >
+                    <img src="../../assets/image/delete.png" id="delete" height="20" width="auto">
+                </button></td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

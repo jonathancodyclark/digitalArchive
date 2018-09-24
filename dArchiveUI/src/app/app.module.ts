@@ -34,8 +34,9 @@ import { LoginComponent } from './login/login.component';
 import { ExhibitService } from "./services/exhibit.service";
 import { ArtifactService } from "./services/artifact.service";
 import { LoginService } from "./services/login.service";
-import { AppusersService } from './services/appusers.service';
-import { AppusersComponent } from './appusers/appusers.component';
+import { AppUsersService } from './services/appusers.service';
+import { AppUsersComponent } from './appusers/appUsers.component';
+import { NewUserComponent } from './appusers/newUser.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { AppusersComponent } from './appusers/appusers.component';
     ArtifactDetailComponent,
     LoginComponent,
     HomePageComponent,
-    AppusersComponent
+    AppUsersComponent,
+    NewUserComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +75,7 @@ import { AppusersComponent } from './appusers/appusers.component';
     MatPaginatorModule,
     AppRoutingModule
   ],
-  providers: [AppRoutingModule, ExhibitService, ArtifactService, LoginService, AppusersService],
+  providers: [AppRoutingModule, ExhibitService, ArtifactService, LoginService, AppUsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

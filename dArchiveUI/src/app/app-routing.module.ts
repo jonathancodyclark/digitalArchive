@@ -8,18 +8,19 @@ import { ExhibitDetailComponent } from './exhibits/exhibit-detail.component';
 import { ArtifactsComponent } from './artifacts/artifacts.component';
 import { ArtifactDetailComponent } from './artifacts/artifact-detail.component';
 import { LoginComponent } from './login/login.component'
-import { AppusersComponent } from './appusers/appusers.component';
+import { AppUsersComponent} from './appusers/appUsers.component';
+import { NewUserComponent } from './appusers/newUser.component';
  
 const appRoutes: Routes = [
   { path: 'home', component: HomePageComponent },
-  { path: 'manageusers', component: AppusersComponent },
+  { path: 'manageusers', component: AppUsersComponent },
+  { path: 'newuser', component: NewUserComponent },
   { path: 'exhibits', component: ExhibitsComponent },
   { path: 'exhibit-detail', component: ExhibitDetailComponent },
   { path: 'artifacts/:id', component: ArtifactsComponent },
   { path: 'artifact-detail', component: ArtifactDetailComponent },
-  { path: 'login', component: LoginComponent },
-  { path: '',   redirectTo: '/login', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent }
+  { path: '',   redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', component: PageNotFoundComponent },
 ];
  
 @NgModule({
