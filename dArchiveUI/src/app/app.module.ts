@@ -34,6 +34,7 @@ import { ExhibitService } from "./services/exhibit.service";
 import { ArtifactService } from "./services/artifact.service";
 import { AppUsersService } from './services/appusers.service';
 import { AppUsersComponent } from './appusers/appUsers.component';
+import { NewUserComponent } from './appusers/newUser.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { AppUsersComponent } from './appusers/appUsers.component';
     ExhibitDetailComponent,
     ArtifactDetailComponent,
     HomePageComponent,
-    AppUsersComponent
+    AppUsersComponent,
+    NewUserComponent
   ],
   imports: [
     BrowserModule,

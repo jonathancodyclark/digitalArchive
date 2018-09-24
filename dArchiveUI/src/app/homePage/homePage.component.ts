@@ -10,7 +10,7 @@ import {MatTableDataSource} from '@angular/material/table';
   styleUrls: ['./homePage.component.css']
 })
 export class HomePageComponent implements OnInit {
-  title = "BDK's Homepage";
+  title = "Sights & Sounds Home Page";
 
   constructor(
     private router: Router

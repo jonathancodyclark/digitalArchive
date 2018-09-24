@@ -12,7 +12,7 @@ import {MatTableDataSource} from '@angular/material/table';
 export class AppUsersComponent implements OnInit{
   title = 'Manage Users Page';
   dataSource: MatTableDataSource<AppUsers>;
-  displayedColumns: string[] = ['id', 'email'];
+  displayedColumns: string[] = ['id', 'role', 'first name', 'last name', 'email'];
 
   constructor(
     private router: Router,
@@ -29,4 +29,7 @@ export class AppUsersComponent implements OnInit{
     });
   }
 
+  addUser() {
+    this.router.navigate(['newuser']);
+  }
 }
