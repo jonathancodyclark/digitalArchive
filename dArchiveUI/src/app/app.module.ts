@@ -32,8 +32,8 @@ import { HomePageComponent } from './homePage/homePage.component';
 import { ArtifactDetailComponent } from './artifacts/artifact-detail.component';
 import { ExhibitService } from "./services/exhibit.service";
 import { ArtifactService } from "./services/artifact.service";
-import { AppusersService } from './services/appusers.service';
-import { AppusersComponent } from './appusers/appusers.component';
+import { AppUsersService } from './services/appusers.service';
+import { AppUsersComponent } from './appusers/appUsers.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,7 @@ import { AppusersComponent } from './appusers/appusers.component';
     ExhibitDetailComponent,
     ArtifactDetailComponent,
     HomePageComponent,
-    AppusersComponent
+    AppUsersComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +70,7 @@ import { AppusersComponent } from './appusers/appusers.component';
     MatPaginatorModule,
     AppRoutingModule
   ],
-  providers: [AppRoutingModule, ExhibitService, ArtifactService, AppusersService],
+  providers: [AppRoutingModule, ExhibitService, ArtifactService, AppUsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

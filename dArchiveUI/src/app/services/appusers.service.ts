@@ -4,22 +4,29 @@ import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-export class Appusers {
-  usersid : number;
-  username : string;
-  password: string;
-  email: string;
+
+export class AppUsers {
+  userId : number;
+  userpassword : string;
+  firstname: string;
+  lastname: string;
+  userrole: string;
+  useremail: string;
 
   constructor (
-    usersid : number,
-    username : string,
-    password: string,
-    email: string
+    userId : number,
+    userpassword : string,
+    firstname: string,
+    lastname: string,
+    userrole: string,
+    useremail: string
   ){}
 } 
 
-@Injectable()
-export class AppusersService {
+@Injectable({
+  providedIn: 'root'
+})
+export class AppUsersService {
 
   selectedExhibit;
   editedArtifact;
@@ -33,18 +40,18 @@ export class AppusersService {
   ){}
 
   getUsers() {
-    return this.http.get<Appusers[]>(this.backendUrl + '/all/', this.options);
+    return this.http.get<AppUsers[]>(this.backendUrl + '/all/', this.options);
   }
 
-  addUser(user: Appusers) { 
+  addUser(user: AppUsers) { 
     return this.http.post(this.backendUrl + '/postAppUsers/', JSON.stringify(user), this.options).pipe();
   }
 
-  updateUser(user : Appusers) {
-    return this.http.put(this.backendUrl + '/update/' + user.usersid, JSON.stringify(user), this.options).pipe();
+  updateUser(user: AppUsers) {
+    return this.http.put(this.backendUrl + '/update/' + user.userId, JSON.stringify(user), this.options).pipe();
   }
 
-  deleteUser(user : Appusers) {
-    return this.http.delete(this.backendUrl + '/delete/' + user.usersid, this.options).pipe();
+  deleteUser(user: AppUsers) {
+    return this.http.delete(this.backendUrl + '/delete/' + user.userId, this.options).pipe();
   }
 }
