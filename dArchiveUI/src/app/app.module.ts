@@ -30,10 +30,13 @@ import { PageNotFoundComponent } from './not-found/not-found.component';
 import { ArtifactsComponent } from './artifacts/artifacts.component';
 import { HomePageComponent } from './homePage/homePage.component';
 import { ArtifactDetailComponent } from './artifacts/artifact-detail.component';
+import { LoginComponent } from './login/login.component';
 import { ExhibitService } from "./services/exhibit.service";
 import { ArtifactService } from "./services/artifact.service";
-import { AppusersService } from './services/appusers.service';
-import { AppusersComponent } from './appusers/appusers.component';
+import { LoginService } from "./services/login.service";
+import { AppUsersService } from './services/appusers.service';
+import { AppUsersComponent } from './appusers/appUsers.component';
+import { NewUserComponent } from './appusers/newUser.component';
 
 @NgModule({
   declarations: [
@@ -43,8 +46,10 @@ import { AppusersComponent } from './appusers/appusers.component';
     PageNotFoundComponent,
     ExhibitDetailComponent,
     ArtifactDetailComponent,
+    LoginComponent,
     HomePageComponent,
-    AppusersComponent
+    AppUsersComponent,
+    NewUserComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +75,7 @@ import { AppusersComponent } from './appusers/appusers.component';
     MatPaginatorModule,
     AppRoutingModule
   ],
-  providers: [AppRoutingModule, ExhibitService, ArtifactService, AppusersService],
+  providers: [AppRoutingModule, ExhibitService, ArtifactService, LoginService, AppUsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
