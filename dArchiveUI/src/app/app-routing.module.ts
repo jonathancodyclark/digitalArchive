@@ -14,6 +14,7 @@ import { NewUserComponent } from './appusers/newUser.component';
 const appRoutes: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: 'manageusers', component: AppUsersComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'newuser', component: NewUserComponent },
   { path: 'exhibits', component: ExhibitsComponent },
   { path: 'exhibit-detail', component: ExhibitDetailComponent },
