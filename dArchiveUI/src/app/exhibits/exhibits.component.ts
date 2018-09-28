@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table'
 
 import { ExhibitService, Exhibit } from '../services/exhibit.service'
 import { ArtifactService } from '../services/artifact.service';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'exhibits-page',
@@ -22,13 +23,18 @@ export class ExhibitsComponent implements OnInit {
   constructor(
     private exhibitService: ExhibitService,
     private artifactService: ArtifactService,
-    private router: Router
+    private router: Router,
+    private loginService : LoginService
     
   ) {}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
+    if(this.loginService.loggedInAs == null) {
+      this.router.navigate(['login/']); 
+    }
+  
     this.exhibitService.getExhibits().subscribe(res => {
       this.dataSource = new MatTableDataSource<Exhibit>(res);
       this.dataSource.paginator = this.paginator;

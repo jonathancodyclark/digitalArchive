@@ -31,8 +31,10 @@ import { PageNotFoundComponent } from './not-found/not-found.component';
 import { ArtifactsComponent } from './artifacts/artifacts.component';
 import { HomePageComponent } from './homePage/homePage.component';
 import { ArtifactDetailComponent } from './artifacts/artifact-detail.component';
+import { LoginComponent } from './login/login.component';
 import { ExhibitService } from "./services/exhibit.service";
 import { ArtifactService } from "./services/artifact.service";
+import { LoginService } from "./services/login.service";
 import { AppUsersService } from './services/appusers.service';
 import { AppUsersComponent } from './appusers/appUsers.component';
 import { NewUserComponent } from './appusers/newUser.component';
@@ -45,6 +47,7 @@ import { NewUserComponent } from './appusers/newUser.component';
     PageNotFoundComponent,
     ExhibitDetailComponent,
     ArtifactDetailComponent,
+    LoginComponent,
     HomePageComponent,
     AppUsersComponent,
     NewUserComponent
@@ -73,7 +76,7 @@ import { NewUserComponent } from './appusers/newUser.component';
     MatPaginatorModule,
     AppRoutingModule
   ],
-  providers: [AppRoutingModule, ExhibitService, ArtifactService, AppUsersService],
+  providers: [AppRoutingModule, ExhibitService, ArtifactService, LoginService, AppUsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
