@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import {MatTableDataSource} from '@angular/material/table';
 
 import { ArtifactService, Artifact } from '../services/artifact.service'
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'artifacts-page',
@@ -18,13 +19,17 @@ export class ArtifactsComponent implements OnInit {
 
   constructor(
     private artifactService: ArtifactService,
-    private router: Router
+    private router: Router,
+    private loginService : LoginService
   ) {}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
-    console.log(this.artifactService.selectedExhibit);
+    if(this.loginService.loggedInAs == null) {
+      this.router.navigate(['login/']); 
+    }
+
     this.artifactService.getArtifacts().subscribe(res => {
       this.dataSource = new MatTableDataSource<Artifact>(res);
       this.dataSource.paginator = this.paginator;

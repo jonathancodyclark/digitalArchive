@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
 
 @Injectable()
 export class LoginService {
 
     credentials = {username : '', password : ''};
+
+    loggedInAs = null;
 
     editedExhibit = undefined;
     backendUrl = 'http://localhost:8080/users/login';

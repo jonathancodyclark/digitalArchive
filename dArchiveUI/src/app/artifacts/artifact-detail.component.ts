@@ -3,6 +3,7 @@ import {MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
 
 import { ArtifactService, Artifact } from '../services/artifact.service'
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'artifact-detail-page',
@@ -24,12 +25,17 @@ export class ArtifactDetailComponent implements OnInit {
 
     constructor(
         private artifactService: ArtifactService,
-        private router: Router
+        private router: Router,
+        private loginService : LoginService
     ) {}
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
     ngOnInit() {
+        if(this.loginService.loggedInAs == null) {
+            this.router.navigate(['login/']); 
+        }
+
         this.editing = false;
         if(this.artifactService.editedArtifact != undefined) {
             this.editing = true;

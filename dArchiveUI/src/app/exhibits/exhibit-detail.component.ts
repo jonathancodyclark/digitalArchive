@@ -3,6 +3,7 @@ import {MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
 
 import { ExhibitService, Exhibit } from '../services/exhibit.service'
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'exhibit-detail-page',
@@ -22,12 +23,17 @@ export class ExhibitDetailComponent implements OnInit {
 
     constructor(
         private exhibitService: ExhibitService,
-        private router: Router
+        private router: Router,
+        private loginService : LoginService
     ) {}
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
     ngOnInit() {
+        if(this.loginService.loggedInAs == null) {
+            this.router.navigate(['login/']); 
+        }
+
         this.editing = false;
         if(this.exhibitService.editedExhibit != undefined) {
             this.exhibit = this.exhibitService.editedExhibit;
