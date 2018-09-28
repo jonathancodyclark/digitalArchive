@@ -28,8 +28,7 @@ export class AppUsers {
 })
 export class AppUsersService {
 
-  selectedExhibit;
-  editedArtifact;
+  editedAppUser;
   backendUrl = 'http://localhost:8080/users';
   headers = new HttpHeaders({'Content-Type':'application/json'});
   options = {headers: this.headers};
