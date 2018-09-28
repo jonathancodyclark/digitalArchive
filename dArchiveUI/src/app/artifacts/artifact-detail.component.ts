@@ -31,7 +31,6 @@ export class ArtifactDetailComponent implements OnInit {
 
     ngOnInit() {
         this.editing = false;
-        console.log(this.artifactService.selectedExhibit)
         if(this.artifactService.editedArtifact != undefined) {
             this.editing = true;
             this.artifact = this.artifactService.editedArtifact;

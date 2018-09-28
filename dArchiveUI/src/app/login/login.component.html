@@ -4,16 +4,16 @@
     <div class="login-field-container">
         <mat-form-field class="login-field" appearance="outline">
             <mat-label>Email</mat-label>
-            <input matInput placeholder="Please enter your email" type="email">
+            <input matInput [(ngModel)]=loginService.credentials.username placeholder="Please enter your email" type="email">
         </mat-form-field>
         <mat-form-field class="login-field" appearance="outline">
             <mat-label>Password</mat-label>
-            <input matInput placeholder="Please enter your password" type="password">
+            <input matInput [(ngModel)]=loginService.credentials.password placeholder="Please enter your password" type="password">
         </mat-form-field>
     </div>
 
     <div class="login-button-container">
-        <button id="login-button" mat-stroked-button>Login</button>
+        <button id="login-button" mat-stroked-button (click)="login()">Login</button>
     </div>
 
 </div>
