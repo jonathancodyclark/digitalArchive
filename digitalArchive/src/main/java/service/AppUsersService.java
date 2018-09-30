@@ -1,6 +1,7 @@
 package service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import repository.AppUsersRepositoryInterface;
 import model.AppUsers;
@@ -42,6 +43,15 @@ public class AppUsersService {
 
     public void deleteAppUsers(Integer userId) {
         appUsersRepository.delete(userId);
+    }
+
+    public AppUsers login(String useremail, String userpassword) {
+        AppUsers temp = appUsersRepository.findByEmail(useremail);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        if (temp != null && encoder.matches(userpassword, temp.getUserpassword())) {
+            return temp;
+        }
+        return null;
     }
 
 

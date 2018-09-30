@@ -1,11 +1,5 @@
 .title {
     text-align: center;
-    padding-right: 15%;
-}
-
-#mylogo {
-    float: left;
-    cursor: pointer;
 }
 
 table {
@@ -48,3 +42,4 @@ table {
     text-align: right;
     padding-right: 2%;
 }
+

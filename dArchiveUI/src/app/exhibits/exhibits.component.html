@@ -1,10 +1,7 @@
 <h1 class="title">
     {{title}}
-</h1>
-
-<div class="image">
     <img src="../../assets/image/ssbcLogo.png" id="logo" height="30" width="auto" onclick="location.href='/home'">
-</div>
+</h1>
 <div id="exhibit_table" class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">
 
@@ -35,13 +32,17 @@
         <!-- Edit Button Column -->
         <ng-container matColumnDef="edit">
                 <th mat-header-cell  *matHeaderCellDef ></th>
-                <td mat-cell *matCellDef="let row" (click)="editExhibit(row)"><button mat-button >EDIT</button></td>
+                <td mat-cell *matCellDef="let row" (click)="editExhibit(row)"><button mat-button >
+                    <img src="../../assets/image/edit.png" id="edit" height="20" width="auto">
+                </button></td>
         </ng-container>
 
         <!-- Delete Button Column -->
         <ng-container matColumnDef="delete">
                 <th mat-header-cell  *matHeaderCellDef ></th>
-                <td mat-cell *matCellDef="let row" (click)="deleteExhibit(row)"><button mat-button >DELETE</button></td>
+                <td mat-cell *matCellDef="let row" (click)="deleteExhibit(row)"><button mat-button >
+                    <img src="../../assets/image/delete.png" id="delete" height="20" width="auto">
+                </button></td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -51,3 +52,6 @@
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
 <button class="footer-button" mat-button (click)="addExhibit()">Add Exhibit</button>
+
+<button class="cancel-button" (click)="toUsers()" mat-button>Users</button>
+<button class="cancel-button" (click)="loginService.logout()" mat-button>Logout</button>

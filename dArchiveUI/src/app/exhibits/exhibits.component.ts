@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table'
 
 import { ExhibitService, Exhibit } from '../services/exhibit.service'
 import { ArtifactService } from '../services/artifact.service';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'exhibits-page',
@@ -15,20 +16,25 @@ import { ArtifactService } from '../services/artifact.service';
 })
 export class ExhibitsComponent implements OnInit {
 
-  displayedColumns: string[] = ['open', 'id', 'name', 'desc',  'edit', 'delete'];
+  displayedColumns: string[] = ['id', 'name', 'desc', 'open', 'edit', 'delete'];
   dataSource: MatTableDataSource<Exhibit>;
-  title = "Exhibits"
+  title = "EXHIBITS"
 
   constructor(
     private exhibitService: ExhibitService,
     private artifactService: ArtifactService,
-    private router: Router
+    private router: Router,
+    private loginService : LoginService
     
   ) {}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
+    if(this.loginService.loggedInAs == null) {
+      this.router.navigate(['login/']); 
+    }
+  
     this.exhibitService.getExhibits().subscribe(res => {
       this.dataSource = new MatTableDataSource<Exhibit>(res);
       this.dataSource.paginator = this.paginator;
@@ -59,5 +65,9 @@ export class ExhibitsComponent implements OnInit {
   private deleteRowDataTable(row, dataSource, paginator) {
     dataSource.data.splice(dataSource.data.indexOf(row), 1);
     dataSource.paginator = paginator;
+  }
+
+  toUsers() {
+    this.router.navigate(['manageusers/']); 
   }
 }

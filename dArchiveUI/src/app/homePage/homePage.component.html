@@ -1,11 +1,80 @@
-<h1 class="title">
-        {{title}}
-    </h1>
-    <div class="image">
-            <img src="../../assets/image/ssbcLogo.png" id="logo" height="30" width="auto" onclick="location.href='/home'">
+<!doctype html>
+<html lang="">
+        <head>
+                <base href="/">
+                <meta charset="utf-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <title ng-bind="pageTitle">Archive Labs</title>
+                <meta name="description" content="">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <script type="text/javascript" src="/static/scripts/main.js"></script>
+                <link href="https://18f.gsa.gov/assets/css/google-fonts.css" rel="stylesheet">
+       
+        
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div ui:view>
+      <div class="carousel" role="banner" itemscope="" itemtype="http://schema.org/WPHeader">
+        <h1>Building a cultural archive online, <strong>together.</strong></h1>
+      </div>
+
+      <header class="topheader">
+        
+        <ul class="rightmenu">
+        <li>
+                <div id ="homeBtn" class="image">
+                        <img src="../../assets/image/ssbcLogo.png" id="logo" height="30" width="auto" onclick="location.href='/home'">
+                </div>
+        </li>
+        <li><button id='exhBtn' mat-button onclick="location.href='/exhibits'">Exhibits</button></li>
+        <li><button id='loginBtn' mat-button onclick="location.href='/login'">Log In</button></li>
+        </ul>
+      </header>
+
+      <section style="background-color: #fff; margin: 0 auto; width: 55em; text-align: center;">
+        <h2 style="margin: 0px; padding: 1.5em;">
+          <strong>The Sights & Sounds Digital Archive
+                   </strong> is a project created by students at the Georgia Institute of 
+                   Technology and sponsored by Next Steps and the 
+                   Sights and Sounds Black Cultural Museum.
+        </h2>
+      </section>
+      <section>
+        <div style="width: 90%; margin: 0 auto; height: 275px;;">
+          <div class="box">
+            <h2><a href="https://ssbcmuseum.org/">Sights & Sounds</a></h2>
+            <p>
+              <a href="https://ssbcmuseum.org/">Sights & Sounds</a> is a museum
+              in Atlanta that houses over 8,000 artifacts ranging from Ancient Egypt 
+              to Michael Jackson to Barack Obama
+            </p>
+          </div>
+
+          <div class="box">
+            <h2><a href="https://nextstepsyep.org/">Next Steps</a></h2>
+            <p><a href="https://nextstepsyep.org/">Next Steps</a> is a non-profit organization reaching out to local youth in Atlanta, Georgia
+                    to revolutionize STEM education by advocating for leadership and entrepreneurship.
+            </p>
+          </div>
+
+          <!-- <div class="box">
+            <h2><a href="https://github.com/ArchiveLabs/scholar.archivelab.org">Scholar*</a></h2>
+            <p>To be announced.</p>
+          </div> -->
+          <div class="clearfix"></div>
+        </div>
+      </section>
     </div>
-    <button id='exhBtn' mat-button onclick="location.href='/exhibits'">Exhibits</button>
-    <button id='loginBtn' mat-button onclick="location.href='/login'">Log In</button>
-   
+    <!-- <p style="text-align: center; font-size: .8em; color: #999; margin-bottom: 30px;">*Project is run independently of the Internet Archive</p> -->
+    <div class="clearfix"></div>
+
+    <footer>
+      <p>DArchive, <a href="https://archive.org/about/terms.php">ToS pending, Sep 30, 2018</a></p>
+    </footer>
     
     
+  </body>
+
+</html>

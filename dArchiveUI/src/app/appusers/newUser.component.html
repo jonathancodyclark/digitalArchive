@@ -1,0 +1,32 @@
+<h1 class="title">
+    {{title}}
+</h1>
+
+<div class="form-container">
+<mat-form-field>
+        <input matInput [(ngModel)]=appuser.userId placeholder="User ID" type="string">
+</mat-form-field>
+<mat-form-field>
+        <input matInput [(ngModel)]=appuser.firstname placeholder="First Name" type="string">
+</mat-form-field>
+<mat-form-field>
+        <input matInput [(ngModel)]=appuser.lastname placeholder="Last Name" type="string">
+</mat-form-field>
+<mat-form-field>
+        <input matInput [(ngModel)]=appuser.userrole placeholder="Role" type="string">
+</mat-form-field>
+<mat-form-field>
+        <input matInput [(ngModel)]=appuser.useremail placeholder="Email Address" type="string">
+</mat-form-field>
+</div>
+
+<button class="save-button" (click)="saveAppUser()" [disabled]="appuser.firstname ==''
+                                                          || appuser.lastname == ''
+                                                          || appuser.userrole == ''
+                                                          || appuser.useremail == ''
+                                                          || appuser.userId == undefined"
+    mat-button>  
+    Save
+</button>
+<button class="cancel-button" (click)="backToAppUsersPage()" mat-button>Cancel</button>
+<button class="cancel-button" (click)="loginService.logout()" mat-button>Logout</button>

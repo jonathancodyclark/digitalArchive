@@ -45,5 +45,4 @@ public class ExhibitController {
         es.deleteExhibits(exhibitId);
     }
 
-
 }

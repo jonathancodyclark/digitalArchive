@@ -15,6 +15,7 @@ import { MatButtonModule,
 } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 
+
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
@@ -30,8 +31,13 @@ import { PageNotFoundComponent } from './not-found/not-found.component';
 import { ArtifactsComponent } from './artifacts/artifacts.component';
 import { HomePageComponent } from './homePage/homePage.component';
 import { ArtifactDetailComponent } from './artifacts/artifact-detail.component';
+import { LoginComponent } from './login/login.component';
 import { ExhibitService } from "./services/exhibit.service";
 import { ArtifactService } from "./services/artifact.service";
+import { LoginService } from "./services/login.service";
+import { AppUsersService } from './services/appusers.service';
+import { AppUsersComponent } from './appusers/appusers.component';
+import { NewUserComponent } from './appusers/newUser.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +47,10 @@ import { ArtifactService } from "./services/artifact.service";
     PageNotFoundComponent,
     ExhibitDetailComponent,
     ArtifactDetailComponent,
-    HomePageComponent
+    LoginComponent,
+    HomePageComponent,
+    AppUsersComponent,
+    NewUserComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +76,7 @@ import { ArtifactService } from "./services/artifact.service";
     MatPaginatorModule,
     AppRoutingModule
   ],
-  providers: [AppRoutingModule, ExhibitService, ArtifactService],
+  providers: [AppRoutingModule, ExhibitService, ArtifactService, LoginService, AppUsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
