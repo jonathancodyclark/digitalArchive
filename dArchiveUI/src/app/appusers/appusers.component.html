@@ -53,7 +53,9 @@
 
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
-<button class="footer-button" mat-icon-button (click)="addUser()">
+<!--<button class="footer-button" mat-icon-button (click)="addUser()">
         <mat-icon>add_circle_outline</mat-icon>
-</button>
+</button>-->
+<button class="footer-button" mat-button (click)="addUser()">Add User</button>
 <button class="cancel-button" (click)="toExhibits()" mat-button>Exhibits</button>
+<button class="cancel-button" (click)="loginService.logout()" mat-button>Logout</button>

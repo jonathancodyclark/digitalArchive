@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class LoginService {
@@ -14,10 +15,16 @@ export class LoginService {
     options = {headers: this.headers};
 
     constructor(
-        private http : HttpClient
+        private http : HttpClient,
+        private router : Router
     ){}
 
     login(username : string, password : string) { 
         return this.http.post(this.backendUrl + `/${username}/${password}`, this.options).pipe();
+    }
+
+    logout() {
+        this.loggedInAs = null;
+        this.router.navigate(['login/']); 
     }
 }
