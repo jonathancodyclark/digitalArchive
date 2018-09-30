@@ -13,7 +13,7 @@ import { LoginService } from '../services/login.service';
 export class AppUsersComponent implements OnInit{
   title = 'Manage Users Page';
   dataSource: MatTableDataSource<AppUsers>;
-  displayedColumns: string[] = ['id', 'role', 'first name', 'last name', 'email'];
+  displayedColumns: string[] = ['id', 'role', 'first name', 'last name', 'email', 'edit', 'delete'];
 
   constructor(
     private router: Router,
@@ -25,8 +25,9 @@ export class AppUsersComponent implements OnInit{
   
   ngOnInit() {
     if(this.loginService.loggedInAs == null) {
+      console.log(this.loginService.loggedInAs)
       this.router.navigate(['login/']); 
-    } else if (this.loginService.loggedInAs == 'user') {
+    } else if (this.loginService.loggedInAs == 'USER') {
       this.router.navigate(['exhibits/']); 
     }
 
@@ -40,4 +41,25 @@ export class AppUsersComponent implements OnInit{
   addUser() {
     this.router.navigate(['newuser']);
   }
+
+  editUser(row: any) {
+    this.appusersservice.editedAppUser = row;
+    this.router.navigate(['newuser']); 
+  }
+
+  deleteUser(row: any) {
+    this.appusersservice.deleteUser(row).subscribe(appUser => {
+      this.deleteRowDataTable(row, this.dataSource, this.dataSource.paginator);
+    });
+  }
+
+  private deleteRowDataTable(row, dataSource, paginator) {
+    dataSource.data.splice(dataSource.data.indexOf(row), 1);
+    dataSource.paginator = paginator;
+  }
+
+  toExhibits() {
+    this.router.navigate(['exhibits/']); 
+  }
+
 }

@@ -9,7 +9,17 @@ import { LoginService } from '../services/login.service';
   styleUrls: ['./newUser.component.css']
 })
 export class NewUserComponent implements OnInit{
+
   title = 'New User Page';
+  editing;
+  appuser : AppUsers = {
+  userId : undefined,
+  userpassword : '',
+  firstname: '',
+  lastname: '',
+  userrole: '',
+  useremail: ''
+  }
 
   constructor(
     private router: Router,
@@ -24,6 +34,31 @@ export class NewUserComponent implements OnInit{
     } else if (this.loginService.loggedInAs == 'user') {
       this.router.navigate(['exhibits/']); 
     }
+
+    this.editing = false;
+    if(this.appusersservice.editedAppUser != undefined) {
+        this.editing = true;
+        this.appuser = this.appusersservice.editedAppUser;
+        this.appusersservice.editedAppUser = undefined;
+    }
   }
+
+
+backToAppUsersPage() {
+    this.router.navigate(['/manageusers/']);
+}
+
+saveAppUser() {
+    if(this.editing) {
+        this.appusersservice.updateUser(this.appuser).subscribe(res => {
+            this.router.navigate(['/manageusers/']);
+        });
+    } else {
+        this.appusersservice.addUser(this.appuser).subscribe(res => {
+            this.router.navigate(['/manageusers/']);
+        });
+    }
+}
+
 
 }
