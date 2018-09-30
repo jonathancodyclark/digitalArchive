@@ -20,8 +20,9 @@ const appRoutes: Routes = [
   { path: 'exhibit-detail', component: ExhibitDetailComponent },
   { path: 'artifacts/:id', component: ArtifactsComponent },
   { path: 'artifact-detail', component: ArtifactDetailComponent },
+  { path: 'newuser', component: NewUserComponent },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent },
+  { path: '**', component: PageNotFoundComponent }
 ];
  
 @NgModule({

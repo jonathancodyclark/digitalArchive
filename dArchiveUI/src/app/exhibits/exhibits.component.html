@@ -1,10 +1,8 @@
 <h1 class="title">
     {{title}}
+    <img src="../../assets/image/ssbcLogo.png" height="40" width="auto" id = "mylogo" onclick="location.href='/exhibits'">
 </h1>
 
-<div class="image">
-    <img src="../../assets/image/ssbcLogo.png" id="logo" height="30" width="auto" onclick="location.href='/exhibits'">
-</div>
 <div id="exhibit_table" class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">
 
@@ -55,3 +53,6 @@
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
 <button class="footer-button" mat-button (click)="addExhibit()">Add Exhibit</button>
+
+<button class="cancel-button" (click)="toUsers()" mat-button>Users</button>
+<button class="cancel-button" (click)="loginService.logout()" mat-button>Logout</button>

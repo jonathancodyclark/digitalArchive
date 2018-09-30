@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
             if(res) {
                 this.router.navigate(['exhibits/']); 
                 this.loginService.loggedInAs = res['userrole'];
+                console.log(this.loginService.loggedInAs)
             } else {
                 this.loginfailed = true;
             }

@@ -66,4 +66,8 @@ export class ExhibitsComponent implements OnInit {
     dataSource.data.splice(dataSource.data.indexOf(row), 1);
     dataSource.paginator = paginator;
   }
+
+  toUsers() {
+    this.router.navigate(['manageusers/']); 
+  }
 }
