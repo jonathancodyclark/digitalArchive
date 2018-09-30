@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import {MatPaginator } from '@angular/material';
 import { AppUsersService, AppUsers } from '../services/appusers.service';
 import {MatTableDataSource} from '@angular/material/table';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'appusers-page',
@@ -16,12 +17,19 @@ export class AppUsersComponent implements OnInit{
 
   constructor(
     private router: Router,
-    private appusersservice: AppUsersService
+    private appusersservice: AppUsersService,
+    private loginService : LoginService
   ){}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
   ngOnInit() {
+    if(this.loginService.loggedInAs == null) {
+      this.router.navigate(['login/']); 
+    } else if (this.loginService.loggedInAs == 'user') {
+      this.router.navigate(['exhibits/']); 
+    }
+
     this.appusersservice.getUsers().subscribe(res => {
       this.dataSource = new MatTableDataSource<AppUsers>(res);
       this.dataSource.paginator = this.paginator;
