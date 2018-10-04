@@ -1,11 +1,32 @@
+html {
+    position:fixed;
+    padding:0;
+    margin:0;
+  
+    top:0;
+    left:0;
+  
+    width: 100%;
+    height: 100%;
+    background-color: beige;
+  
+    font-family: "Trebuchet MS";
+}
+
 .title {
     text-align: center;
+    padding-right: 8%;
+}
+
+#mylogo {
+    float: left;
+    cursor: pointer;
 }
 
 table {
     align-content: center;
     width: 100%;
-    background-color: primary;
+    background-color: ivory;
 }
 
 .header {
@@ -15,10 +36,64 @@ table {
 }
 
 #artifact_table {
-    height: 300px;
+    height: 360px;
     overflow: scroll;
 }
 
 .footer-button {
     margin: 10px;
+}
+
+.mat-column-id {
+    width: 15%;
+}
+
+.mat-column-name {
+    width: 20%;
+}
+
+.mat-column-exhibitId {
+    width: 15%;
+}
+
+.mat-column-desc {
+    width: 15%;
+}
+
+.mat-column-onDisplay {
+    width: 30%;
+}
+
+
+.mat-column-edit {
+    text-align: right;
+    padding-right: 2%;
+}
+
+.mat-column-delete {
+    text-align: right;
+    padding-right: 2%;
+}
+
+.mat-paginator {
+    background-color: ivory;
+}
+
+.footer-button {
+    border-radius: 0.8em;
+    background-color: lightgray;
+}
+
+.back-button {
+    margin-right: 3%;
+    margin-left: 2%;
+    margin-top: 1%;
+    text-align: center;
+    border-radius: 0.8em;
+    background-color: lightgray;
+}
+
+.cancel-button {
+    border-radius: 0.8em;
+    background-color: lightgray;
 }

@@ -1,10 +1,32 @@
+html {
+    position:fixed;
+    padding:0;
+    margin:0;
+  
+    top:0;
+    left:0;
+  
+    width: 100%;
+    height: 100%;
+    background-color: beige;
+  
+    font-family: "Trebuchet MS";
+}
+
 .title {
     text-align: center;
+    padding-right: 8%;
+}
+
+#mylogo {
+    float: left;
+    cursor: pointer;
+    padding-left: 0.5%;
 }
 
 table {
     width: 100%;
-    background-color: primary;
+    background-color: ivory;
 }
 
 #exhibit_table {
@@ -20,17 +42,20 @@ table {
     width: 15%;
 }
 
-.mat-column-name {
+.mat-column-role {
+    width: 15%;
+}
+
+.mat-column-firstname {
     width: 20%;
 }
 
-.mat-column-desc {
-    width: 60%;
+.mat-column-lastname {
+    width: 20%;
 }
 
-.mat-column-open {
-    text-align: right;
-    padding-right: 2%;
+.mat-column-email {
+    width: 25%;
 }
 
 .mat-column-edit {
@@ -41,5 +66,28 @@ table {
 .mat-column-delete {
     text-align: right;
     padding-right: 2%;
+}
+
+.mat-paginator {
+    background-color: ivory;
+}
+
+.footer-button {
+    border-radius: 0.8em;
+    background-color: lightgray;
+}
+
+.exhibit-button {
+    margin-right: 3%;
+    margin-left: 2%;
+    margin-top: 1%;
+    text-align: center;
+    border-radius: 0.8em;
+    background-color: lightgray;
+}
+
+.cancel-button {
+    border-radius: 0.8em;
+    background-color: lightgray;
 }
 

@@ -1,6 +1,8 @@
+<html>
+
 <h1 class="title">
     {{title}}
-    <img src="../../assets/image/ssbcLogo.png" id="logo" height="30" width="auto" onclick="location.href='/home'">
+    <img src="../../assets/image/ssbcLogo.png" id="mylogo" height="30" width="auto" onclick="location.href='/home'">
 </h1>
 <div id="exhibit_table" class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">
@@ -26,7 +28,7 @@
         <!-- Open Button Column -->
         <ng-container matColumnDef="open">
                 <th mat-header-cell  *matHeaderCellDef ></th>
-                <td mat-cell *matCellDef="let row" (click)="openExhibit(row)"><button mat-button >OPEN</button></td>
+                <td mat-cell *matCellDef="let row" (click)="openExhibit(row)"><button mat-button id = "opd"><b>OPEN</b></button></td>
         </ng-container>
 
         <!-- Edit Button Column -->
@@ -51,7 +53,8 @@
 
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
-<button class="footer-button" mat-button (click)="addExhibit()">Add Exhibit</button>
+<button class="footer-button" mat-button (click)="addExhibit()"><b>ADD EXHIBIT</b></button>
+<button class="users-button" (click)="toUsers()" mat-button><b>USERS</b></button>
+<button class="cancel-button" (click)="loginService.logout()" mat-button><b>LOGOUT</b></button>
 
-<button class="cancel-button" (click)="toUsers()" mat-button>Users</button>
-<button class="cancel-button" (click)="loginService.logout()" mat-button>Logout</button>
+</html>
