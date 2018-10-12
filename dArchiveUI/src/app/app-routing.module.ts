@@ -9,6 +9,9 @@ import { ArtifactDetailComponent } from './artifacts/artifact-detail.component';
 import { LoginComponent } from './login/login.component'
 import { AppUsersComponent} from './appusers/appusers.component';
 import { NewUserComponent } from './appusers/newUser.component';
+import { ForgotPassComponent } from './forgotPass/forgotPass.component';
+import { ChangePassComponent } from './changePass/changePass.component';
+
  
 const appRoutes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -20,6 +23,8 @@ const appRoutes: Routes = [
   { path: 'artifacts/:id', component: ArtifactsComponent },
   { path: 'artifact-detail', component: ArtifactDetailComponent },
   { path: 'newuser', component: NewUserComponent },
+  { path: 'forgot', component: ForgotPassComponent },
+  { path: 'change', component: ChangePassComponent },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

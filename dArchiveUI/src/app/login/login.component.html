@@ -2,7 +2,7 @@
 
     <h1 class = "title">
         DIGITAL ARCHIVING LOGIN 
-        <img src="../../assets/image/ssbcLogo.png" id="mylogo" height="30" width="auto" onclick="location.href='/home'">
+        <img src="../../assets/image/ssbcLogo.png" id="mylogo" height="30" width="auto" onclick="location.href='/home'" onmouseover="" style="cursor: pointer;">
     </h1>
     
 
@@ -19,8 +19,12 @@
         </div>
     
         <div class="login-button-container">
-            <button id="login-button" mat-stroked-button (click)="login()"><b>LOGIN</b></button>
+            <button id="login-button" mat-button (click)="login()"><b>LOGIN</b></button>
         </div>
+        <div class="forgotPass-container">
+            <a id="forgotPass" onclick="location.href='/forgot'" onmouseover="" style="cursor: pointer;"><b>Forgot Password?</b></a>
+        </div>
+
     
         <p style="color: red" [hidden]=!loginfailed>Email or Password was incorrect</p>
     
