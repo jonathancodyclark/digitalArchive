@@ -8,29 +8,39 @@ html {
   
     width: 100%;
     height: 100%;
-    background-color: beige;
+    background-color: white;
   
     font-family: "Trebuchet MS";
 }
 
 .title {
     text-align: center;
-    padding-right: 8%;
 }
 
 #mylogo {
     float: left;
     cursor: pointer;
-    padding-left: 0.5%;
+    padding-left: 1%;
+    position: relative;
+    top: -12px;
+}
+
+.mat-icon-button {
+    float: right;
+    margin-right: 1%;
+    margin-left: 7%;
+}
+
+.mat-icon {
+    margin-bottom: 60%;
 }
 
 table {
     width: 100%;
-    background-color: ivory;
+    background-color: white;
 }
 
 #exhibit_table {
-    height: 360px;
     overflow: scroll;
 }
 
@@ -56,8 +66,7 @@ table {
 }
 
 #opd {
-    border-radius: 0.8em;
-    background-color: lightgray;
+    border: black thin solid;
 }
 
 .mat-column-edit {
@@ -71,24 +80,15 @@ table {
 }
 
 .mat-paginator {
-    background-color: ivory;
-}
-
-.footer-button {
-    border-radius: 0.8em;
-    background-color: lightgray;
+    background-color: white;
 }
 
 .users-button {
-    margin-right: 3%;
-    margin-left: 2%;
-    margin-top: 1%;
-    text-align: center;
-    border-radius: 0.8em;
-    background-color: lightgray;
+    margin-left: 3%;
+    margin-bottom: 5%;
 }
 
 .cancel-button {
-    border-radius: 0.8em;
-    background-color: lightgray;
+    margin-left: 5%;
 }
+
