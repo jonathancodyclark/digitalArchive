@@ -2,6 +2,7 @@
 
 #spring dependencies
 /target
+/resources
 
 # compiled output
 /dist
