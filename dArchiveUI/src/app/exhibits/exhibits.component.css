@@ -26,11 +26,12 @@ html {
 
 table {
     width: 100%;
+    height: 80vh;
     background-color: ivory;
 }
 
 #exhibit_table {
-    height: 360px;
+    height: 80vh;
     overflow: scroll;
 }
 

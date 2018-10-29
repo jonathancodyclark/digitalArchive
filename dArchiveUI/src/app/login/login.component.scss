@@ -9,15 +9,16 @@ html {
 
   width: 100%;
   height: 100%;
-  background-color: beige;
+  background-color: whitesmoke;
 
   font-family: "Trebuchet MS";
 }
 
 .title {
+  background-color: dimgray;
+  //height: 20vh;
   text-align: center;
   padding-right: 8%;
-  
 }
 
 #mylogo {
@@ -30,6 +31,7 @@ html {
   align-content: center;
   text-align: center;
   align-self: center;
+  vertical-align: center;
   margin-top: 3%;
 }
 
@@ -45,12 +47,12 @@ html {
 }
 
 .login-button-container {
-  margin: 10px;
+  margin: 5px;
   
-  #login-button {
+  /*#login-button {
       width: 100px;
       border-radius: .8em;
       border: silver thin solid;
       background-color: lightgray;
-  }
+  }*/
 }
