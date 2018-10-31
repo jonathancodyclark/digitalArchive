@@ -10,6 +10,6 @@ import java.util.List;
  * Created by jclark
  */
 public interface ArtifactsRepositoryInterface extends CrudRepository<Artifacts, Integer> {
-    @Query(value="Select artifactid, name, exhibit_id, description, on_display from Artifacts where exhibit_id =?1", nativeQuery = true)
+    @Query(value="Select artifactid, name, exhibit_id, description, on_display, filepath from Artifacts where exhibit_id =?1", nativeQuery = true)
     List<Artifacts> findArtifactsInExhibits(Integer exhibitId);
 }

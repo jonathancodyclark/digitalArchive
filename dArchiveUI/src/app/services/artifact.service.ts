@@ -17,7 +17,8 @@ export class Artifact {
     name : string,
     exhibitId : number,
     description: string,
-    onDisplay: number
+    onDisplay: number,
+    filepath: string
   ){}
 } 
 
