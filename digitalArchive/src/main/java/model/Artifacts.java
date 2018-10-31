@@ -25,10 +25,13 @@ public class Artifacts {
     @Column(name="on_display")
     private int onDisplay;
 
+    @Column (name = "filepath")
+    private String filepath;
+
     public Artifacts() {}
 
 
-    public Artifacts(Integer artifactid, String name, Integer exhibitId, String description, int onDisplay) {
+    public Artifacts(Integer artifactid, String name, Integer exhibitId, String description, int onDisplay, String filepath) {
         this.artifactid = artifactid;
         this.name = name;
         if (exhibitId == null)
@@ -38,6 +41,7 @@ public class Artifacts {
         this.exhibitId = exhibitId;
         this.description = description;
         this.onDisplay = onDisplay;
+        this.filepath = filepath;
     }
 
     public Integer getArtifactid() {
@@ -82,5 +86,13 @@ public class Artifacts {
 
     public void setOnDisplay(int onDisplay) {
         this.onDisplay = onDisplay;
+    }
+
+    public String getFilepath() {
+        return filepath;
+    }
+
+    public void setFilepath(String filepath) {
+        this.filepath = filepath;
     }
 }

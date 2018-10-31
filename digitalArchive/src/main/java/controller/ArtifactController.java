@@ -4,6 +4,7 @@ import model.Artifacts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import service.AmazonClient;
 import service.ArtifactService;
 
 import java.util.List;
@@ -17,6 +18,9 @@ import java.util.List;
 public class ArtifactController {
     @Autowired
     ArtifactService artifactService;
+
+    @Autowired
+    AmazonClient amazonClient;
 
 
     @RequestMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -41,6 +45,8 @@ public class ArtifactController {
 
     @RequestMapping(method = RequestMethod.DELETE, value="/delete/{artifactId}")
     public void deleteAppUsers(@PathVariable("artifactId")Integer artifactId) {
+        Artifacts artifact = artifactService.getArtifacts(artifactId);
+        amazonClient.deleteFileFromS3Bucket(artifact.getFilepath());
         artifactService.deleteArtifacts(artifactId);
     }
 
