@@ -20,6 +20,15 @@
     top:10px;
     right:140px;
 }
+
+#mylogo {
+    float: left;
+    cursor: pointer;
+    padding-left: 1%;
+    position: relative;
+    top: -12px;
+  }
+
 body {
     margin: 0px;
     font-family: open sans;

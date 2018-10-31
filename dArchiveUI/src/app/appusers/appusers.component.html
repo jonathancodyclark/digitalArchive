@@ -2,7 +2,16 @@
 
 <h1 class="title">
     {{title}}
-    <img src="../../assets/image/ssbcLogo.png" id="mylogo" height="30" width="auto" onclick="location.href='/home'" onmouseover="" style="cursor: pointer;">
+    <img src="../../assets/image/ssbcLogo.png" id="mylogo" height="45" width="125" onclick="location.href='/home'" onmouseover="" style="cursor: pointer;">
+    <mat-menu #appMenu="matMenu">
+        <button class="footer-button" mat-button (click)="addUser()"><b>ADD USER</b></button>
+        <br/>
+        <button class="exhibit-button" (click)="toExhibits()" mat-button><b>EXHIBITS</b></button>
+        <button class="cancel-button" (click)="loginService.logout()" mat-button><b>LOGOUT</b></button>
+    </mat-menu>
+    <button mat-icon-button [matMenuTriggerFor]="appMenu">
+        <mat-icon><img src="../../assets/image/menu.png" id="menu" height="40" width="auto"></mat-icon>
+    </button>
 </h1>
 
 <div id="manage_users_table" class="mat-elevation-z8">
@@ -63,8 +72,6 @@
 <!--<button class="footer-button" mat-icon-button (click)="addUser()">
         <mat-icon>add_circle_outline</mat-icon>
 </button>-->
-<button class="footer-button" mat-button (click)="addUser()"><b>ADD USER</b></button>
-<button class="exhibit-button" (click)="toExhibits()" mat-button><b>EXHIBITS</b></button>
-<button class="cancel-button" (click)="loginService.logout()" mat-button><b>LOGOUT</b></button>
+
 
 </html>

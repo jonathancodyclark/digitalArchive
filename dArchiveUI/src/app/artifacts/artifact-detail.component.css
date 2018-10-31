@@ -8,7 +8,7 @@ html {
   
     width: 100%;
     height: 100%;
-    background-color: beige;
+    background-color: white;
   
     font-family: "Trebuchet MS";
 }
@@ -29,13 +29,9 @@ html {
 .save-button {
     margin: 10px;
     float: right;
-    background-color: lightgray;
-    border-radius: 0.8em;
 }
 
 .cancel-button {
     margin: 10px;
     float: right;
-    background-color: lightgray;
-    border-radius: 0.8em;
 }
