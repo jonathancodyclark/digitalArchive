@@ -12,7 +12,7 @@ import { LoginService } from '../services/login.service';
 })
 export class ExhibitDetailComponent implements OnInit {
 
-    title = "New Exhibit"
+    title = "NEW EXHIBIT"
     exhibit : Exhibit = {
         
         exhibitId: undefined,

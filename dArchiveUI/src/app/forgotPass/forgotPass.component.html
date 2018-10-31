@@ -1,0 +1,32 @@
+<html>
+
+    
+
+    <div>    
+    <header class="topheader">
+        
+        <ul class="rightmenu">
+        <li>
+                <div id ="homeBtn" class="image">
+                        <img src="../../assets/image/ssbcLogo.png" id="logo" height="30" width="auto" onclick="location.href='/home'" onmouseover="" style="cursor: pointer;">
+                </div>
+        </li>
+        <li><h1 id='forgotTitle'><b>Forgot Password</b></h1></li>
+        <li><button id='exhBtn' mat-button onclick="location.href='/exhibits'">Exhibits</button></li>
+        <li><button id='loginBtn' mat-button onclick="location.href='/login'">Log In</button></li>
+        </ul>
+      </header>
+     </div>
+    <div class="forgot-container">
+        <div class="forgot-field-container">
+            <mat-form-field class="forgot-field" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput [(ngModel)]=username placeholder="Please enter your email" type="email">
+            </mat-form-field>
+        </div>
+    
+        <div class="forgot-button-container">
+            <button id="forgotBtn" mat-button (click)="emailEntered()"><b>Submit</b></button>
+        </div>
+    </div>
+</html>

@@ -14,7 +14,7 @@ export class ArtifactDetailComponent implements OnInit {
 
     
     editing;
-    title = "New Artifact"
+    title = "NEW ARTIFACT"
     artifact : Artifact = {
     artifactid : undefined,
     name : '',

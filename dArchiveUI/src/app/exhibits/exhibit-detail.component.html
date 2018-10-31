@@ -1,3 +1,5 @@
+<html>
+
 <h1 class="title">
         {{title}}
 </h1>
@@ -14,5 +16,7 @@
     </mat-form-field>
 </div>
 
-<button class="save-button" (click)="saveExhibit()" [disabled]="exhibit.name == '' || exhibit.exhibitId == undefined" mat-button>Save</button>
-<button class="cancel-button" (click)="backToExhibits()" mat-button>Cancel</button>
+<button class="save-button" (click)="saveExhibit()" [disabled]="exhibit.name == '' || exhibit.exhibitId == undefined" mat-button><b>SAVE</b></button>
+<button class="cancel-button" (click)="backToExhibits()" mat-button><b>CANCEL</b></button>
+
+</html>

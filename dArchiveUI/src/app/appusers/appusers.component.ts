@@ -11,9 +11,9 @@ import { LoginService } from '../services/login.service';
   styleUrls: ['./appusers.component.css']
 })
 export class AppUsersComponent implements OnInit{
-  title = 'Manage Users Page';
+  title = 'MANAGE USERS';
   dataSource: MatTableDataSource<AppUsers>;
-  displayedColumns: string[] = ['id', 'role', 'first name', 'last name', 'email', 'edit', 'delete'];
+  displayedColumns: string[] = ['id', 'role', 'firstname', 'lastname', 'email', 'edit', 'delete'];
 
   constructor(
     private router: Router,

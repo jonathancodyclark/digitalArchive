@@ -36,8 +36,12 @@ import { ExhibitService } from "./services/exhibit.service";
 import { ArtifactService } from "./services/artifact.service";
 import { LoginService } from "./services/login.service";
 import { AppUsersService } from './services/appusers.service';
-import { AppUsersComponent } from './appusers/appUsers.component';
+import { AppUsersComponent } from './appusers/appusers.component';
 import { NewUserComponent } from './appusers/newUser.component';
+import { ForgotPassComponent } from './forgotPass/forgotPass.component';
+import { ChangePassComponent } from './changePass/changePass.component';
+
+
 
 @NgModule({
   declarations: [
@@ -50,6 +54,8 @@ import { NewUserComponent } from './appusers/newUser.component';
     LoginComponent,
     HomePageComponent,
     AppUsersComponent,
+    ForgotPassComponent,
+    ChangePassComponent,
     NewUserComponent
   ],
   imports: [

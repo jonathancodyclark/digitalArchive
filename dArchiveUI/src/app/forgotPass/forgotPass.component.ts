@@ -5,11 +5,11 @@ import { Observable } from 'rxjs';
 import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
-  selector: 'home-page',
-  templateUrl: './homePage.component.html',
-  styleUrls: ['./homePage.component.css']
+  selector: 'forgotPass-page',
+  templateUrl: './forgotPass.component.html',
+  styleUrls: ['./forgotPass.component.css']
 })
-export class HomePageComponent implements OnInit {
+export class ForgotPassComponent implements OnInit {
   
 
   constructor(
@@ -23,5 +23,10 @@ export class HomePageComponent implements OnInit {
     console.log("part time twitch streamer");
     console.log("part time music producer");
     console.log("full time memer");
+    }
+
+    emailEntered() {
+        //implement this
+        //what happens after you enter email on forgotPass screen and click button
     }
 }

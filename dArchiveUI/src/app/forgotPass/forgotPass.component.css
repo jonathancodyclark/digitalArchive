@@ -3,7 +3,6 @@
     position:absolute;
     top:15px;
     left:15px;
-    
 }
 #loginBtn
 {
@@ -20,50 +19,43 @@
     top:10px;
     right:140px;
 }
-
-#mylogo {
-    float: left;
-    cursor: pointer;
-    padding-left: 1%;
-    position: relative;
-    top: -12px;
+#forgotTitle {
+    color: white;
+    position: absolute;
+    top: 0px;
+    left: 40%;
+}
+.forgot-container {
+    align-content: center;
+    text-align: center;
+    align-self: center;
+    margin-top: 10%;
+  }
+  
+  .forgot-field-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .forgot-field {
+    width: 400px;
   }
 
-body {
-    margin: 0px;
-    font-family: open sans;
-}
-
-.topheader {
+  #forgotBtn {
+    text-align: center;
+    align-self:  center;
+    width: 18px;
+    position:center;
+  }
+  .topheader {
     background-color: rgba(0, 0, 0, 0.93);
     height: 75px;
     position: absolute;
     top: 0px;
     width: 100%;
 }
-
-.carousel {
-    height: 500px;
-    background-position: top;
-    background: url(/../assets/image/malcomx.jpg) 0em -10em no-repeat;
-    background-size: cover;
-    background-size: 100%;
-    background-repeat: no-repeat;
-}
-
-.carousel h1 {
-    color: #fff;
-    margin: 0px;
-    width: 17em;
-    text-shadow: 1px 1px 6px #000;
-    position: relative;
-    top: 175px;
-    left: 50px;
-    background-color: rgba(0, 0, 0, 0.4);
-    padding: .2em;
-    font-size: 2.5em;
-}
-
 ul.rightmenu  {
     float: right;
     margin-top: 1.4em;
@@ -137,30 +129,3 @@ section h2 {
     height: 250px;
 }
 
-.box h2 {
-
-}
-.box p {
-    padding: 10px;
-}
-
-.clearfix{
-    clear: both;
-}
-
-footer {
-    text-align: center;
-    margin-top: 20px;
-    background-color: #000;
-}
-
-footer p {
-    margin: 0px;
-    padding: 5px;
-    color: #fff;
-    font-size: .8em;
-}
-
-footer p a {
-    color: #61E200;
-}
