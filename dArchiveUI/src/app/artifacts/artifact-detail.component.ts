@@ -20,7 +20,8 @@ export class ArtifactDetailComponent implements OnInit {
     name : '',
     exhibitId : this.artifactService.selectedExhibit,
     description: '',
-    onDisplay: undefined
+    onDisplay: undefined,
+    filepath: '',
     }
 
     constructor(

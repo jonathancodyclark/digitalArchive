@@ -10,13 +10,15 @@ export class Artifact {
   exhibitId : number;
   description: string;
   onDisplay: number; 
+  filepath: string;
 
   constructor (
     artifactid : number,
     name : string,
     exhibitId : number,
     description: string,
-    onDisplay: number
+    onDisplay: number,
+    filepath: string
   ){}
 } 
 
