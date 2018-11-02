@@ -46,7 +46,9 @@ public class ArtifactController {
     @RequestMapping(method = RequestMethod.DELETE, value="/delete/{artifactId}")
     public void deleteAppUsers(@PathVariable("artifactId")Integer artifactId) {
         Artifacts artifact = artifactService.getArtifacts(artifactId);
-        amazonClient.deleteFileFromS3Bucket(artifact.getFilepath());
+        if(artifact.getFilepath() != null) {
+            amazonClient.deleteFileFromS3Bucket(artifact.getFilepath());
+        }
         artifactService.deleteArtifacts(artifactId);
     }
 
