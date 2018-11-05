@@ -1,0 +1,15 @@
+amazonProperties:
+    endpointUrl: https://s3.us-east-2.amazonaws.com
+    accessKey: AKIAISAIIZSIKWUJRGBA
+    secretKey: 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
+    bucketName: sas-imgs
+    region: us-east-2
+
+management:
+  security:
+    enabled: true
+
+spring:
+  resources:
+    chain:
+      enabled: true
