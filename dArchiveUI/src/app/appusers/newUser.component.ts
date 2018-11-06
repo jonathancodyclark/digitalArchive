@@ -29,9 +29,9 @@ export class NewUserComponent implements OnInit{
 
   
   ngOnInit() {
-    if(this.loginService.loggedInAs == null) {
+    if(this.loginService.token == null) {
       this.router.navigate(['login/']); 
-    } else if (this.loginService.loggedInAs == 'user') {
+    } else {
       this.router.navigate(['exhibits/']); 
     }
 

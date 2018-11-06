@@ -20,19 +20,17 @@ export class LoginComponent implements OnInit {
 
     }
 
-    loginfailed = false;
+
     username : string;
     password : string;
 
     login() {
         this.loginService.login(this.username, this.password).subscribe(res => {
-            console.log(res);
             if(res) {
-                this.router.navigate(['exhibits/']); 
-                this.loginService.loggedInAs = res['userrole'];
-                console.log(this.loginService.loggedInAs)
+                this.loginService.token = res['Token'];
+                this.router.navigate(['exhibits/']);
             } else {
-                this.loginfailed = true;
+                console.log("Didn't get a response from /token url!")
             }
         });
     }

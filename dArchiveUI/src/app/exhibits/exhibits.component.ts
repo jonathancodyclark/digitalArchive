@@ -31,7 +31,7 @@ export class ExhibitsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
-    if(this.loginService.loggedInAs == null) {
+    if(this.loginService.token == null) {
       this.router.navigate(['login/']); 
     }
   
@@ -56,11 +56,11 @@ export class ExhibitsComponent implements OnInit {
     this.router.navigate(['exhibit-detail/']); 
   }
 
-  deleteExhibit(row: any) {
-    this.exhibitService.deleteExhibit(row).subscribe(exhibit => {
-      this.deleteRowDataTable(row, this.dataSource, this.dataSource.paginator);
-    });
-  }
+  // deleteExhibit(row: any) {
+  //   this.exhibitService.deleteExhibit(row).subscribe(exhibit => {
+  //     this.deleteRowDataTable(row, this.dataSource, this.dataSource.paginator);
+  //   });
+  // }
 
   private deleteRowDataTable(row, dataSource, paginator) {
     dataSource.data.splice(dataSource.data.indexOf(row), 1);

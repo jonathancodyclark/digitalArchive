@@ -26,7 +26,7 @@ export class ArtifactsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
-    if(this.loginService.loggedInAs == null) {
+    if(this.loginService.token == null) {
       this.router.navigate(['login/']); 
     }
 

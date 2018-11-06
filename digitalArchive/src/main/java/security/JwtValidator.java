@@ -23,9 +23,6 @@ public class JwtValidator {
                     .parseClaimsJws(token)
                     .getBody();
             jwtUser = new JwtUser();
-//            jwtUser.setUserName(body.getSubject());
-//            jwtUser.setId(Long.parseLong((String) body.get("userId")));
-//            jwtUser.setRole((String) body.get("role"));
             jwtUser.setUserid(Long.parseLong((String) body.get("userid")));
             jwtUser.setUseremail((String) body.get("useremail"));
             jwtUser.setUserrole((String) body.get("userrole"));
