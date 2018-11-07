@@ -8,6 +8,7 @@ import { MatTableDataSource } from '@angular/material/table'
 import { ExhibitService, Exhibit } from '../services/exhibit.service'
 import { ArtifactService } from '../services/artifact.service';
 import { LoginService } from '../services/login.service';
+import { CookieService } from 'ngx-cookie-service'
 
 @Component({
   selector: 'exhibits-page',
@@ -24,14 +25,15 @@ export class ExhibitsComponent implements OnInit {
     private exhibitService: ExhibitService,
     private artifactService: ArtifactService,
     private router: Router,
-    private loginService : LoginService
-    
+    private loginService : LoginService,
+    private cookieService : CookieService
   ) {}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
-    if(this.loginService.token == null) {
+    console.log(this.cookieService.get('token'))
+    if(this.cookieService.get('token') == '') {
       this.router.navigate(['login/']); 
     }
   
@@ -56,11 +58,11 @@ export class ExhibitsComponent implements OnInit {
     this.router.navigate(['exhibit-detail/']); 
   }
 
-  // deleteExhibit(row: any) {
-  //   this.exhibitService.deleteExhibit(row).subscribe(exhibit => {
-  //     this.deleteRowDataTable(row, this.dataSource, this.dataSource.paginator);
-  //   });
-  // }
+  deleteExhibit(row: any) {
+    this.exhibitService.deleteExhibit(row).subscribe(exhibit => {
+    this.deleteRowDataTable(row, this.dataSource, this.dataSource.paginator);
+     });
+   }
 
   private deleteRowDataTable(row, dataSource, paginator) {
     dataSource.data.splice(dataSource.data.indexOf(row), 1);
@@ -68,6 +70,7 @@ export class ExhibitsComponent implements OnInit {
   }
 
   toUsers() {
+    console.log('hi');
     this.router.navigate(['manageusers/']); 
   }
 }

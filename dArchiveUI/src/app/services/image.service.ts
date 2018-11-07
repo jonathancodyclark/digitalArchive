@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service'
 
 @Injectable()
 export class ImageService {
@@ -11,12 +12,13 @@ export class ImageService {
 
     editedExhibit = undefined;
     backendUrl = 'http://localhost:8080/storage';
-    headers = new HttpHeaders({'Content-Type':'application/json'});
+    headers = new HttpHeaders({'Content-Type':'application/json','Authorization': `${this.cookieService.get('token')}`});
     options = {headers: this.headers};
 
     constructor(
         private http : HttpClient,
-        private router : Router
+        private router : Router,
+        private cookieService : CookieService
     ){}
 
     addImage(artifactId: number, selectedFile : File) { 

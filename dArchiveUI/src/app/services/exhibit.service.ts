@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginService } from './login.service';
+import { CookieService } from 'ngx-cookie-service'
 
 export class Exhibit {
     name: string;
@@ -20,11 +21,12 @@ export class ExhibitService {
 
     editedExhibit = undefined;
     backendUrl = 'http://localhost:8080/exhibits';
-    options = {headers: {'Content-Type':'application/json','Authorization': `${this.loginService.token}`}};
+    options = {headers: {'Content-Type':'application/json','Authorization': `${this.cookieService.get('token')}`}};
 
     constructor(
         private http : HttpClient,
-        private loginService: LoginService
+        private loginService: LoginService,
+        private cookieService : CookieService
     ){}
 
     getExhibits() : Observable<Exhibit[]> {

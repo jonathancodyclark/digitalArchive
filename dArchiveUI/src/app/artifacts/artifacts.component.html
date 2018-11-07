@@ -6,7 +6,7 @@
     <mat-menu #appMenu="matMenu">
         <button class="footer-button" mat-button (click)="addArtifact()"><b>ADD ARTIFACT</b></button>
         <br/>
-        <button class="cancel-button" (click)="loginService.logout()" mat-button><b>EXHIBITS</b></button>
+        <button class="cancel-button" (click)="backToExhibits()" mat-button><b>EXHIBITS</b></button>
         <button class="back-button" mat-button (click)="backToExhibits()"><b>BACK</b></button>
     </mat-menu>
     <button mat-icon-button [matMenuTriggerFor]="appMenu">

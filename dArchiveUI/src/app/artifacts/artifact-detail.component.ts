@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ArtifactService, Artifact } from '../services/artifact.service'
 import { LoginService } from '../services/login.service';
 import {ImageService} from '../services/image.service';
+import { CookieService } from 'ngx-cookie-service'
 
 @Component({
   selector: 'artifact-detail-page',
@@ -29,7 +30,8 @@ export class ArtifactDetailComponent implements OnInit {
         private artifactService: ArtifactService,
         private router: Router,
         private loginService : LoginService,
-        private imageService :ImageService
+        private imageService :ImageService,
+        private cookieService : CookieService
     ) {}
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -37,7 +39,7 @@ export class ArtifactDetailComponent implements OnInit {
     selectedFile = null;
 
     ngOnInit() {
-        if(this.loginService.token == null) {
+        if(this.cookieService.get('token') == '') {
             this.router.navigate(['login/']); 
         }
 

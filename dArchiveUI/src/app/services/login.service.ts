@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service'
 
 @Injectable()
 export class LoginService {
 
-    token = null;
+    //this.cookieService
 
     editedExhibit = undefined;
     backendUrl = 'http://localhost:8080/token';
@@ -14,7 +15,8 @@ export class LoginService {
 
     constructor(
         private http : HttpClient,
-        private router : Router
+        private router : Router,
+        private cookieService : CookieService
     ){}
 
 
@@ -24,7 +26,8 @@ export class LoginService {
     }
 
     logout() {
-        this.token = null;
+        //this.token = null;
+        this.cookieService.delete('token')
         this.router.navigate(['login/']); 
     }
 }

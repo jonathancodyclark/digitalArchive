@@ -41,6 +41,7 @@ import { AppUsersComponent } from './appusers/appusers.component';
 import { NewUserComponent } from './appusers/newUser.component';
 import { ForgotPassComponent } from './forgotPass/forgotPass.component';
 import { ChangePassComponent } from './changePass/changePass.component';
+import { CookieService } from 'ngx-cookie-service';
 
 
 
@@ -83,7 +84,7 @@ import { ChangePassComponent } from './changePass/changePass.component';
     MatPaginatorModule,
     AppRoutingModule
   ],
-  providers: [AppRoutingModule, ExhibitService, ArtifactService, LoginService, AppUsersService, ImageService],
+  providers: [AppRoutingModule, ExhibitService, ArtifactService, LoginService, AppUsersService, ImageService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

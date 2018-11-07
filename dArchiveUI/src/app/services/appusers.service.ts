@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
+import { CookieService } from 'ngx-cookie-service'
 
 
 export class AppUsers {
@@ -31,12 +32,13 @@ export class AppUsersService {
 
   editedAppUser;
   backendUrl = 'http://localhost:8080/users';
-  options = {headers: {'Content-Type':'application/json','Authorization': `${this.loginService.token}`}};
+  options = {headers: {'Content-Type':'application/json','Authorization': `${this.cookieService.get('token')}`}};
 
   constructor(
     private http : HttpClient,
     private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private cookieService : CookieService
   ){}
 
   getUsers() {
