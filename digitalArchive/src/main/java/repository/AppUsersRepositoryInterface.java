@@ -12,4 +12,5 @@ import java.util.List;
 public interface AppUsersRepositoryInterface extends CrudRepository<AppUsers, Integer> {
     @Query(value="Select user_id, userpassword, firstname, lastname, userrole, useremail, newuser from app_users where useremail =?1", nativeQuery = true)
     AppUsers findByEmail(String email);
+
 }

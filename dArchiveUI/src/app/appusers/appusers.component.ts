@@ -24,10 +24,9 @@ export class AppUsersComponent implements OnInit{
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
   ngOnInit() {
-    if(this.loginService.loggedInAs == null) {
-      console.log(this.loginService.loggedInAs)
+    if(this.loginService.token == null) {
       this.router.navigate(['login/']); 
-    } else if (this.loginService.loggedInAs == 'USER') {
+    } else {
       this.router.navigate(['exhibits/']); 
     }
 

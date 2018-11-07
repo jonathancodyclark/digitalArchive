@@ -54,5 +54,9 @@ public class AppUsersService {
         return null;
     }
 
+    public AppUsers getAppUserByEmail(String userEmail) {
+        return appUsersRepository.findByEmail(userEmail);
+    }
+
 
 }

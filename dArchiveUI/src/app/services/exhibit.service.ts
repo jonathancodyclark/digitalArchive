@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
-import { map } from "rxjs/operators";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LoginService } from './login.service';
 
 export class Exhibit {
     name: string;
@@ -11,7 +11,7 @@ export class Exhibit {
     constructor(
         name: string,
         exhibitId: number,
-        description: string,
+        description: string
     ) {}
 }
 
@@ -20,14 +20,14 @@ export class ExhibitService {
 
     editedExhibit = undefined;
     backendUrl = 'http://localhost:8080/exhibits';
-    headers = new HttpHeaders({'Content-Type':'application/json'});
-    options = {headers: this.headers};
+    options = {headers: {'Content-Type':'application/json','Authorization': `${this.loginService.token}`}};
 
     constructor(
-        private http : HttpClient
+        private http : HttpClient,
+        private loginService: LoginService
     ){}
 
-    getExhibits() : Observable<Exhibit[]> { 
+    getExhibits() : Observable<Exhibit[]> {
         return this.http.get<Exhibit[]>(this.backendUrl + '/all', this.options);
     }
 
