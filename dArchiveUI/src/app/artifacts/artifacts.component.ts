@@ -13,7 +13,7 @@ import { LoginService } from '../services/login.service';
   styleUrls: ['./artifacts.component.css']
 })
 export class ArtifactsComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'exhibitId', 'desc', 'onDisplay', 'edit', 'delete'];
+  displayedColumns: string[] = ['id', 'name', 'image', 'exhibitId', 'desc', 'onDisplay', 'edit', 'delete'];
   dataSource: MatTableDataSource<Artifact>;
   title = this.router.url.replace('/artifacts/', '');
 

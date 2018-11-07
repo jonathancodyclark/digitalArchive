@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { ArtifactService, Artifact } from '../services/artifact.service'
 import { LoginService } from '../services/login.service';
+import {ImageService} from '../services/image.service';
 
 @Component({
   selector: 'artifact-detail-page',
@@ -27,10 +28,13 @@ export class ArtifactDetailComponent implements OnInit {
     constructor(
         private artifactService: ArtifactService,
         private router: Router,
-        private loginService : LoginService
+        private loginService : LoginService,
+        private imageService :ImageService
     ) {}
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
+
+    selectedFile = null;
 
     ngOnInit() {
         if(this.loginService.loggedInAs == null) {
@@ -63,5 +67,25 @@ export class ArtifactDetailComponent implements OnInit {
 
     backToArtifacts() {
         this.router.navigate(['/artifacts/' + this.artifactService.selectedExhibit]); 
+    }
+
+    onFileSelected(event) {
+        console.log(event);
+        this.selectedFile = event.target.files[0];
+        console.log(this.selectedFile);
+    }
+
+    uploadImage() {
+        if(this.selectedFile == null) {
+            return;
+        } else if (this.artifact.filepath == null) {
+            this.imageService.addImage(this.artifact.artifactid, this.selectedFile);
+        } else {
+            this.imageService.editImage(this.artifact.artifactid, this.selectedFile);
+        }
+    }
+
+    deleteImage() {
+        this.imageService.deleteImage(this.artifact.artifactid, this.artifact.filepath);
     }
 }

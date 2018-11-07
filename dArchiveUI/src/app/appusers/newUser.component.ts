@@ -48,6 +48,10 @@ backToAppUsersPage() {
     this.router.navigate(['/manageusers/']);
 }
 
+sendEmail() {
+    this.appusersservice.sendEmail(this.appuser);
+}
+
 saveAppUser() {
     if(this.editing) {
         this.appusersservice.updateUser(this.appuser).subscribe(res => {
@@ -58,6 +62,7 @@ saveAppUser() {
             this.router.navigate(['/manageusers/']);
         });
     }
+    this.sendEmail();
 }
 
 

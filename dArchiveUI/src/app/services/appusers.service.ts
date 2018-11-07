@@ -53,4 +53,10 @@ export class AppUsersService {
   deleteUser(user: AppUsers) {
     return this.http.delete(this.backendUrl + '/delete/' + user.userId, this.options).pipe();
   }
+
+  sendEmail(appuser) {
+    this.http.post('http://localhost:4200/sendemail', appuser.useremail).subscribe(data => {
+    console.log(data);
+  });
+}
 }
