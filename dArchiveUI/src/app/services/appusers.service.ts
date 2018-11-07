@@ -3,6 +3,7 @@ import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { LoginService } from './login.service';
 
 
 export class AppUsers {
@@ -30,12 +31,12 @@ export class AppUsersService {
 
   editedAppUser;
   backendUrl = 'http://localhost:8080/users';
-  headers = new HttpHeaders({'Content-Type':'application/json'});
-  options = {headers: this.headers};
+  options = {headers: {'Content-Type':'application/json','Authorization': `${this.loginService.token}`}};
 
   constructor(
     private http : HttpClient,
-    private router: Router
+    private router: Router,
+    private loginService: LoginService
   ){}
 
   getUsers() {

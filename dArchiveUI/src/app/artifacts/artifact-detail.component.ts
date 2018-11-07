@@ -37,7 +37,7 @@ export class ArtifactDetailComponent implements OnInit {
     selectedFile = null;
 
     ngOnInit() {
-        if(this.loginService.loggedInAs == null) {
+        if(this.loginService.token == null) {
             this.router.navigate(['login/']); 
         }
 
