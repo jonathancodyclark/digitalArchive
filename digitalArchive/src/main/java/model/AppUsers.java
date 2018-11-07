@@ -30,17 +30,22 @@ public class AppUsers {
     @Column(name = "useremail")
     private String useremail;
 
+    @Column(name = "newuser")
+    private Integer newuser;
+
     public AppUsers() {
     }
 
-    public AppUsers(Integer userId, String userpassword, String firstname, String lastname, String userrole, String useremail) {
+    public AppUsers(Integer userId, String userpassword, String firstname, String lastname, String userrole, String useremail, Integer newuser) {
         this.userId = userId;
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         this.userpassword = encoder.encode(userpassword);
+        //this.userpassword = userpassword;
         this.firstname = firstname;
         this.lastname = lastname;
         this.userrole = userrole;
         this.useremail = useremail;
+        this.newuser = newuser;
     }
 
     public Integer getUserId() {
@@ -59,6 +64,7 @@ public class AppUsers {
     public void setUserpassword(String userpassword) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         this.userpassword = encoder.encode(userpassword);
+        //this.userpassword = userpassword;
     }
 
     public String getFirstname() {
@@ -92,5 +98,13 @@ public class AppUsers {
 
     public void setUseremail(String useremail) {
         this.useremail = useremail;
+    }
+
+    public Integer getNewuser() {
+        return newuser;
+    }
+
+    public void setNewuser(Integer newuser) {
+        this.newuser = newuser;
     }
 }

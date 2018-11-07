@@ -9,7 +9,7 @@ import service.ArtifactService;
 
 @RestController
 @RequestMapping("/storage/")
-@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
+//@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 public class BucketController {
 
     @Autowired
@@ -42,8 +42,9 @@ public class BucketController {
     }
 
     @DeleteMapping("/{artifactId}/deleteFile")
-    public String deleteFileWithArtifact(@RequestPart(value = "url") String fileUrl, @PathVariable("artifactId") Integer artifactId) {
+    public String deleteFileWithArtifact(@PathVariable("artifactId") Integer artifactId) {
         Artifacts artifact = artifactService.getArtifacts(artifactId);
+        String fileUrl = artifact.getFilepath();
         artifact.setFilepath(null);
         artifactService.addArtifact(artifact);
         return this.amazonClient.deleteFileFromS3Bucket(fileUrl);
