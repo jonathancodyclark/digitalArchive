@@ -9,7 +9,7 @@ import service.ArtifactService;
 
 @RestController
 @RequestMapping("/storage/")
-//@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 public class BucketController {
 
     @Autowired
