@@ -45,6 +45,7 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
         filter.setRequiresAuthenticationRequestMatcher(new OrRequestMatcher(
                 new AntPathRequestMatcher("/artifacts/**")
                 , new AntPathRequestMatcher("/exhibits/**")
+                , new AntPathRequestMatcher("/storage/**")
         ));
         return filter;
     }

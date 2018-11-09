@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { AppUsersService, AppUsers } from '../services/appusers.service';
 import { LoginService } from '../services/login.service';
+import { CookieService } from 'ngx-cookie-service'
 
 @Component({
   selector: 'new-user-page',
@@ -24,15 +25,14 @@ export class NewUserComponent implements OnInit{
   constructor(
     private router: Router,
     private appusersservice: AppUsersService,
-    private loginService : LoginService
+    private loginService : LoginService,
+    private cookieService : CookieService
   ){}
 
   
   ngOnInit() {
-    if(this.loginService.token == null) {
+    if(this.cookieService.get('token') == '') {
       this.router.navigate(['login/']); 
-    } else {
-      this.router.navigate(['exhibits/']); 
     }
 
     this.editing = false;
@@ -48,6 +48,10 @@ backToAppUsersPage() {
     this.router.navigate(['/manageusers/']);
 }
 
+sendEmail() {
+    this.appusersservice.sendEmail(this.appuser);
+}
+
 saveAppUser() {
     if(this.editing) {
         this.appusersservice.updateUser(this.appuser).subscribe(res => {
@@ -58,6 +62,7 @@ saveAppUser() {
             this.router.navigate(['/manageusers/']);
         });
     }
+    this.sendEmail();
 }
 
 

@@ -3,6 +3,7 @@ import {MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {MatTableDataSource} from '@angular/material/table';
+import { CookieService } from 'ngx-cookie-service'
 
 @Component({
   selector: 'changePass-page',

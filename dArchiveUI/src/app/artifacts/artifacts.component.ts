@@ -6,6 +6,7 @@ import {MatTableDataSource} from '@angular/material/table';
 
 import { ArtifactService, Artifact } from '../services/artifact.service'
 import { LoginService } from '../services/login.service';
+import { CookieService } from 'ngx-cookie-service'
 
 @Component({
   selector: 'artifacts-page',
@@ -13,20 +14,21 @@ import { LoginService } from '../services/login.service';
   styleUrls: ['./artifacts.component.css']
 })
 export class ArtifactsComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'exhibitId', 'desc', 'onDisplay', 'edit', 'delete'];
+  displayedColumns: string[] = ['id', 'name', 'image', 'exhibitId', 'desc', 'onDisplay', 'edit', 'delete'];
   dataSource: MatTableDataSource<Artifact>;
   title = this.router.url.replace('/artifacts/', '');
 
   constructor(
     private artifactService: ArtifactService,
     private router: Router,
-    private loginService : LoginService
+    private loginService : LoginService,
+    private cookieService : CookieService
   ) {}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
-    if(this.loginService.token == null) {
+    if(this.cookieService.get('token') == '') {
       this.router.navigate(['login/']); 
     }
 

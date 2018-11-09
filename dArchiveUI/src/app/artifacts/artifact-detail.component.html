@@ -4,6 +4,13 @@
         {{title}}
 </h1>
 
+<img src={{artifact.filepath}} style="width:100px;height:100px;">
+
+<input type="file" (change)="onFileSelected($event)">
+
+<button class="cancel-button" (click)="uploadImage()" mat-button><b>UPLOAD IMAGE</b></button>
+<button class="cancel-button" (click)="deleteImage()" mat-button><b>DELETE IMAGE</b></button>
+
 <div class="form-container">
     <mat-form-field>
             <input matInput [(ngModel)]=artifact.name placeholder="Artifact Name" type="string">

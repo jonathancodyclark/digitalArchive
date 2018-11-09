@@ -4,6 +4,7 @@ import {MatPaginator } from '@angular/material';
 import { AppUsersService, AppUsers } from '../services/appusers.service';
 import {MatTableDataSource} from '@angular/material/table';
 import { LoginService } from '../services/login.service';
+import { CookieService } from 'ngx-cookie-service'
 
 @Component({
   selector: 'appusers-page',
@@ -18,16 +19,15 @@ export class AppUsersComponent implements OnInit{
   constructor(
     private router: Router,
     private appusersservice: AppUsersService,
-    private loginService : LoginService
+    private loginService : LoginService,
+    private cookieService : CookieService
   ){}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
   ngOnInit() {
-    if(this.loginService.token == null) {
+    if(this.cookieService.get('token') == '') {
       this.router.navigate(['login/']); 
-    } else {
-      this.router.navigate(['exhibits/']); 
     }
 
     this.appusersservice.getUsers().subscribe(res => {

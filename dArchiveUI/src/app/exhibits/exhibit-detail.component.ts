@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { ExhibitService, Exhibit } from '../services/exhibit.service'
 import { LoginService } from '../services/login.service';
+import { CookieService } from 'ngx-cookie-service'
 
 @Component({
   selector: 'exhibit-detail-page',
@@ -24,13 +25,14 @@ export class ExhibitDetailComponent implements OnInit {
     constructor(
         private exhibitService: ExhibitService,
         private router: Router,
-        private loginService : LoginService
+        private loginService : LoginService,
+        private cookieService : CookieService
     ) {}
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
     ngOnInit() {
-        if(this.loginService.token == null) {
+        if(this.cookieService.get('token') == '') {
             this.router.navigate(['login/']); 
         }
 

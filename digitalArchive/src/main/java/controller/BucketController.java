@@ -33,7 +33,7 @@ public class BucketController {
     }
 
     @PostMapping("/{artifactId}/uploadFile")
-    public String uploadFileWithArtifact(@RequestPart(value = "file") MultipartFile file, @PathVariable("artifactId") Integer artifactId) {
+    public String uploadFileWithArtifact(@RequestPart(value = "File") MultipartFile file, @PathVariable("artifactId") Integer artifactId) {
         Artifacts artifact = artifactService.getArtifacts(artifactId);
         String url = this.amazonClient.uploadFile(file);
         artifact.setFilepath(url);
@@ -51,7 +51,7 @@ public class BucketController {
     }
 
     @PostMapping("/{artifactId}/editFile")
-    public String editFileWithArtifact(@RequestPart(value = "file") MultipartFile file, @PathVariable("artifactId") Integer artifactId) {
+    public String editFileWithArtifact(@RequestPart(value = "File") MultipartFile file, @PathVariable("artifactId") Integer artifactId) {
         Artifacts artifact = artifactService.getArtifacts(artifactId);
         this.amazonClient.deleteFileFromS3Bucket(artifact.getFilepath());
         String url = this.amazonClient.uploadFile(file);

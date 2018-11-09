@@ -2,6 +2,7 @@
 
 # dependencies
 /target
+/src/main/resources
 
 # IDEs and editors
 /.idea
