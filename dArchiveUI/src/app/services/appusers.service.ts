@@ -47,8 +47,8 @@ export class AppUsersService {
     return this.http.get<AppUsers[]>(this.backendUrl + '/all/', this.options);
   }
 
-  getUser(userId : number) {
-    return this.http.get<AppUsers>(this.backendUrl + `/${userId}/`, this.options);
+  getUser(useremail : string) {
+    return this.http.get<AppUsers>(this.backendUrl + `/getByEmail/${useremail}/`, this.options);
   }
 
   addUser(user: AppUsers) { 

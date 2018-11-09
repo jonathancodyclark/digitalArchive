@@ -9,6 +9,7 @@ import { ExhibitService, Exhibit } from '../services/exhibit.service'
 import { ArtifactService } from '../services/artifact.service';
 import { LoginService } from '../services/login.service';
 import { CookieService } from 'ngx-cookie-service'
+import { AppUsersService } from '../services/appusers.service'
 
 @Component({
   selector: 'exhibits-page',
@@ -26,7 +27,8 @@ export class ExhibitsComponent implements OnInit {
     private artifactService: ArtifactService,
     private router: Router,
     private loginService : LoginService,
-    private cookieService : CookieService
+    private cookieService : CookieService,
+    private appusersService : AppUsersService,
   ) {}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -36,6 +38,19 @@ export class ExhibitsComponent implements OnInit {
     if(this.cookieService.get('token') == '') {
       this.router.navigate(['login/']); 
     }
+
+    
+    this.appusersService.getUser(this.cookieService.get('email')).subscribe(res => {
+      var x = res["newuser"];
+      console.log(res);
+      if (x == 1) {
+          this.appusersService.editedAppUser = res;
+          this.router.navigate(['change/']);
+      } else {
+          this.router.navigate(['exhibits/']);
+      }
+      
+    })
   
     this.exhibitService.getExhibits().subscribe(res => {
       this.dataSource = new MatTableDataSource<Exhibit>(res);

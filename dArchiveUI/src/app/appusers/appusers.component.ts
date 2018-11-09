@@ -20,7 +20,8 @@ export class AppUsersComponent implements OnInit{
     private router: Router,
     private appusersservice: AppUsersService,
     private loginService : LoginService,
-    private cookieService : CookieService
+    private cookieService : CookieService,
+    private appusersService : AppUsersService,
   ){}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -29,6 +30,18 @@ export class AppUsersComponent implements OnInit{
     if(this.cookieService.get('token') == '') {
       this.router.navigate(['login/']); 
     }
+
+    this.appusersService.getUser(this.cookieService.get('email')).subscribe(res => {
+      var x = res["newuser"];
+      console.log(res);
+      if (x == 1) {
+          this.appusersService.editedAppUser = res;
+          this.router.navigate(['change/']);
+      } else {
+          this.router.navigate(['exhibits/']);
+      }
+      
+    })
 
     this.appusersservice.getUsers().subscribe(res => {
       this.dataSource = new MatTableDataSource<AppUsers>(res);

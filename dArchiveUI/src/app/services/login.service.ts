@@ -19,6 +19,8 @@ export class LoginService {
         private cookieService : CookieService
     ){}
 
+    username;
+    password;
 
     login(username : string, password : string) {
          return this.http.post(this.backendUrl, JSON.stringify({"useremail": `${username}`, "userpassword": `${password}`}),
@@ -28,6 +30,7 @@ export class LoginService {
     logout() {
         //this.token = null;
         this.cookieService.delete('token')
+        this.cookieService.delete('email');
         this.router.navigate(['login/']); 
     }
 }

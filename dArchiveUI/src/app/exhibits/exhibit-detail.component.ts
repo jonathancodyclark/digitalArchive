@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ExhibitService, Exhibit } from '../services/exhibit.service'
 import { LoginService } from '../services/login.service';
 import { CookieService } from 'ngx-cookie-service'
+import { AppUsersService } from '../services/appusers.service';
 
 @Component({
   selector: 'exhibit-detail-page',
@@ -26,7 +27,8 @@ export class ExhibitDetailComponent implements OnInit {
         private exhibitService: ExhibitService,
         private router: Router,
         private loginService : LoginService,
-        private cookieService : CookieService
+        private cookieService : CookieService,
+        private appusersService : AppUsersService,
     ) {}
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -35,6 +37,18 @@ export class ExhibitDetailComponent implements OnInit {
         if(this.cookieService.get('token') == '') {
             this.router.navigate(['login/']); 
         }
+
+        this.appusersService.getUser(this.cookieService.get('email')).subscribe(res => {
+            var x = res["newuser"];
+            console.log(res);
+            if (x == 1) {
+                this.appusersService.editedAppUser = res;
+                this.router.navigate(['change/']);
+            } else {
+                this.router.navigate(['exhibits/']);
+            }
+            
+        })
 
         this.editing = false;
         if(this.exhibitService.editedExhibit != undefined) {

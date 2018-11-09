@@ -7,6 +7,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { ArtifactService, Artifact } from '../services/artifact.service'
 import { LoginService } from '../services/login.service';
 import { CookieService } from 'ngx-cookie-service'
+import { AppUsersService } from '../services/appusers.service';
 
 @Component({
   selector: 'artifacts-page',
@@ -22,7 +23,8 @@ export class ArtifactsComponent implements OnInit {
     private artifactService: ArtifactService,
     private router: Router,
     private loginService : LoginService,
-    private cookieService : CookieService
+    private cookieService : CookieService,
+    private appusersService : AppUsersService,
   ) {}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -31,6 +33,18 @@ export class ArtifactsComponent implements OnInit {
     if(this.cookieService.get('token') == '') {
       this.router.navigate(['login/']); 
     }
+
+    this.appusersService.getUser(this.cookieService.get('email')).subscribe(res => {
+      var x = res["newuser"];
+      console.log(res);
+      if (x == 1) {
+          this.appusersService.editedAppUser = res;
+          this.router.navigate(['change/']);
+      } else {
+          this.router.navigate(['exhibits/']);
+      }
+      
+    })
 
     this.artifactService.getArtifacts().subscribe(res => {
       this.dataSource = new MatTableDataSource<Artifact>(res);

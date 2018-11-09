@@ -27,7 +27,8 @@ export class NewUserComponent implements OnInit{
     private router: Router,
     private appusersservice: AppUsersService,
     private loginService : LoginService,
-    private cookieService : CookieService
+    private cookieService : CookieService,
+    private appusersService : AppUsersService,
   ){}
 
   
@@ -35,6 +36,18 @@ export class NewUserComponent implements OnInit{
     if(this.cookieService.get('token') == '') {
       this.router.navigate(['login/']); 
     }
+
+    this.appusersService.getUser(this.cookieService.get('email')).subscribe(res => {
+        var x = res["newuser"];
+        console.log(res);
+        if (x == 1) {
+            this.appusersService.editedAppUser = res;
+            this.router.navigate(['change/']);
+        } else {
+            this.router.navigate(['exhibits/']);
+        }
+        
+      })
 
     this.editing = false;
     if(this.appusersservice.editedAppUser != undefined) {
@@ -77,6 +90,4 @@ export class NewUserComponent implements OnInit{
       
         return text;
     }
-
-
 }

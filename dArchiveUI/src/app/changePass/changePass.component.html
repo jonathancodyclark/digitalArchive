@@ -10,16 +10,16 @@
         <div class="change-field-container">
             <mat-form-field class="change-field" appearance="outline">
                 <mat-label>New Password:</mat-label>
-                <input matInput [(ngModel)]=password placeholder="Enter a memorable password" type="password">
+                <input matInput [(ngModel)]=password1 placeholder="Enter a memorable password" type="password">
             </mat-form-field>
             <mat-form-field class="reenter-field" appearance="outline">
                 <mat-label>Re-enter Password:</mat-label>
-                <input matInput [(ngModel)]=password placeholder="Re-enter your password" type="password">
+                <input matInput [(ngModel)]=password2 placeholder="Re-enter your password" type="password">
             </mat-form-field>
         </div>
     
         <div class="change-button-container">
-            <button id="changeBtn" mat-button (click)="changePass()"><b>Submit</b></button>
+            <button id="changeBtn" mat-button (click)="saveAppUser()"><b>Submit</b></button>
         </div>
     </div>
 </html>

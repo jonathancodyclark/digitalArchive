@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
 
     }
 
-
     username : string;
     password : string;
 
@@ -33,10 +32,19 @@ export class LoginComponent implements OnInit {
             if(res) {
                 //this.loginService.token = res['Token'];
                 this.cookieService.set('token',res['Token']);
+                this.cookieService.set('email', this.username)
                 
-                //if()
-                this.router.navigate(['exhibits/']);
-                this.appusers
+                this.appusersService.getUser(this.username).subscribe(res => {
+                    var x = res["newuser"];
+                    console.log(res);
+                    if (x == 1) {
+                        this.appusersService.editedAppUser = res;
+                        this.router.navigate(['change/']);
+                    } else {
+                        this.router.navigate(['exhibits/']);
+                    }
+                    
+                })
             } else {
                 console.log("Didn't get a response from /token url!")
             }
