@@ -48,5 +48,9 @@ public class AppUsersController {
 //    public AppUsers login(@PathVariable("useremail") String useremail, @PathVariable("userpassword") String userpassword) {
 //        return aus.login(useremail,userpassword);
 //    }
+    @RequestMapping(value = "/getByEmail/{useremail}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public AppUsers getAppUsersByEmail(@PathVariable("useremail") String useremail) {
+    return aus.getAppUserByEmail(useremail);
+}
 
 }
