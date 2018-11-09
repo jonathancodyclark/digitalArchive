@@ -24,10 +24,10 @@ export class ChangePassComponent implements OnInit {
     console.log("part time twitch streamer");
     console.log("part time music producer");
     console.log("full time memer");
-    }
+  }
 
-    changePass() {
-        //implement this
-        //what happens after you enter new password on change password screen
-    }
+  changePass() {
+      //implement this
+      //what happens after you enter new password on change password screen
+  }
 }

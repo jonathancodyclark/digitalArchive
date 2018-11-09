@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
 import { ForgotPassComponent } from '../forgotPass/forgotPass.component';
-import { CookieService } from 'ngx-cookie-service'
+import { CookieService } from 'ngx-cookie-service';
+import { AppUsersService } from '../services/appusers.service';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
     constructor(
         private loginService : LoginService,
         private router : Router,
-        private cookieService : CookieService
+        private cookieService : CookieService,
+        private appusersService : AppUsersService
     ) {}
 
     ngOnInit() {
@@ -31,7 +33,10 @@ export class LoginComponent implements OnInit {
             if(res) {
                 //this.loginService.token = res['Token'];
                 this.cookieService.set('token',res['Token']);
+                
+                //if()
                 this.router.navigate(['exhibits/']);
+                this.appusers
             } else {
                 console.log("Didn't get a response from /token url!")
             }
