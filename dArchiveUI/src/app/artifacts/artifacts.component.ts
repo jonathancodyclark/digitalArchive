@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import {MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -14,7 +14,7 @@ import { AppUsersService } from '../services/appusers.service';
   templateUrl: './artifacts.component.html',
   styleUrls: ['./artifacts.component.css']
 })
-export class ArtifactsComponent implements OnInit {
+export class ArtifactsComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['id', 'name', 'image', 'exhibitId', 'desc', 'onDisplay', 'edit', 'delete'];
   dataSource: MatTableDataSource<Artifact>;
   title = this.router.url.replace('/artifacts/', '');
@@ -43,14 +43,19 @@ export class ArtifactsComponent implements OnInit {
       } else {
           //nothing
       }
-      
+      this.artifactService.getArtifacts().subscribe(res => {
+        console.log('hey')
+        this.dataSource = new MatTableDataSource<Artifact>(res);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.data.sort();
+      });
     })
 
-    this.artifactService.getArtifacts().subscribe(res => {
-      this.dataSource = new MatTableDataSource<Artifact>(res);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.data.sort();
-    });
+    
+  }
+
+  ngAfterViewInit() {
+    
   }
 
   backToExhibits() {
