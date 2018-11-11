@@ -57,6 +57,8 @@ export class ArtifactDetailComponent implements OnInit {
             
           })
 
+          this.artifactService.selectedExhibit = this.router.url.replace('/artifacts/', '');
+
         this.editing = false;
         if(this.artifactService.editedArtifact != undefined) {
             this.editing = true;
@@ -100,9 +102,11 @@ export class ArtifactDetailComponent implements OnInit {
         } else {
             this.imageService.editImage(this.artifact.artifactid, this.selectedFile);
         }
+        this.router.navigate(['/artifacts/' + this.artifact.exhibitId]);
     }
 
     deleteImage() {
         this.imageService.deleteImage(this.artifact.artifactid, this.artifact.filepath);
+        this.router.navigate(['/artifacts/' + this.artifact.exhibitId]);
     }
 }
