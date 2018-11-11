@@ -62,6 +62,7 @@ export class ArtifactDetailComponent implements OnInit {
             this.editing = true;
             this.artifact = this.artifactService.editedArtifact;
             this.artifactService.editedArtifact = undefined;
+            this.title = "Edit " + this.artifact.name;
         }
     }
 
