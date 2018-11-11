@@ -45,7 +45,7 @@ export class ExhibitDetailComponent implements OnInit {
                 this.appusersService.editedAppUser = res;
                 this.router.navigate(['change/']);
             } else {
-                this.router.navigate(['exhibits/']);
+                //nothing
             }
             
         })
