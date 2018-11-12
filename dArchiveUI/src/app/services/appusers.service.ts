@@ -14,6 +14,7 @@ export class AppUsers {
   lastname: string;
   userrole: string;
   useremail: string;
+  newuser: number;
 
   constructor (
     userId : number,
@@ -21,7 +22,8 @@ export class AppUsers {
     firstname: string,
     lastname: string,
     userrole: string,
-    useremail: string
+    useremail: string,
+    newuser: number,
   ){}
 } 
 
@@ -45,6 +47,10 @@ export class AppUsersService {
     return this.http.get<AppUsers[]>(this.backendUrl + '/all/', this.options);
   }
 
+  getUser(useremail : string) {
+    return this.http.get<AppUsers>(this.backendUrl + `/getByEmail/${useremail}/`, this.options);
+  }
+
   addUser(user: AppUsers) { 
     return this.http.post(this.backendUrl + '/postAppUsers/', JSON.stringify(user), this.options).pipe();
   }
@@ -57,8 +63,8 @@ export class AppUsersService {
     return this.http.delete(this.backendUrl + '/delete/' + user.userId, this.options).pipe();
   }
 
-  sendEmail(appuser) {
-    this.http.post('http://localhost:4200/sendemail', appuser.useremail).subscribe(data => {
+  sendEmail(appuser : AppUsers, password: string) {
+    this.http.post(`http://localhost:8080/send/${password}`, JSON.stringify(appuser), this.options).subscribe(data => {
     console.log(data);
   });
 }

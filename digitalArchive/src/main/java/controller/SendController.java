@@ -18,6 +18,7 @@ import java.util.Properties;
  * Created by dmarley on 15-09-15.
  */
 @RestController
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 public class SendController {
 
     @Autowired
@@ -45,7 +46,7 @@ public class SendController {
         this.templateMessage.setTo(toEmail);
 
         SimpleMailMessage msg = new SimpleMailMessage(this.templateMessage);
-        msg.setText("Please login at homepage of Sights and Sound mueseum with your email as the username, and the password " + password);
+        msg.setText("Please login at homepage of Sights and Sound museum with your email as the username, and the password " + password);
 
         try {
             this.mailSender.send(msg);

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
 import { ForgotPassComponent } from '../forgotPass/forgotPass.component';
-import { CookieService } from 'ngx-cookie-service'
+import { CookieService } from 'ngx-cookie-service';
+import { AppUsersService } from '../services/appusers.service';
 
 
 @Component({
@@ -15,13 +16,13 @@ export class LoginComponent implements OnInit {
     constructor(
         private loginService : LoginService,
         private router : Router,
-        private cookieService : CookieService
+        private cookieService : CookieService,
+        private appusersService : AppUsersService
     ) {}
 
     ngOnInit() {
 
     }
-
 
     username : string;
     password : string;
@@ -31,7 +32,19 @@ export class LoginComponent implements OnInit {
             if(res) {
                 //this.loginService.token = res['Token'];
                 this.cookieService.set('token',res['Token']);
-                this.router.navigate(['exhibits/']);
+                this.cookieService.set('email', this.username)
+                
+                this.appusersService.getUser(this.username).subscribe(res => {
+                    var x = res["newuser"];
+                    console.log(res);
+                    if (x == 1) {
+                        this.appusersService.editedAppUser = res;
+                        this.router.navigate(['change/']);
+                    } else {
+                        this.router.navigate(['exhibits/']);
+                    }
+                    
+                })
             } else {
                 console.log("Didn't get a response from /token url!")
             }

@@ -6,6 +6,7 @@ import { ArtifactService, Artifact } from '../services/artifact.service'
 import { LoginService } from '../services/login.service';
 import {ImageService} from '../services/image.service';
 import { CookieService } from 'ngx-cookie-service'
+import { AppUsersService } from '../services/appusers.service';
 
 @Component({
   selector: 'artifact-detail-page',
@@ -31,7 +32,8 @@ export class ArtifactDetailComponent implements OnInit {
         private router: Router,
         private loginService : LoginService,
         private imageService :ImageService,
-        private cookieService : CookieService
+        private cookieService : CookieService,
+        private appusersService : AppUsersService,
     ) {}
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -42,6 +44,20 @@ export class ArtifactDetailComponent implements OnInit {
         if(this.cookieService.get('token') == '') {
             this.router.navigate(['login/']); 
         }
+
+        this.appusersService.getUser(this.cookieService.get('email')).subscribe(res => {
+            var x = res["newuser"];
+            console.log(res);
+            if (x == 1) {
+                this.appusersService.editedAppUser = res;
+                this.router.navigate(['change/']);
+            } else {
+                //nothing
+            }
+            
+          })
+
+          this.artifactService.selectedExhibit = this.router.url.replace('/artifacts/', '');
 
         this.editing = false;
         if(this.artifactService.editedArtifact != undefined) {
@@ -85,9 +101,11 @@ export class ArtifactDetailComponent implements OnInit {
         } else {
             this.imageService.editImage(this.artifact.artifactid, this.selectedFile);
         }
+        this.router.navigate(['/artifacts/' + this.artifact.exhibitId]);
     }
 
     deleteImage() {
         this.imageService.deleteImage(this.artifact.artifactid, this.artifact.filepath);
+        this.router.navigate(['/artifacts/' + this.artifact.exhibitId]);
     }
 }
