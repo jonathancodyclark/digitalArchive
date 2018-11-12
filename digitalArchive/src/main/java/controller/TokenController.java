@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 
 import java.awt.*;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -22,6 +23,7 @@ public class TokenController {
 
     @PostMapping
     public Map<String, String> generate(@RequestBody final JwtCredentials jwtCredentials) {
-        return Collections.singletonMap("Token", jwtGenerator.generate(jwtCredentials));
+        return jwtGenerator.generate(jwtCredentials);
+        //return Collections.singletonMap("Token", jwtGenerator.generate(jwtCredentials));
     }
 }

@@ -12,13 +12,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import service.AppUsersService;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 @Component
 public class JwtGenerator {
 
     @Autowired
     AppUsersService appUsersService;
 
-    public String generate(JwtCredentials jwtCredentials) {
+    public Map<String, String> generate(JwtCredentials jwtCredentials) {
         //verify correct password here with appUsersService
         AppUsers temp = appUsersService.getAppUserByEmail(jwtCredentials.getUseremail());
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -28,31 +32,17 @@ public class JwtGenerator {
             claims.put("userid", String.valueOf(temp.getUserId()));
             claims.put("useremail", jwtCredentials.getUseremail());
             claims.put("userrole", temp.getUserrole());
-
-
-            return Jwts.builder()
+            Map<String, String> map = new HashMap<String, String>();
+            Date fiveMinutes = new Date(System.currentTimeMillis() + 300000); //current date plus 300,000 millis (5 minutes)
+            map.put("Token", Jwts.builder()
                     .setClaims(claims)
                     .signWith(SignatureAlgorithm.HS512, "youtube")
-                    .compact();
+                    .setExpiration(fiveMinutes)
+                    .compact());
+            map.put("Role", temp.getUserrole());
+            return map;
         } else {
             throw new RuntimeException("Invalid JWT Credentials");
         }
-
-//        Claims claims = Jwts.claims()
-//                .setSubject(jwtUser.getUserName());
-//
-//        claims.put("user", String.valueOf(jwtUser.getId()));
-//        claims.put("role", jwtUser.getRole());
-
-
-//        Claims claims = Jwts.claims();
-//        claims.put("useremail", jwtCredentials.getUseremail());
-//        claims.put("userpassword", jwtCredentials.getUserpassword());
-//
-//        return Jwts.builder()
-//                .setClaims(claims)
-//                .signWith(SignatureAlgorithm.HS512, "youtube")
-//                .compact();
-
     }
 }
