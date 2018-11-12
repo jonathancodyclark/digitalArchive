@@ -44,7 +44,7 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
         //place all URLS that you wish to authenticate with the filter HERE
         filter.setRequiresAuthenticationRequestMatcher(new OrRequestMatcher(
                 new AntPathRequestMatcher("/artifacts/**")
-                , new AntPathRequestMatcher("/exhibits/**")
+                 , new AntPathRequestMatcher("/exhibits/**")
                 , new AntPathRequestMatcher("/storage/**")
         ));
         return filter;
