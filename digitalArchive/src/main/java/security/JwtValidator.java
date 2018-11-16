@@ -13,16 +13,21 @@ public class JwtValidator {
     @Autowired
     AppUsersRepositoryInterface appUsersRepository;
 
-    private String secret = "youtube";
+    private String secret = "africa";
 
+
+    /*
+    This method validates that this token was
+    generated correctly and corresponds to a
+    correct jwtUser identity when it is recreated
+    from the token
+    */
     public JwtUser validate(String token) {
         JwtUser jwtUser = null;
         Claims body = Jwts.parser()
                 .setSigningKey(secret)
                 .parseClaimsJws(token)
                 .getBody();
-        System.out.println(System.currentTimeMillis() + "***************");
-        System.out.println(body.getExpiration().getTime() + "*****************");
         if (System.currentTimeMillis() < body.getExpiration().getTime()) {
             jwtUser = new JwtUser();
             jwtUser.setUserid(Long.parseLong((String) body.get("userid")));

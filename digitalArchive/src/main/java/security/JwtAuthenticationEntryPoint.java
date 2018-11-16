@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/*
+This handles requests that do not contain mappings
+that require token authentication
+*/
 @Component
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 

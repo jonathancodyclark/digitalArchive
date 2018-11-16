@@ -22,6 +22,10 @@ public class JwtGenerator {
     @Autowired
     AppUsersService appUsersService;
 
+    /*
+    This generates our token based on the jwtCredentials that we send to the '/token' mapping.
+    Before sending any token we do verify their identity and correct credentials
+    */
     public Map<String, String> generate(JwtCredentials jwtCredentials) {
         //verify correct password here with appUsersService
         AppUsers temp = appUsersService.getAppUserByEmail(jwtCredentials.getUseremail());
@@ -36,7 +40,7 @@ public class JwtGenerator {
             Date fiveMinutes = new Date(System.currentTimeMillis() + 300000); //current date plus 300,000 millis (5 minutes)
             map.put("Token", Jwts.builder()
                     .setClaims(claims)
-                    .signWith(SignatureAlgorithm.HS512, "youtube")
+                    .signWith(SignatureAlgorithm.HS512, "africa")
                     .setExpiration(fiveMinutes)
                     .compact());
             map.put("Role", temp.getUserrole());

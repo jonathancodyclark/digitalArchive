@@ -1,5 +1,10 @@
 package model;
 
+/*
+This object models the credentials of a user (email and password)
+that are sent from the front-end to the /token url
+*/
+
 public class JwtCredentials {
     private String useremail;
     private String userpassword;
