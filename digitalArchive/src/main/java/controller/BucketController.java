@@ -7,6 +7,9 @@ import org.springframework.web.multipart.MultipartFile;
 import service.AmazonClient;
 import service.ArtifactService;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/storage/")
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
@@ -33,12 +36,14 @@ public class BucketController {
     }
 
     @PostMapping("/{artifactId}/uploadFile")
-    public String uploadFileWithArtifact(@RequestPart(value = "File") MultipartFile file, @PathVariable("artifactId") Integer artifactId) {
+    public Map<String, String> uploadFileWithArtifact(@RequestPart(value = "File") MultipartFile file, @PathVariable("artifactId") Integer artifactId) {
         Artifacts artifact = artifactService.getArtifacts(artifactId);
         String url = this.amazonClient.uploadFile(file);
         artifact.setFilepath(url);
         artifactService.addArtifact(artifact);
-        return url;
+        Map<String, String> map = new HashMap<>();
+        map.put("url", url);
+        return map;
     }
 
     @DeleteMapping("/{artifactId}/deleteFile")
@@ -51,12 +56,14 @@ public class BucketController {
     }
 
     @PostMapping("/{artifactId}/editFile")
-    public String editFileWithArtifact(@RequestPart(value = "File") MultipartFile file, @PathVariable("artifactId") Integer artifactId) {
+    public Map<String, String> editFileWithArtifact(@RequestPart(value = "File") MultipartFile file, @PathVariable("artifactId") Integer artifactId) {
         Artifacts artifact = artifactService.getArtifacts(artifactId);
         this.amazonClient.deleteFileFromS3Bucket(artifact.getFilepath());
         String url = this.amazonClient.uploadFile(file);
         artifact.setFilepath(url);
         artifactService.addArtifact(artifact);
-        return url;
+        Map<String, String> map = new HashMap<>();
+        map.put("url", url);
+        return map;
     }
 }
