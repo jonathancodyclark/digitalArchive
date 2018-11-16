@@ -16,11 +16,10 @@ export class ExhibitDetailComponent implements OnInit {
 
     title = "NEW EXHIBIT"
     exhibit : Exhibit = {
-        
-        exhibitId: undefined,
-        name: '',
-        description: ''
-    }
+        exhibitId : undefined,
+        name : '',
+        description : '',
+    };
     editing;
 
     constructor(
@@ -64,6 +63,7 @@ export class ExhibitDetailComponent implements OnInit {
     }
 
     saveExhibit() {
+        console.log(this.exhibit);
         if(this.editing) {
             this.exhibitService.updateExhibit(this.exhibit).subscribe(exhibit => {
                 this.router.navigate(['/exhibits']);
