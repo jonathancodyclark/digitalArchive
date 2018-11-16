@@ -21,6 +21,7 @@ export class ExhibitsComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'desc', 'open', 'edit', 'delete'];
   dataSource: MatTableDataSource<Exhibit>;
   title = "EXHIBITS"
+  hideusers = false
 
   constructor(
     private exhibitService: ExhibitService,
@@ -33,11 +34,16 @@ export class ExhibitsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
+  
+
   ngOnInit() {
     console.log(this.cookieService.get('token'))
     if(this.cookieService.get('token') == '') {
       this.router.navigate(['login/']); 
     }
+
+    this.hideusers = this.cookieService.get('userrole') == 'ADMIN'
+    
 
     
     this.appusersService.getUser(this.cookieService.get('email')).subscribe(res => {

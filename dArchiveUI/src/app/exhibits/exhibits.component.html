@@ -6,7 +6,7 @@
     <mat-menu #appMenu="matMenu">
         <button class="footer-button" mat-button (click)="addExhibit()"><b>ADD EXHIBIT</b></button>
         <br/>
-        <button class="users-button" (click)="toUsers()" mat-button><b>USERS</b></button>
+        <button *ngIf='hideusers' class="users-button" (click)="toUsers()" mat-button><b>USERS</b></button>
         <button class="cancel-button" (click)="loginService.logout()" mat-button><b>LOGOUT</b></button>
     </mat-menu>
     <button mat-icon-button [matMenuTriggerFor]="appMenu">

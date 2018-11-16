@@ -31,6 +31,7 @@ export class LoginService {
         //this.token = null;
         this.cookieService.delete('token')
         this.cookieService.delete('email');
+        this.cookieService.delete('userrole')
         this.router.navigate(['login/']); 
     }
 }

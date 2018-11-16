@@ -27,8 +27,11 @@ export class AppUsersComponent implements OnInit{
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
   ngOnInit() {
+    console.log(this.cookieService.get('userrole'))
     if(this.cookieService.get('token') == '') {
       this.router.navigate(['login/']); 
+    } else if (this.cookieService.get('userrole') == 'USER') {
+      this.router.navigate(['exhibits/'])
     }
 
     this.appusersService.getUser(this.cookieService.get('email')).subscribe(res => {

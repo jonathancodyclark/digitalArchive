@@ -97,15 +97,21 @@ export class ArtifactDetailComponent implements OnInit {
         if(this.selectedFile == null) {
             return;
         } else if (this.artifact.filepath == null) {
-            this.imageService.addImage(this.artifact.artifactid, this.selectedFile);
+            this.imageService.addImage(this.artifact.artifactid, this.selectedFile).subscribe(res => {
+                this.artifact.filepath = res['url'];
+            });
+            
         } else {
-            this.imageService.editImage(this.artifact.artifactid, this.selectedFile);
+            this.imageService.editImage(this.artifact.artifactid, this.selectedFile).subscribe(res => {
+                this.artifact.filepath = res['url'];
+            });
         }
-        this.router.navigate(['/artifacts/' + this.artifact.exhibitId]);
+        //this.router.navigate(['/artifacts/' + this.artifact.exhibitId]);
     }
 
     deleteImage() {
         this.imageService.deleteImage(this.artifact.artifactid, this.artifact.filepath);
-        this.router.navigate(['/artifacts/' + this.artifact.exhibitId]);
+        this.artifact.filepath = null;
+        //this.router.navigate(['/artifacts/' + this.artifact.exhibitId]);
     }
 }
