@@ -17,19 +17,20 @@ public class JwtValidator {
 
     public JwtUser validate(String token) {
         JwtUser jwtUser = null;
-        try {
-            Claims body = Jwts.parser()
-                    .setSigningKey(secret)
-                    .parseClaimsJws(token)
-                    .getBody();
+        Claims body = Jwts.parser()
+                .setSigningKey(secret)
+                .parseClaimsJws(token)
+                .getBody();
+        System.out.println(System.currentTimeMillis() + "***************");
+        System.out.println(body.getExpiration().getTime() + "*****************");
+        if (System.currentTimeMillis() < body.getExpiration().getTime()) {
             jwtUser = new JwtUser();
             jwtUser.setUserid(Long.parseLong((String) body.get("userid")));
             jwtUser.setUseremail((String) body.get("useremail"));
             jwtUser.setUserrole((String) body.get("userrole"));
-        } catch (Exception e) {
-            System.out.println(e);
+        } else {
+            throw new RuntimeException("JWT Token has expired");
         }
-
         return jwtUser;
     }
 }
