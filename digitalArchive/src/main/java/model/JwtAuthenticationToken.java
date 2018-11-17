@@ -5,6 +5,11 @@ import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
+
+/*
+Spring requires that our Authentication Token contain credentials and a principal but
+since but we only use a token field
+*/
 public class JwtAuthenticationToken extends UsernamePasswordAuthenticationToken {
 
     private String token;

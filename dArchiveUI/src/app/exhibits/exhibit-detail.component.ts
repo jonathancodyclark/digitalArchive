@@ -62,13 +62,12 @@ export class ExhibitDetailComponent implements OnInit {
         }
     }
 
-    //navigate back to exhibits list, for html use
+    /* Opens the exhibits page */
     backToExhibits() {
         this.router.navigate(['/exhibits']); 
     }
 
-    //depending on in what capacity the page has been loaded either save the edits to
-    //the exhibit or save the new exhibit.
+    /* Saves the changes made to the exhibit */
     saveExhibit() {
         console.log(this.exhibit);
         if(this.editing) {

@@ -14,7 +14,7 @@ import { AppUsersService } from '../services/appusers.service';
   templateUrl: './artifacts.component.html',
   styleUrls: ['./artifacts.component.css']
 })
-export class ArtifactsComponent implements OnInit, AfterViewInit {
+export class ArtifactsComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'image', 'exhibitId', 'desc', 'onDisplay', 'edit', 'delete'];
   dataSource: MatTableDataSource<Artifact>;
   title = this.router.url.replace('/artifacts/', '');
@@ -30,10 +30,13 @@ export class ArtifactsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
+    //check that user is logged in and navigate them to do so if they are not
     if(this.cookieService.get('token') == '') {
       this.router.navigate(['login/']); 
     }
 
+    //verify that they are using their own password and not an auto-generated one
+    //if they are using an auto-generated one have the user change it
     this.appusersService.getUser(this.cookieService.get('email')).subscribe(res => {
       var x = res["newuser"];
       console.log(res);
@@ -43,6 +46,7 @@ export class ArtifactsComponent implements OnInit, AfterViewInit {
       } else {
           //nothing
       }
+      //retrieve list of artifacts
       this.artifactService.getArtifacts().subscribe(res => {
         console.log('hey')
         this.dataSource = new MatTableDataSource<Artifact>(res);
@@ -54,30 +58,33 @@ export class ArtifactsComponent implements OnInit, AfterViewInit {
     
   }
 
-  ngAfterViewInit() {
-    
-  }
-
+  //navigate back to exhibits page, for html use.
   backToExhibits() {
     this.router.navigate(['/exhibits']); 
   }
 
+  //record artifact to be edited and navigate to the add/edit artifact page
   editArtifact(row: any) {
     this.artifactService.editedArtifact = row;
     this.router.navigate(['artifact-detail/']); 
   }
 
+  //navigate to the add artifact page and record which exhibit we are inside in order to
+  //return later
   addArtifact() {
     this.artifactService.selectedExhibit = this.router.url.replace('/artifacts/', '');
     this.router.navigate(['artifact-detail/']); 
   }
 
+  //delete the selected artifact from the database
+  //then delete locally from page.
   deleteArtifact(row: any) {
     this.artifactService.deleteArtifact(row).subscribe(artifact => {
       this.deleteRowDataTable(row, this.dataSource, this.dataSource.paginator);
     });
   }
 
+  //helper method to delete artifact from this page locally
   private deleteRowDataTable(row, dataSource, paginator) {
     dataSource.data.splice(dataSource.data.indexOf(row), 1);
     dataSource.paginator = paginator;

@@ -30,7 +30,9 @@ public class SendController {
     private String fromEmail;
 
     private String toEmail;
-
+    /*
+    * Create mail to user given and give them the password for their new login
+    */
     @RequestMapping(method = RequestMethod.POST, value="/send/{password}")
     public String send(Model model, @RequestBody AppUsers user, @PathVariable("password") String password) {
         System.out.println("Starting Send...");

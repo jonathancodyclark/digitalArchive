@@ -27,6 +27,12 @@ import java.util.Collections;
 @Configuration
 public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    /*
+    JWTSecurityConfig Autowires ("creates an instance of a bean inside another bean") an
+    authenticationProvider for user authentication and an entryPoint object that handles
+    requests to mappings that don't contain our Token;
+    */
+
     @Autowired
     private JwtAuthenticationProvider authenticationProvider;
     @Autowired
@@ -36,12 +42,22 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManager() {
         return new ProviderManager(Collections.singletonList(authenticationProvider));
     }
+
+
+    /*
+    All filters need an Authentication Manager (just a JWTAuthenticationProvider)
+    that retrieves users and validates their token. Then, they require a success handler
+    to handle operations when we token operations succeed.
+    */
     @Bean
     public JwtAuthenticationTokenFilter authenticationTokenFilter() {
         JwtAuthenticationTokenFilter filter = new JwtAuthenticationTokenFilter();
+
         filter.setAuthenticationManager(authenticationManager());
+
         filter.setAuthenticationSuccessHandler(new JwtSuccessHandler());
-        //place all URLS that you wish to authenticate with the filter HERE
+
+        //place all URLS that you wish to authenticate with the filter here
         filter.setRequiresAuthenticationRequestMatcher(new OrRequestMatcher(
                 new AntPathRequestMatcher("/artifacts/**")
                 , new AntPathRequestMatcher("/exhibits/**")
@@ -50,6 +66,9 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
         return filter;
     }
 
+    /*
+    This is the global configuration for setting the our token filter and entry point
+    */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors();

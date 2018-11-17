@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 /**
  * Created by Neeraj on 9/7/18.
+ * Models Exhibits Table and has getters and setters for each column in table
  */
 @Entity
 public class Exhibits {
