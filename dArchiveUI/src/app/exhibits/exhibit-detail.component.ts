@@ -59,10 +59,12 @@ export class ExhibitDetailComponent implements OnInit {
         }
     }
 
+    /* Opens the exhibits page */
     backToExhibits() {
         this.router.navigate(['/exhibits']); 
     }
 
+    /* Saves the changes made to the exhibit */
     saveExhibit() {
         if(this.editing) {
             this.exhibitService.updateExhibit(this.exhibit).subscribe(exhibit => {
