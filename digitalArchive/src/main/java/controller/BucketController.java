@@ -24,17 +24,19 @@ public class BucketController {
     BucketController(AmazonClient amazonClient) {
         this.amazonClient = amazonClient;
     }
-
+    // not used
     @PostMapping("/uploadFile")
     public String uploadFile(@RequestPart(value = "file") MultipartFile file) {
         return this.amazonClient.uploadFile(file);
     }
-
+    // not used
     @DeleteMapping("/deleteFile")
     public String deleteFile(@RequestPart(value = "url") String fileUrl) {
         return this.amazonClient.deleteFileFromS3Bucket(fileUrl);
     }
-
+    /*
+    * Upload file to bucket and add filepath to artifact
+    */
     @PostMapping("/{artifactId}/uploadFile")
     public Map<String, String> uploadFileWithArtifact(@RequestPart(value = "File") MultipartFile file, @PathVariable("artifactId") Integer artifactId) {
         Artifacts artifact = artifactService.getArtifacts(artifactId);
@@ -45,7 +47,9 @@ public class BucketController {
         map.put("url", url);
         return map;
     }
-
+    /*
+    * delete file to bucket and change filepath to artifact
+    */
     @DeleteMapping("/{artifactId}/deleteFile")
     public String deleteFileWithArtifact(@PathVariable("artifactId") Integer artifactId) {
         Artifacts artifact = artifactService.getArtifacts(artifactId);
@@ -54,7 +58,9 @@ public class BucketController {
         artifactService.addArtifact(artifact);
         return this.amazonClient.deleteFileFromS3Bucket(fileUrl);
     }
-
+    /*
+    * Upload file to bucket and delete old one and add filepath to artifact
+    */
     @PostMapping("/{artifactId}/editFile")
     public Map<String, String> editFileWithArtifact(@RequestPart(value = "File") MultipartFile file, @PathVariable("artifactId") Integer artifactId) {
         Artifacts artifact = artifactService.getArtifacts(artifactId);

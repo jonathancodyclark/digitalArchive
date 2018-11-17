@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * Created by Neeraj on 9/7/18.
+ * Talks directly to database table Exhbits, comes with basic functions like add and delete and get
  */
 public interface ExhibitsRepositoryInterface extends CrudRepository<Exhibits, Integer> {
 

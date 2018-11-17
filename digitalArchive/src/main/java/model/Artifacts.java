@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 /**
  * Created by jclark
+ * Models Artifacts Table and has getters and setters for each column in table
  */
 @Entity
 public class Artifacts {

@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 /**
  * Created by Neeraj on 8/31/18.
+ * Models AppUsers Table and has getters and setters for each column in table
  */
 @Entity
 public class AppUsers {
