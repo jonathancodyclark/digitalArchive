@@ -37,6 +37,7 @@ export class ExhibitsComponent implements OnInit {
   
 
   ngOnInit() {
+    //check whether the user is logged in and direct them to do so if not.
     console.log(this.cookieService.get('token'))
     if(this.cookieService.get('token') == '') {
       this.router.navigate(['login/']); 

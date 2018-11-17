@@ -40,11 +40,14 @@ export class ChangePassComponent implements OnInit {
     this.appuser = this.appusersservice.editedAppUser;
     console.log(this.appuser)
 
+    //verify the user is logged in and direct them to do so if they are not.
     if(this.cookieService.get('token') == '') {
       this.router.navigate(['login/']); 
     }
   }
 
+    //record the change of password by saving in the backend, then
+    //update the user to show they no longer need to change their password.
     saveAppUser() {
       if (this.password1 == this.password2) {
         this.appuser.userpassword = this.password1

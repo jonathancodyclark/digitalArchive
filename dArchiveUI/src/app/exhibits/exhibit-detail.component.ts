@@ -33,10 +33,13 @@ export class ExhibitDetailComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
     ngOnInit() {
+        //check that the user is logged in and direct them to do so if they are not.
         if(this.cookieService.get('token') == '') {
             this.router.navigate(['login/']); 
         }
 
+        //verify that they are using their own password and not an auto-generated one
+        //if they are using an auto-generated one have the user change it
         this.appusersService.getUser(this.cookieService.get('email')).subscribe(res => {
             var x = res["newuser"];
             console.log(res);
@@ -49,6 +52,7 @@ export class ExhibitDetailComponent implements OnInit {
             
         })
 
+        //check whether the page has been loaded in an adding or editing capacity.
         this.editing = false;
         if(this.exhibitService.editedExhibit != undefined) {
             this.exhibit = this.exhibitService.editedExhibit;
@@ -58,10 +62,13 @@ export class ExhibitDetailComponent implements OnInit {
         }
     }
 
+    //navigate back to exhibits list, for html use
     backToExhibits() {
         this.router.navigate(['/exhibits']); 
     }
 
+    //depending on in what capacity the page has been loaded either save the edits to
+    //the exhibit or save the new exhibit.
     saveExhibit() {
         console.log(this.exhibit);
         if(this.editing) {
