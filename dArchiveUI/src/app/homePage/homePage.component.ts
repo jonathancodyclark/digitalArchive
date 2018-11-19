@@ -20,8 +20,6 @@ export class HomePageComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
-    console.log("part time twitch streamer");
-    console.log("part time music producer");
-    console.log("full time memer");
+
     }
 }
