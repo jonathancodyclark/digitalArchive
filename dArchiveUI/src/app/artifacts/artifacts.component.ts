@@ -62,6 +62,10 @@ export class ArtifactsComponent implements OnInit {
   backToExhibits() {
     this.router.navigate(['/exhibits']); 
   }
+  //navigate to profile page
+  toProfile() {
+    this.router.navigate(['/profile']);
+  }
 
   //record artifact to be edited and navigate to the add/edit artifact page
   editArtifact(row: any) {
