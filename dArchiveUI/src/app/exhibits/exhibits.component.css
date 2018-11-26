@@ -36,20 +36,11 @@ html {
 }
 
 table {
-    width: 100%;
-<<<<<<< HEAD
-    height: 80vh;
-    background-color: ivory;
-}
-
-#exhibit_table {
-    height: 80vh;
-=======
+    width: 99%;
     background-color: white;
 }
 
 #exhibit_table {
->>>>>>> 7e6ec95d1f4dcb6435643d129895db7cda473ab5
     overflow: scroll;
 }
 

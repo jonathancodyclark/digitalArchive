@@ -86,4 +86,8 @@ export class AppUsersComponent implements OnInit{
     this.router.navigate(['exhibits/']); 
   }
 
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
 }

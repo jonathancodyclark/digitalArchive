@@ -84,6 +84,11 @@ export class ArtifactsComponent implements OnInit {
     });
   }
 
+  /* filters the results of the current table */
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
   //helper method to delete artifact from this page locally
   private deleteRowDataTable(row, dataSource, paginator) {
     dataSource.data.splice(dataSource.data.indexOf(row), 1);

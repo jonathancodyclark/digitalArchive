@@ -83,6 +83,11 @@ export class ExhibitsComponent implements OnInit {
     this.router.navigate(['exhibit-detail/']); 
   }
 
+  /* filters the results of the current table */
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
   /* Deletes the exhibit from the table by deleting the row associted
   with the exhibit */
   deleteExhibit(row: any) {
