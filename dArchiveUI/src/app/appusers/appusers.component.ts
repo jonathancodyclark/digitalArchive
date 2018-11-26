@@ -85,5 +85,9 @@ export class AppUsersComponent implements OnInit{
   toExhibits() {
     this.router.navigate(['exhibits/']); 
   }
+  //navigate to profile, for html use
+  toProfile() {
+    this.router.navigate(['profile/']); 
+  }
 
 }

@@ -102,4 +102,8 @@ export class ExhibitsComponent implements OnInit {
     console.log('hi');
     this.router.navigate(['manageusers/']); 
   }
+  /* Opens the profile page */
+  toProfile() {
+    this.router.navigate(['profile/']);
+  }
 }
