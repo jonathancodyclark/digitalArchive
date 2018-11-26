@@ -1,5 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
 import { Router } from '@angular/router';
 
 import { ArtifactService, Artifact } from '../services/artifact.service'
@@ -7,6 +7,8 @@ import { LoginService } from '../services/login.service';
 import {ImageService} from '../services/image.service';
 import { CookieService } from 'ngx-cookie-service'
 import { AppUsersService } from '../services/appusers.service';
+
+import { DialogArtifactsEditComponent } from '../dialogBoxes/dialogArtifactsEdit.component';
 
 @Component({
   selector: 'artifact-detail-page',
@@ -34,6 +36,7 @@ export class ArtifactDetailComponent implements OnInit {
         private imageService :ImageService,
         private cookieService : CookieService,
         private appusersService : AppUsersService,
+        private dialog : MatDialog,
     ) {}
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -73,15 +76,20 @@ export class ArtifactDetailComponent implements OnInit {
     }
 
     saveArtifact() {
-        if(this.editing) {
-            this.artifactService.updateArtifact(this.artifact).subscribe(exhibit => {
-                this.router.navigate(['/artifacts/' + this.artifact.exhibitId]);
-            });
-        } else {
-            this.artifactService.addArtifact(this.artifact).subscribe(artifact => {
-                this.router.navigate(['/artifacts/' + this.artifact.exhibitId]);
-            });
-        }
+        const dialogRef = this.dialog.open(DialogArtifactsEditComponent);
+        dialogRef.afterClosed().subscribe(() => {
+            if (this.artifactService.isSave == true) {
+                if (this.editing) {
+                    this.artifactService.updateArtifact(this.artifact).subscribe(exhibit => {
+                        this.router.navigate(['/artifacts/' + this.artifact.exhibitId]);
+                    });
+                } else {
+                    this.artifactService.addArtifact(this.artifact).subscribe(artifact => {
+                        this.router.navigate(['/artifacts/' + this.artifact.exhibitId]);
+                    });
+                }
+            }
+        });
     }
 
     backToArtifacts() {
@@ -109,4 +117,5 @@ export class ArtifactDetailComponent implements OnInit {
         this.imageService.deleteImage(this.artifact.artifactid, this.artifact.filepath);
         this.router.navigate(['/artifacts/' + this.artifact.exhibitId]);
     }
+
 }

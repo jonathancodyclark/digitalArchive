@@ -1,5 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DataSource } from '@angular/cdk/collections';
@@ -11,6 +11,8 @@ import { LoginService } from '../services/login.service';
 import { CookieService } from 'ngx-cookie-service'
 import { AppUsersService } from '../services/appusers.service'
 
+import { DialogExhibitsDeleteComponent } from '../dialogBoxes/dialogExhibitsDelete.component';
+
 @Component({
   selector: 'exhibits-page',
   templateUrl: './exhibits.component.html',
@@ -20,7 +22,7 @@ export class ExhibitsComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'name', 'desc', 'open', 'edit', 'delete'];
   dataSource: MatTableDataSource<Exhibit>;
-  title = "EXHIBITS"
+  title = "EXHIBITS";
 
   constructor(
     private exhibitService: ExhibitService,
@@ -29,6 +31,7 @@ export class ExhibitsComponent implements OnInit {
     private loginService : LoginService,
     private cookieService : CookieService,
     private appusersService : AppUsersService,
+    private dialog : MatDialog,
   ) {}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -74,9 +77,14 @@ export class ExhibitsComponent implements OnInit {
   }
 
   deleteExhibit(row: any) {
-    this.exhibitService.deleteExhibit(row).subscribe(exhibit => {
-    this.deleteRowDataTable(row, this.dataSource, this.dataSource.paginator);
-     });
+    const dialogRef = this.dialog.open(DialogExhibitsDeleteComponent);
+    dialogRef.afterClosed().subscribe(() => {
+      if (this.exhibitService.isDelete == true) {
+        this.exhibitService.deleteExhibit(row).subscribe(exhibit => {
+          this.deleteRowDataTable(row, this.dataSource, this.dataSource.paginator);
+        });
+      }
+    });
    }
 
   private deleteRowDataTable(row, dataSource, paginator) {

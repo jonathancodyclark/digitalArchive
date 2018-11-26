@@ -1,11 +1,13 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
 import { Router } from '@angular/router';
 
 import { ExhibitService, Exhibit } from '../services/exhibit.service'
 import { LoginService } from '../services/login.service';
 import { CookieService } from 'ngx-cookie-service'
 import { AppUsersService } from '../services/appusers.service';
+
+import { DialogExhibitsEditComponent } from '../dialogBoxes/dialogExhibitsEdit.component';
 
 @Component({
   selector: 'exhibit-detail-page',
@@ -19,7 +21,7 @@ export class ExhibitDetailComponent implements OnInit {
         
         exhibitId: undefined,
         name: '',
-        description: ''
+        description: '',
     }
     editing;
 
@@ -29,6 +31,7 @@ export class ExhibitDetailComponent implements OnInit {
         private loginService : LoginService,
         private cookieService : CookieService,
         private appusersService : AppUsersService,
+        private dialog : MatDialog
     ) {}
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -58,20 +61,34 @@ export class ExhibitDetailComponent implements OnInit {
             this.editing = true;
         }
     }
-
+    
     backToExhibits() {
         this.router.navigate(['/exhibits']); 
     }
 
     saveExhibit() {
-        if(this.editing) {
-            this.exhibitService.updateExhibit(this.exhibit).subscribe(exhibit => {
-                this.router.navigate(['/exhibits']);
-            });
-        } else {
-            this.exhibitService.addExhibit(this.exhibit).subscribe(exhibit => {
-                this.router.navigate(['/exhibits']);
-            });
-        }
+        const dialogRef = this.dialog.open(DialogExhibitsEditComponent);
+        dialogRef.afterClosed().subscribe(() => {
+            if (this.exhibitService.isSave == true) {
+                if(this.editing) {
+                    this.exhibitService.updateExhibit(this.exhibit).subscribe(exhibit => {
+                        this.router.navigate(['/exhibits']);
+                    });
+                } else {
+                    this.exhibitService.addExhibit(this.exhibit).subscribe(exhibit => {
+                        this.router.navigate(['/exhibits']);
+                    });
+                }
+            }
+        });
+    }
+
+    openDialog() {
+        const dialogConfig = new MatDialogConfig();
+    
+        dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;
+    
+        
     }
 }

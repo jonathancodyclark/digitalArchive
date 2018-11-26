@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
-import {MatPaginator } from '@angular/material';
+import {MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
 import { AppUsersService, AppUsers } from '../services/appusers.service';
 import {MatTableDataSource} from '@angular/material/table';
 import { LoginService } from '../services/login.service';
 import { CookieService } from 'ngx-cookie-service'
+
+import { DialogUsersDeleteComponent } from '../dialogBoxes/dialogUsersDelete.component';
 
 @Component({
   selector: 'appusers-page',
@@ -22,6 +24,7 @@ export class AppUsersComponent implements OnInit{
     private loginService : LoginService,
     private cookieService : CookieService,
     private appusersService : AppUsersService,
+    private dialog : MatDialog
   ){}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -60,9 +63,15 @@ export class AppUsersComponent implements OnInit{
   }
 
   deleteUser(row: any) {
-    this.appusersservice.deleteUser(row).subscribe(appUser => {
-      this.deleteRowDataTable(row, this.dataSource, this.dataSource.paginator);
+    const dialogRef = this.dialog.open(DialogUsersDeleteComponent);
+    dialogRef.afterClosed().subscribe(() => {
+      if (this.appusersService.isDelete == true) {
+        this.appusersservice.deleteUser(row).subscribe(appUser => {
+          this.deleteRowDataTable(row, this.dataSource, this.dataSource.paginator);
+        });
+      }
     });
+    
   }
 
   private deleteRowDataTable(row, dataSource, paginator) {

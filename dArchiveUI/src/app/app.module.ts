@@ -42,7 +42,14 @@ import { NewUserComponent } from './appusers/newUser.component';
 import { ForgotPassComponent } from './forgotPass/forgotPass.component';
 import { ChangePassComponent } from './changePass/changePass.component';
 import { CookieService } from 'ngx-cookie-service';
+import {MatDialogModule} from "@angular/material";
 
+import { DialogExhibitsDeleteComponent } from './dialogBoxes/dialogExhibitsDelete.component';
+import { DialogExhibitsEditComponent } from './dialogBoxes/dialogExhibitsEdit.component';
+import { DialogArtifactsDeleteComponent } from './dialogBoxes/dialogArtifactsDelete.component';
+import { DialogArtifactsEditComponent } from './dialogBoxes/dialogArtifactsEdit.component';
+import { DialogUsersDeleteComponent } from './dialogBoxes/dialogUsersDelete.component';
+import { DialogUsersEditComponent } from './dialogBoxes/dialogUsersEdit.component';
 
 
 @NgModule({
@@ -58,7 +65,13 @@ import { CookieService } from 'ngx-cookie-service';
     AppUsersComponent,
     ForgotPassComponent,
     ChangePassComponent,
-    NewUserComponent
+    NewUserComponent,
+    DialogExhibitsDeleteComponent,
+    DialogExhibitsEditComponent,
+    DialogArtifactsDeleteComponent,
+    DialogArtifactsEditComponent,
+    DialogUsersDeleteComponent,
+    DialogUsersEditComponent
   ],
   imports: [
     BrowserModule,
@@ -82,9 +95,13 @@ import { CookieService } from 'ngx-cookie-service';
     MatSortModule,
     MatTableModule,
     MatPaginatorModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatDialogModule
   ],
-  providers: [AppRoutingModule, ExhibitService, ArtifactService, LoginService, AppUsersService, ImageService, CookieService],
-  bootstrap: [AppComponent]
+  providers: [AppRoutingModule, ExhibitService, ArtifactService, LoginService, AppUsersService, ImageService, CookieService,
+              DialogExhibitsDeleteComponent, DialogExhibitsEditComponent, DialogArtifactsEditComponent, DialogUsersEditComponent],
+  bootstrap: [AppComponent],
+  entryComponents: [DialogExhibitsDeleteComponent, DialogExhibitsEditComponent, DialogArtifactsDeleteComponent, 
+                    DialogArtifactsEditComponent, DialogUsersDeleteComponent, DialogUsersEditComponent]
 })
 export class AppModule { }

@@ -13,6 +13,7 @@ export class Exhibit {
         name: string,
         exhibitId: number,
         description: string
+
     ) {}
 }
 
@@ -22,11 +23,13 @@ export class ExhibitService {
     editedExhibit = undefined;
     backendUrl = 'http://localhost:8080/exhibits';
     options = {headers: {'Content-Type':'application/json','Authorization': `${this.cookieService.get('token')}`}};
+    isDelete = false;
+    isSave = false;
 
     constructor(
         private http : HttpClient,
         private loginService: LoginService,
-        private cookieService : CookieService
+        private cookieService : CookieService,
     ){}
 
     getExhibits() : Observable<Exhibit[]> {
@@ -44,5 +47,13 @@ export class ExhibitService {
 
     deleteExhibit(row: Exhibit) {
         return this.http.delete(this.backendUrl + '/delete/' + row.exhibitId, this.options).pipe();
+    }
+
+    setIsDelete(del : boolean) {
+        this.isDelete = del;
+    }
+    
+    setIsSave(sav : boolean) {
+        this.isSave = sav;
     }
 }

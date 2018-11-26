@@ -1,8 +1,11 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
+import { MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
 import { Router } from '@angular/router';
 import { AppUsersService, AppUsers } from '../services/appusers.service';
 import { LoginService } from '../services/login.service';
 import { CookieService } from 'ngx-cookie-service'
+
+import { DialogUsersEditComponent } from '../dialogBoxes/dialogUsersEdit.component';
 
 @Component({
   selector: 'new-user-page',
@@ -29,6 +32,7 @@ export class NewUserComponent implements OnInit{
     private loginService : LoginService,
     private cookieService : CookieService,
     private appusersService : AppUsersService,
+    private dialog : MatDialog
   ){}
 
   
@@ -68,17 +72,22 @@ export class NewUserComponent implements OnInit{
     }
 
     saveAppUser() {
-        if(this.editing) {
-            this.appusersservice.updateUser(this.appuser).subscribe(res => {
-                this.router.navigate(['/manageusers/']);
-            });
-        } else {
-            this.appuser.userpassword = this.makeid();
-            this.sendEmail();
-            this.appusersservice.addUser(this.appuser).subscribe(res => {
-                this.router.navigate(['/manageusers/']);
-            });
-        }
+        const dialogRef = this.dialog.open(DialogUsersEditComponent);
+        dialogRef.afterClosed().subscribe(() => {
+            if (this.appusersService.isSave == true) {
+                if(this.editing) {
+                    this.appusersservice.updateUser(this.appuser).subscribe(res => {
+                        this.router.navigate(['/manageusers/']);
+                    });
+                } else {
+                    this.appuser.userpassword = this.makeid();
+                    this.sendEmail();
+                    this.appusersservice.addUser(this.appuser).subscribe(res => {
+                        this.router.navigate(['/manageusers/']);
+                    });
+                }
+            }
+        }); 
     }
 
     makeid() {
@@ -90,4 +99,5 @@ export class NewUserComponent implements OnInit{
       
         return text;
     }
+
 }

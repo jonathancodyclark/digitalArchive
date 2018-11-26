@@ -1,5 +1,5 @@
-import {Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
-import {MatPaginator } from '@angular/material';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {MatTableDataSource} from '@angular/material/table';
@@ -8,6 +8,8 @@ import { ArtifactService, Artifact } from '../services/artifact.service'
 import { LoginService } from '../services/login.service';
 import { CookieService } from 'ngx-cookie-service'
 import { AppUsersService } from '../services/appusers.service';
+
+import { DialogArtifactsDeleteComponent } from '../dialogBoxes/dialogArtifactsDelete.component';
 
 @Component({
   selector: 'artifacts-page',
@@ -25,6 +27,7 @@ export class ArtifactsComponent implements OnInit, AfterViewInit {
     private loginService : LoginService,
     private cookieService : CookieService,
     private appusersService : AppUsersService,
+    private dialog : MatDialog
   ) {}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -73,8 +76,13 @@ export class ArtifactsComponent implements OnInit, AfterViewInit {
   }
 
   deleteArtifact(row: any) {
-    this.artifactService.deleteArtifact(row).subscribe(artifact => {
-      this.deleteRowDataTable(row, this.dataSource, this.dataSource.paginator);
+    const dialogRef = this.dialog.open(DialogArtifactsDeleteComponent);
+    dialogRef.afterClosed().subscribe(() => {
+      if (this.artifactService.isDelete == true) {
+        this.artifactService.deleteArtifact(row).subscribe(artifact => {
+          this.deleteRowDataTable(row, this.dataSource, this.dataSource.paginator);
+        });
+      }
     });
   }
 
@@ -82,4 +90,5 @@ export class ArtifactsComponent implements OnInit, AfterViewInit {
     dataSource.data.splice(dataSource.data.indexOf(row), 1);
     dataSource.paginator = paginator;
   }
+  
 }

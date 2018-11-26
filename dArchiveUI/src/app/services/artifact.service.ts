@@ -31,6 +31,8 @@ export class ArtifactService {
   editedArtifact;
   backendUrl = 'http://localhost:8080/artifacts';
   options = {headers: {'Content-Type':'application/json','Authorization': `${this.cookieService.get('token')}`}};
+  isDelete = false;
+  isSave = false;
 
   constructor(
     private http : HttpClient,
@@ -54,5 +56,13 @@ export class ArtifactService {
 
   deleteArtifact(row : Artifact) {
     return this.http.delete(this.backendUrl + '/delete/' + row.artifactid, this.options).pipe();
+  }
+
+  setIsDelete(del : boolean) {
+    this.isDelete = del;
+  }
+
+  setIsSave(sav : boolean) {
+    this.isSave = sav;
   }
 }

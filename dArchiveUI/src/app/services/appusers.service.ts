@@ -35,6 +35,8 @@ export class AppUsersService {
   editedAppUser;
   backendUrl = 'http://localhost:8080/users';
   options = {headers: {'Content-Type':'application/json','Authorization': `${this.cookieService.get('token')}`}};
+  isDelete = false;
+  isSave = false;
 
   constructor(
     private http : HttpClient,
@@ -65,7 +67,15 @@ export class AppUsersService {
 
   sendEmail(appuser : AppUsers, password: string) {
     this.http.post(`http://localhost:8080/send/${password}`, JSON.stringify(appuser), this.options).subscribe(data => {
-    console.log(data);
-  });
-}
+      console.log(data);
+    });
+  }
+
+  setIsDelete(del : boolean) {
+    this.isDelete = del;
+  }
+
+  setIsSave(sav : boolean) {
+    this.isSave = sav;
+  }
 }
