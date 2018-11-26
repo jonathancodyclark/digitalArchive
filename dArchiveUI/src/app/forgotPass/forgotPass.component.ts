@@ -32,6 +32,8 @@ export class ForgotPassComponent implements OnInit {
     username;
     appuser;
 
+    //generates new password and saves it before sending an email to the user's listed
+    //email with this new password. 
     sendEmail() {
       this.appusersService.getUser(this.username).subscribe(res => {
         this.appuser = res;
@@ -45,6 +47,7 @@ export class ForgotPassComponent implements OnInit {
       
     }
 
+    //helper method to generate a random alpha-numeric password.
     makeid() {
         var text = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

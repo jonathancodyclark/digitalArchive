@@ -11,6 +11,9 @@ import { AppUsersComponent} from './appusers/appusers.component';
 import { NewUserComponent } from './appusers/newUser.component';
 import { ForgotPassComponent } from './forgotPass/forgotPass.component';
 import { ChangePassComponent } from './changePass/changePass.component';
+import { ProfilePageComponent } from './profilePage/profilePage.component';
+
+
 
  
 const appRoutes: Routes = [
@@ -25,6 +28,7 @@ const appRoutes: Routes = [
   { path: 'newuser', component: NewUserComponent },
   { path: 'forgot', component: ForgotPassComponent },
   { path: 'change', component: ChangePassComponent },
+  { path: 'profile', component: ProfilePageComponent },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

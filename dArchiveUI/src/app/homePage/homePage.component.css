@@ -50,6 +50,22 @@ body {
     background-size: 100%;
     background-repeat: no-repeat;
 }
+.css-img {
+    height: 500px;
+    background-position: top;
+    background: url(/../assets/image/malcomx.jpg) 0em -10em no-repeat;
+    background-size: cover;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.carousel_slide {
+    height: 100%
+}
+.carousel_activator:nth-of-type(1):checked ~ .carousel_slide:nth-of-type(1) {
+    display:block;
+    animation: showSlide 0.5s;
+}
 
 .carousel h1 {
     color: #fff;

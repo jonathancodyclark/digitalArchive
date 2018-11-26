@@ -1,15 +1,18 @@
 package model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by jclark
+ * Models Artifacts Table and has getters and setters for each column in table
  */
 @Entity
 public class Artifacts {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "ARTIFACTS_SEQ")
+    @SequenceGenerator(name = "ARTIFACTS_SEQ",
+            sequenceName = "ARTIFACTS_SEQ", allocationSize = 1)
     @Column(name="artifactid")
     private Integer artifactid;
 

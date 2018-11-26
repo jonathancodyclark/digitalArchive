@@ -2,16 +2,19 @@ package model;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by Neeraj on 8/31/18.
+ * Models AppUsers Table and has getters and setters for each column in table
  */
 @Entity
 public class AppUsers {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "APP_USERS_SEQ")
+    @SequenceGenerator(name = "APP_USERS_SEQ",
+            sequenceName = "APP_USERS_SEQ", allocationSize = 1)
     @Column(name="user_id")
     private Integer userId;
 

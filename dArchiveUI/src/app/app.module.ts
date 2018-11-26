@@ -43,6 +43,7 @@ import { ForgotPassComponent } from './forgotPass/forgotPass.component';
 import { ChangePassComponent } from './changePass/changePass.component';
 import { CookieService } from 'ngx-cookie-service';
 import {MatDialogModule} from "@angular/material";
+import { ProfilePageComponent } from './profilePage/profilePage.component';
 
 import { DialogExhibitsDeleteComponent } from './dialogBoxes/dialogExhibitsDelete.component';
 import { DialogExhibitsEditComponent } from './dialogBoxes/dialogExhibitsEdit.component';
@@ -71,8 +72,10 @@ import { DialogUsersEditComponent } from './dialogBoxes/dialogUsersEdit.componen
     DialogArtifactsDeleteComponent,
     DialogArtifactsEditComponent,
     DialogUsersDeleteComponent,
-    DialogUsersEditComponent
-  ],
+    DialogUsersEditComponent,
+    ProfilePageComponent,
+    NewUserComponent
+    ],
   imports: [
     BrowserModule,
     NgxDatatableModule,

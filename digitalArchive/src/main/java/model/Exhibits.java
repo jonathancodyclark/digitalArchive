@@ -1,15 +1,18 @@
 package model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by Neeraj on 9/7/18.
+ * Models Exhibits Table and has getters and setters for each column in table
  */
 @Entity
 public class Exhibits {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "EXHIBITS_SEQ")
+    @SequenceGenerator(name = "EXHIBITS_SEQ",
+            sequenceName = "EXHIBITS_SEQ", allocationSize = 1)
     @Column(name="exhibit_id")
     private Integer exhibitId;
 

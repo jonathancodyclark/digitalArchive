@@ -35,7 +35,9 @@ public class AmazonClient {
         BasicAWSCredentials creds = new BasicAWSCredentials(this.accessKey, this.secretKey);
         s3client = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(creds)).withRegion("us-east-2").build();
     }
-
+    /*
+    * Converts file given by user into a binary file
+    */
     private File convertMultiPartToFile(MultipartFile file) throws IOException {
         File convFile = new File(file.getOriginalFilename());
         FileOutputStream fos = new FileOutputStream(convFile);
@@ -43,7 +45,9 @@ public class AmazonClient {
         fos.close();
         return convFile;
     }
-
+    /*
+    * Generates a new filename for the bucket which stores the file
+    */
     private String generateFileName(MultipartFile multiPart) {
         return new Date().getTime() + "-" + multiPart.getOriginalFilename().replace(" ", "_");
     }
@@ -51,7 +55,9 @@ public class AmazonClient {
     private void uploadFileTos3bucket(String fileName, File file) {
         s3client.putObject(new PutObjectRequest(bucketName, fileName, file).withCannedAcl(CannedAccessControlList.PublicRead));
     }
-
+    /*
+    * Actually uploads file to the s3 bucket
+    */
     public String uploadFile(MultipartFile multipartFile) {
 
         String fileUrl = "";
@@ -66,7 +72,9 @@ public class AmazonClient {
         }
         return fileUrl;
     }
-
+    /*
+    * Deletes file from s3 bucket
+    */
     public String deleteFileFromS3Bucket(String fileUrl) {
         String fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
         s3client.deleteObject(new DeleteObjectRequest(bucketName, fileName));

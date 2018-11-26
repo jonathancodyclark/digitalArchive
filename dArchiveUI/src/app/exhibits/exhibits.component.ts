@@ -23,6 +23,7 @@ export class ExhibitsComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'desc', 'open', 'edit', 'delete'];
   dataSource: MatTableDataSource<Exhibit>;
   title = "EXHIBITS";
+  hideusers = false
 
   constructor(
     private exhibitService: ExhibitService,
@@ -36,11 +37,17 @@ export class ExhibitsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
+  
+
   ngOnInit() {
+    //check whether the user is logged in and direct them to do so if not.
     console.log(this.cookieService.get('token'))
     if(this.cookieService.get('token') == '') {
       this.router.navigate(['login/']); 
     }
+
+    this.hideusers = this.cookieService.get('userrole') == 'ADMIN'
+    
 
     
     this.appusersService.getUser(this.cookieService.get('email')).subscribe(res => {
@@ -62,20 +69,25 @@ export class ExhibitsComponent implements OnInit {
     });
   }
 
+  /* Opens the artifacts page associated with the exhibit */
   openExhibit(row: any) {
     this.artifactService.selectedExhibit = row.exhibitId;
     this.router.navigate(['artifacts/' + row.exhibitId]); 
   }
 
+  /* Opens the new exhibit page where users can add new exhibits */
   addExhibit() {
     this.router.navigate(['exhibit-detail/']); 
   }
 
+  /* Opens the edit exhibit page for the specific exhibit */
   editExhibit(row: any) {
     this.exhibitService.editedExhibit = row;
     this.router.navigate(['exhibit-detail/']); 
   }
 
+  /* Deletes the exhibit from the table by deleting the row associted
+  with the exhibit */
   deleteExhibit(row: any) {
     const dialogRef = this.dialog.open(DialogExhibitsDeleteComponent);
     dialogRef.afterClosed().subscribe(() => {
@@ -87,13 +99,19 @@ export class ExhibitsComponent implements OnInit {
     });
    }
 
+  /* Helper method for the deleteExhibit method */
   private deleteRowDataTable(row, dataSource, paginator) {
     dataSource.data.splice(dataSource.data.indexOf(row), 1);
     dataSource.paginator = paginator;
   }
 
+  /* Opens the manage users page */
   toUsers() {
     console.log('hi');
     this.router.navigate(['manageusers/']); 
+  }
+  /* Opens the profile page */
+  toProfile() {
+    this.router.navigate(['profile/']);
   }
 }

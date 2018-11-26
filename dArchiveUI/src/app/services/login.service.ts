@@ -21,16 +21,17 @@ export class LoginService {
 
     username;
     password;
-
+    //login to account using username and password
     login(username : string, password : string) {
          return this.http.post(this.backendUrl, JSON.stringify({"useremail": `${username}`, "userpassword": `${password}`}),
          this.options).pipe();
     }
-
+    //deletes local user data using cookieservice
     logout() {
         //this.token = null;
         this.cookieService.delete('token')
         this.cookieService.delete('email');
+        this.cookieService.delete('userrole')
         this.router.navigate(['login/']); 
     }
 }

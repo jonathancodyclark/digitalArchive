@@ -1,15 +1,11 @@
 package controller;
 
 import model.JwtCredentials;
-import model.JwtUser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import security.JwtGenerator;
 import org.springframework.http.MediaType;
 
-import java.awt.*;
-import java.util.Collections;
 import java.util.Map;
 
 @RestController
@@ -20,8 +16,14 @@ public class TokenController {
     @Autowired
     private JwtGenerator jwtGenerator;
 
+
+    /*
+    This is the mapping that users are required to get to retrieve their token from.
+    They are required to send a jwtCredential object from the front-end that gets
+    validated before receiving the token.
+    */
     @PostMapping
     public Map<String, String> generate(@RequestBody final JwtCredentials jwtCredentials) {
-        return Collections.singletonMap("Token", jwtGenerator.generate(jwtCredentials));
+        return jwtGenerator.generate(jwtCredentials);
     }
 }
