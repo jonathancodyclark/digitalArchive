@@ -18,18 +18,10 @@ export class ExhibitDetailComponent implements OnInit {
 
     title = "NEW EXHIBIT"
     exhibit : Exhibit = {
-<<<<<<< HEAD
-        
-        exhibitId: undefined,
-        name: '',
-        description: '',
-    }
-=======
         exhibitId : undefined,
         name : '',
         description : '',
     };
->>>>>>> cae9697ac1b90dccfa0d7f7bf0797c00bd413cd7
     editing;
 
     constructor(
@@ -97,22 +89,4 @@ export class ExhibitDetailComponent implements OnInit {
         });
     }
 
-    openDialog() {
-        const dialogConfig = new MatDialogConfig();
-    
-        dialogConfig.disableClose = true;
-        dialogConfig.autoFocus = true;
-    
-        
-        console.log(this.exhibit);
-        if(this.editing) {
-            this.exhibitService.updateExhibit(this.exhibit).subscribe(exhibit => {
-                this.router.navigate(['/exhibits']);
-            });
-        } else {
-            this.exhibitService.addExhibit(this.exhibit).subscribe(exhibit => {
-                this.router.navigate(['/exhibits']);
-            });
-        }
-    }
 }

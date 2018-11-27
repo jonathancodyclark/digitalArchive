@@ -6,10 +6,10 @@
     <mat-menu #appMenu="matMenu">
         <button class="footer-button" mat-button (click)="addArtifact()"><b>ADD ARTIFACT</b></button>
         <br/>
-        <button class="cancel-button" (click)="backToExhibits()" mat-button><b>EXHIBITS</b></button>
+        <button class="exhibit-button" (click)="backToExhibits()" mat-button><b>EXHIBITS</b></button>
         <br/>
-        <button class="profile-button" (click)="toProfile()" mat-button><b>PROFILE></b></button>
-        <button class="back-button" mat-button (click)="backToExhibits()"><b>BACK</b></button>
+        <button class="profile-button" (click)="toProfile()" mat-button><b>PROFILE</b></button>
+        <button class="cancel-button" (click)="loginService.logout()" mat-button><b>LOGOUT</b></button>
     </mat-menu>
     <button mat-icon-button [matMenuTriggerFor]="appMenu">
         <mat-icon><img src="../../assets/image/menu.png" id="menu" height="40" width="auto"></mat-icon>

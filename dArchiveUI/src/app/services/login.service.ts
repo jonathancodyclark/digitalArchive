@@ -12,6 +12,7 @@ export class LoginService {
     backendUrl = 'http://localhost:8080/token';
     headers = new HttpHeaders({'Content-Type':'application/json'});
     options = { headers: this.headers};
+    isSave = false;
 
     constructor(
         private http : HttpClient,
@@ -34,5 +35,10 @@ export class LoginService {
         this.cookieService.delete('userrole')
         this.router.navigate(['login/']); 
     }
+    
+    setIsSave(sav : boolean) {
+        this.isSave = sav;
+    }
+
 }
 

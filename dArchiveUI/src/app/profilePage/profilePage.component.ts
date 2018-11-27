@@ -1,15 +1,16 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator } from '@angular/material';
+import {MatPaginator, MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {MatTableDataSource} from '@angular/material/table';
-
 
 import { ExhibitService, Exhibit } from '../services/exhibit.service'
 import { ArtifactService } from '../services/artifact.service';
 import { LoginService } from '../services/login.service';
 import { CookieService } from 'ngx-cookie-service'
 import { AppUsersService, AppUsers } from '../services/appusers.service'
+
+import { DialogProfileEditComponent } from '../dialogBoxes/dialogProfileEdit.component';
 
 @Component({
   selector: 'profile-page',
@@ -36,6 +37,7 @@ export class ProfilePageComponent implements OnInit {
     private cookieService : CookieService,
     private appusersService : AppUsersService,
     private loginService : LoginService,
+    private dialog : MatDialog
   ) {}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -78,12 +80,17 @@ export class ProfilePageComponent implements OnInit {
   }
   /* Saves the changes made to the user */
   saveUser() {
-    console.log(this.user);
-    if(this.editing) {
-        this.appusersService.updateUser(this.user).subscribe(user => {
-            this.router.navigate(['/exhibits']);
-        });
-    }
+    const dialogRef = this.dialog.open(DialogProfileEditComponent);
+    dialogRef.afterClosed().subscribe(() => {
+      if (this.loginService.isSave == true) {
+        console.log(this.user);
+        if(this.editing) {
+          this.appusersService.updateUser(this.user).subscribe(user => {
+              this.router.navigate(['/exhibits']);
+          });
+        }
+      }
+    });
   }
    /* Opens the exhibits page */
    backToExhibits() {

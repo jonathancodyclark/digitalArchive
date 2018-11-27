@@ -51,6 +51,7 @@ import { DialogArtifactsDeleteComponent } from './dialogBoxes/dialogArtifactsDel
 import { DialogArtifactsEditComponent } from './dialogBoxes/dialogArtifactsEdit.component';
 import { DialogUsersDeleteComponent } from './dialogBoxes/dialogUsersDelete.component';
 import { DialogUsersEditComponent } from './dialogBoxes/dialogUsersEdit.component';
+import { DialogProfileEditComponent } from './dialogBoxes/dialogProfileEdit.component';
 
 
 @NgModule({
@@ -74,6 +75,7 @@ import { DialogUsersEditComponent } from './dialogBoxes/dialogUsersEdit.componen
     DialogUsersDeleteComponent,
     DialogUsersEditComponent,
     ProfilePageComponent,
+    DialogProfileEditComponent,
     NewUserComponent
     ],
   imports: [
@@ -102,9 +104,10 @@ import { DialogUsersEditComponent } from './dialogBoxes/dialogUsersEdit.componen
     MatDialogModule
   ],
   providers: [AppRoutingModule, ExhibitService, ArtifactService, LoginService, AppUsersService, ImageService, CookieService,
-              DialogExhibitsDeleteComponent, DialogExhibitsEditComponent, DialogArtifactsEditComponent, DialogUsersEditComponent],
+              DialogExhibitsDeleteComponent, DialogExhibitsEditComponent, DialogArtifactsEditComponent, DialogUsersEditComponent,
+              DialogProfileEditComponent],
   bootstrap: [AppComponent],
   entryComponents: [DialogExhibitsDeleteComponent, DialogExhibitsEditComponent, DialogArtifactsDeleteComponent, 
-                    DialogArtifactsEditComponent, DialogUsersDeleteComponent, DialogUsersEditComponent]
+                    DialogArtifactsEditComponent, DialogUsersDeleteComponent, DialogUsersEditComponent, DialogProfileEditComponent]
 })
 export class AppModule { }
