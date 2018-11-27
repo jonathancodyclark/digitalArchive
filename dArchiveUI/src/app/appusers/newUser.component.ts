@@ -60,6 +60,8 @@ export class NewUserComponent implements OnInit{
         this.editing = true;
         this.appuser = this.appusersservice.editedAppUser;
         this.appusersservice.editedAppUser = undefined;
+        this.appuser.newuser = 0;
+    } else {
         this.appuser.newuser = 1;
     }
   }
