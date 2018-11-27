@@ -65,6 +65,10 @@ export class AppUsersService {
     return this.http.put(this.backendUrl + '/update/' + user.userId, JSON.stringify(user), this.options).pipe();
   }
 
+  updateUserAndPassword(user: AppUsers) {
+    return this.http.put(this.backendUrl + '/updatePass/' + user.userId, JSON.stringify(user), this.options).pipe();
+  }
+
   //deletes a particular user from the database. 
   deleteUser(user: AppUsers) {
     return this.http.delete(this.backendUrl + '/delete/' + user.userId, this.options).pipe();

@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {MatTableDataSource} from '@angular/material/table';
 
-import { ArtifactService, Artifact } from '../services/artifact.service'
+import { ArtifactService, Artifact } from '../services/artifact.service';
+import { ExhibitService, Exhibit } from '../services/exhibit.service'
 import { LoginService } from '../services/login.service';
 import { CookieService } from 'ngx-cookie-service'
 import { AppUsersService } from '../services/appusers.service';
@@ -19,9 +20,18 @@ import { DialogArtifactsDeleteComponent } from '../dialogBoxes/dialogArtifactsDe
 export class ArtifactsComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'image', 'exhibitId', 'desc', 'onDisplay', 'edit', 'delete'];
   dataSource: MatTableDataSource<Artifact>;
-  title = this.router.url.replace('/artifacts/', '');
+
+  exhibit : Exhibit = {
+    name: '',
+    exhibitId: undefined,
+    description: ''
+
+  };  
+  title;
+
 
   constructor(
+    private exhibitService: ExhibitService,
     private artifactService: ArtifactService,
     private router: Router,
     private loginService : LoginService,
@@ -57,6 +67,14 @@ export class ArtifactsComponent implements OnInit {
         this.dataSource.data.sort();
       });
     })
+    this.exhibitService.getExhibit(parseInt(this.router.url.replace('/artifacts/', ''))).subscribe(res => {
+      
+      //set exhibit to exhibit from db  
+      this.exhibit = res;
+      this.title = this.exhibit.name;
+      console.log(res);
+      
+    });
 
     
   }
@@ -94,6 +112,11 @@ export class ArtifactsComponent implements OnInit {
         });
       }
     });
+  }
+
+  /* filters the results of the current table */
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   //helper method to delete artifact from this page locally

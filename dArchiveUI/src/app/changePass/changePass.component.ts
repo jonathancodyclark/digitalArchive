@@ -54,7 +54,7 @@ export class ChangePassComponent implements OnInit {
         this.appuser.newuser = 0;
         console.log(this.appuser);
         console.log(this.appuser.userpassword);
-        this.appusersservice.addUser(this.appuser).subscribe(res => {
+        this.appusersservice.updateUserAndPassword(this.appuser).subscribe(res => {
           this.loginService.logout();
           this.loginService.login(this.appuser.useremail, this.appuser.userpassword)
           this.router.navigate(['/exhibits/']);

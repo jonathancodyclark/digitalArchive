@@ -67,5 +67,9 @@ public class AppUsersController {
     public AppUsers getAppUsersByEmail(@PathVariable("useremail") String useremail) {
     return aus.getAppUserByEmail(useremail);
 }
+    @RequestMapping(method = RequestMethod.PUT, value="/updatePass/{userId}")
+    public void updateAppUsersWithPasswordChanged(@RequestBody AppUsers appUsers, @PathVariable("userId") Integer userId) {
+        aus.updateAppUsersAfterPasswordChanged(appUsers, userId);
+    }
 
 }

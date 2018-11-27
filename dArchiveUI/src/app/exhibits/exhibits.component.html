@@ -16,8 +16,13 @@
     </button>
 </h1>
 
-<div id="exhibit_table" class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource">
+<div id="exhibit_table" class="mat-elevation-z8" style="margin: 1%">
+    <mat-form-field style='margin: 0.5%; width: 99%;'>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+    </mat-form-field>
+              
+
+    <table mat-table [dataSource]="dataSource" style="margin: 0.5%">
 
         <!-- ID Column -->
         <ng-container matColumnDef="id">

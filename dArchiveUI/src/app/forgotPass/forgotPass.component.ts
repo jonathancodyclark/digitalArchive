@@ -40,7 +40,7 @@ export class ForgotPassComponent implements OnInit {
         this.appuser.userpassword = this.makeid();
         this.appuser.newuser = 1;
         this.appusersService.sendEmail(this.appuser, this.appuser.userpassword);
-        this.appusersService.addUser(this.appuser).subscribe(res => {
+        this.appusersService.updateUserAndPassword(this.appuser).subscribe(res => {
           this.router.navigate(['/login/']);
       });
       })

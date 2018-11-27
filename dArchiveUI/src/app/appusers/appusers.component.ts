@@ -99,4 +99,8 @@ export class AppUsersComponent implements OnInit{
     this.router.navigate(['profile/']); 
   }
 
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
 }
