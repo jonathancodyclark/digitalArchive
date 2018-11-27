@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
@@ -65,9 +67,12 @@ public class AppUsers {
     }
 
     public void setUserpassword(String userpassword) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        this.userpassword = encoder.encode(userpassword);
-        //this.userpassword = userpassword;
+        //System.out.println(userpassword);
+        //System.out.println(this.userpassword);
+        //System.out.println("how");
+        //BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        //this.userpassword = encoder.encode(userpassword);
+        this.userpassword = userpassword;
     }
 
     public String getFirstname() {

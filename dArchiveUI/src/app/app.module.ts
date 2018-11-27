@@ -42,6 +42,7 @@ import { NewUserComponent } from './appusers/newUser.component';
 import { ForgotPassComponent } from './forgotPass/forgotPass.component';
 import { ChangePassComponent } from './changePass/changePass.component';
 import { CookieService } from 'ngx-cookie-service';
+import { ProfilePageComponent } from './profilePage/profilePage.component';
 
 
 
@@ -58,8 +59,9 @@ import { CookieService } from 'ngx-cookie-service';
     AppUsersComponent,
     ForgotPassComponent,
     ChangePassComponent,
+    ProfilePageComponent,
     NewUserComponent
-  ],
+    ],
   imports: [
     BrowserModule,
     NgxDatatableModule,

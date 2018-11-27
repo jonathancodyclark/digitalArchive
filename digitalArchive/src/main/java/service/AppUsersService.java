@@ -41,7 +41,11 @@ public class AppUsersService {
     * Queries to add user
     */
     public void addAppUsers(AppUsers appUsers) {
-        appUsersRepository.save(appUsers);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        AppUsers temp = appUsers;
+        String pass = encoder.encode(temp.getUserpassword());
+        temp.setUserpassword(pass);
+        appUsersRepository.save(temp);
     }
     /*
     * Queries to update user
@@ -69,6 +73,14 @@ public class AppUsersService {
     */
     public AppUsers getAppUserByEmail(String userEmail) {
         return appUsersRepository.findByEmail(userEmail);
+    }
+
+    public void updateAppUsersAfterPasswordChanged(AppUsers appUsers, Integer userId) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        AppUsers temp = appUsers;
+        String pass = encoder.encode(temp.getUserpassword());
+        temp.setUserpassword(pass);
+        appUsersRepository.save(temp);
     }
 
 

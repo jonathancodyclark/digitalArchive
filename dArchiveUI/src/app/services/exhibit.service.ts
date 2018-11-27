@@ -32,6 +32,9 @@ export class ExhibitService {
     getExhibits() : Observable<Exhibit[]> {
         return this.http.get<Exhibit[]>(this.backendUrl + '/all', this.options);
     }
+    getExhibit(exhibitId: number) {
+        return this.http.get<Exhibit>(this.backendUrl + '/' + exhibitId, this.options);
+    }
 
     addExhibit(exhibit: Exhibit) { 
         console.log(JSON.stringify(exhibit));

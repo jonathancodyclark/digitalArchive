@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { ExhibitService, Exhibit } from '../services/exhibit.service'
 import { LoginService } from '../services/login.service';
 import { CookieService } from 'ngx-cookie-service'
-import { AppUsersService } from '../services/appusers.service';
+import { AppUsersService, AppUsers } from '../services/appusers.service';
 
 @Component({
   selector: 'exhibit-detail-page',
