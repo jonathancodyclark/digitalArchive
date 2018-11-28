@@ -6,9 +6,11 @@ When pulling for development:
 Make sure to install Node.js and Angular before attempting to run.
 https://angular.io/guide/quickstart
 
+Next:
 cd digitalArchive/dArchiveUI
 npm install
-npm install --save @angular/material @angular/cdk @angular/animations
-npm install @swimlane/ngx-datatable
 
 This installs necessary packages for Angular Material and Swimlane ngx-datatable widget.
+
+Finally, to run the front end at localhost:/4200 run the command:
+ng serve -o
