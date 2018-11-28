@@ -26,7 +26,7 @@ Finally, to run the front end at localhost:4200/ run the command:
 ng serve -o
 
 Resources:
-Will only work if you create resources Folder which contains application.properties and application.yml also have to make email used allow less secure apps.
+Will only work if you create resources folder at digitalArchive/digitalArchive/src/main/resources which contains application.properties and application.yml also have to make email used allow less secure apps.
 
 application.properties format:
 #Database connection
