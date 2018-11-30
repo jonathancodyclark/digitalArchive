@@ -1,6 +1,10 @@
+html {
+    font-family: "Trebuchet MS";
+}
 .title {    
     text-align: center;
     color: white;
+    margin-top: 1%;
 }
 #homeBtn
 {
@@ -35,7 +39,6 @@
 
 body {
     margin: 0px;
-    font-family: open sans;
 }
 
 .topheader {
@@ -49,7 +52,7 @@ body {
 .carousel {
     height: 500px;
     background-position: top;
-    background: url(/../assets/image/malcomx.jpg) 0em -10em no-repeat;
+    background: url(/../assets/image/museum.jpg) 0em -10em no-repeat;
     background-size: cover;
     background-size: 100%;
     background-repeat: no-repeat;
@@ -168,19 +171,13 @@ section h2 {
     clear: both;
 }
 
-footer {
-    text-align: center;
-    margin-top: 20px;
-    background-color: #000;
+#ss {
+    margin-left: 9%;
+    margin-right: 8%;
 }
 
-footer p {
-    margin: 0px;
-    padding: 5px;
-    color: #fff;
-    font-size: .8em;
+#ns {
+    margin-right: 8%;
 }
 
-footer p a {
-    color: #61E200;
-}
+

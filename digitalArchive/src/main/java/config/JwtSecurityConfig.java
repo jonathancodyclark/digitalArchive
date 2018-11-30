@@ -67,7 +67,7 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /*
-    This is the global configuration for setting the our token filter and entry point
+    This is the global configuration for setting the token filter and entry point
     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
