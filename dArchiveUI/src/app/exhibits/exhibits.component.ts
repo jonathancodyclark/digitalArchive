@@ -41,7 +41,6 @@ export class ExhibitsComponent implements OnInit {
 
   ngOnInit() {
     //check whether the user is logged in and direct them to do so if not.
-    console.log(this.cookieService.get('token'))
     if(this.cookieService.get('token') == '') {
       this.router.navigate(['login/']); 
     }
@@ -52,7 +51,6 @@ export class ExhibitsComponent implements OnInit {
     
     this.appusersService.getUser(this.cookieService.get('email')).subscribe(res => {
       var x = res["newuser"];
-      console.log(res);
       if (x == 1) {
           this.appusersService.editedAppUser = res;
           this.router.navigate(['change/']);
@@ -63,7 +61,6 @@ export class ExhibitsComponent implements OnInit {
     })
   
     this.exhibitService.getExhibits().subscribe(res => {
-      console.log(res);
       this.dataSource = new MatTableDataSource<Exhibit>(res);
       this.dataSource.paginator = this.paginator;
       this.dataSource.data.sort();
@@ -114,7 +111,6 @@ export class ExhibitsComponent implements OnInit {
 
   /* Opens the manage users page */
   toUsers() {
-    console.log('hi');
     this.router.navigate(['manageusers/']); 
   }
   /* Opens the profile page */

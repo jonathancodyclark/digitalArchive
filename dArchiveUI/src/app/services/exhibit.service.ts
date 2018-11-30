@@ -43,7 +43,6 @@ export class ExhibitService {
     }
 
     addExhibit(exhibit: Exhibit) { 
-        console.log(JSON.stringify(exhibit));
         return this.http.post(this.backendUrl + '/postExhibits', JSON.stringify(exhibit), this.options).pipe();
     }
 

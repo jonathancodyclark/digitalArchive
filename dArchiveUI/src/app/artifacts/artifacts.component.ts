@@ -52,7 +52,6 @@ export class ArtifactsComponent implements OnInit {
     //if they are using an auto-generated one have the user change it
     this.appusersService.getUser(this.cookieService.get('email')).subscribe(res => {
       var x = res["newuser"];
-      console.log(res);
       if (x == 1) {
           this.appusersService.editedAppUser = res;
           this.router.navigate(['change/']);
@@ -61,19 +60,16 @@ export class ArtifactsComponent implements OnInit {
       }
       //retrieve list of artifacts
       this.artifactService.getArtifacts().subscribe(res => {
-        console.log('hey')
         this.dataSource = new MatTableDataSource<Artifact>(res);
         this.dataSource.paginator = this.paginator;
         this.dataSource.data.sort();
       });
     })
-    console.log('hi')
     this.exhibitService.getExhibit(parseInt(this.router.url.replace('/artifacts/', ''))).subscribe(res => {
       
       //set exhibit to exhibit from db  
       this.exhibit = res;
       this.title = this.exhibit.name;
-      console.log(res);
       
     });
 

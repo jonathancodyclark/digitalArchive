@@ -28,25 +28,12 @@ export class ImageService {
 
         var fd = new FormData();
         fd.append('File', selectedFile, selectedFile.name)
-        console.log(fd.get('file'));
-        return this.http.post(this.backendUrl + `/${artifactId}/uploadFile`, fd, this.options).pipe(catchError( err => {
-            var info = err['error']
-            if (info['exception'].includes('ExpiredJwtException')) {
-                this.cookieService.delete('token')
-                this.cookieService.delete('userrole')
-                this.cookieService.delete('email')
-                this.router.navigateByUrl('/login');
-                return EMPTY;
-            } else {
-                return throwError(err);
-            }
-       }));
+        return this.http.post(this.backendUrl + `/${artifactId}/uploadFile`, fd, this.options).pipe();
     }
 
     editImage(artifactId: number, selectedFile : File) {
         const fd = new FormData();
         fd.append('File', selectedFile, selectedFile.name)
-        console.log(fd);
         return this.http.post(this.backendUrl + `/${artifactId}/editFile`, fd, this.options).pipe();
     }
 

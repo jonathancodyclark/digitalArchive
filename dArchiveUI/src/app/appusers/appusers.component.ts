@@ -31,7 +31,6 @@ export class AppUsersComponent implements OnInit{
   
   ngOnInit() {
     //check that user is logged and has proper permissions to view users
-    console.log(this.cookieService.get('userrole'))
     if(this.cookieService.get('token') == '') {
       this.router.navigate(['login/']); 
     } else if (this.cookieService.get('userrole') == 'USER') {
@@ -42,7 +41,6 @@ export class AppUsersComponent implements OnInit{
     //if they are using an auto-generated one have the user change it
     this.appusersService.getUser(this.cookieService.get('email')).subscribe(res => {
       var x = res["newuser"];
-      console.log(res);
       if (x == 1) {
           this.appusersService.editedAppUser = res;
           this.router.navigate(['change/']);
