@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { of, Observable } from 'rxjs';
+import { Observable, EMPTY, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginService } from './login.service';
 import { CookieService } from 'ngx-cookie-service'
+import { Router } from '@angular/router';
+import { catchError } from 'rxjs/operators';
 
 export class Exhibit {
     name: string;
@@ -30,26 +32,82 @@ export class ExhibitService {
         private http : HttpClient,
         private loginService: LoginService,
         private cookieService : CookieService,
+        private router: Router,
     ){}
 
     getExhibits() : Observable<Exhibit[]> {
-        return this.http.get<Exhibit[]>(this.backendUrl + '/all', this.options);
+        return this.http.get<Exhibit[]>(this.backendUrl + '/all', this.options).pipe(catchError( err => {
+            var info = err['error']
+            if (info['exception'].includes('ExpiredJwtException')) {
+                this.cookieService.delete('token')
+                this.cookieService.delete('userrole')
+                this.cookieService.delete('email')
+                this.router.navigateByUrl('/login');
+                return EMPTY;
+            } else {
+                return throwError(err);
+            }
+       }));
     }
     getExhibit(exhibitId: number) {
-        return this.http.get<Exhibit>(this.backendUrl + '/' + exhibitId, this.options);
+        return this.http.get<Exhibit>(this.backendUrl + '/' + exhibitId, this.options).pipe(catchError( err => {
+            var info = err['error']
+            if (info['exception'].includes('ExpiredJwtException')) {
+                this.cookieService.delete('token')
+                this.cookieService.delete('userrole')
+                this.cookieService.delete('email')
+                this.router.navigateByUrl('/login');
+                return EMPTY;
+            } else {
+                return throwError(err);
+            }
+       }));
     }
 
     addExhibit(exhibit: Exhibit) { 
         console.log(JSON.stringify(exhibit));
-        return this.http.post(this.backendUrl + '/postExhibits', JSON.stringify(exhibit), this.options).pipe();
+        return this.http.post(this.backendUrl + '/postExhibits', JSON.stringify(exhibit), this.options).pipe(catchError( err => {
+            var info = err['error']
+            if (info['exception'].includes('ExpiredJwtException')) {
+                this.cookieService.delete('token')
+                this.cookieService.delete('userrole')
+                this.cookieService.delete('email')
+                this.router.navigateByUrl('/login');
+                return EMPTY;
+            } else {
+                return throwError(err);
+            }
+       }));
     }
 
     updateExhibit(exhibit: Exhibit) { 
-        return this.http.put(this.backendUrl + '/update/' + exhibit.exhibitId, JSON.stringify(exhibit), this.options);
+        return this.http.put(this.backendUrl + '/update/' + exhibit.exhibitId, JSON.stringify(exhibit), this.options).pipe(catchError( err => {
+            var info = err['error']
+            if (info['exception'].includes('ExpiredJwtException')) {
+                this.cookieService.delete('token')
+                this.cookieService.delete('userrole')
+                this.cookieService.delete('email')
+                this.router.navigateByUrl('/login');
+                return EMPTY;
+            } else {
+                return throwError(err);
+            }
+       }));
     }
 
     deleteExhibit(row: Exhibit) {
-        return this.http.delete(this.backendUrl + '/delete/' + row.exhibitId, this.options).pipe();
+        return this.http.delete(this.backendUrl + '/delete/' + row.exhibitId, this.options).pipe(catchError( err => {
+            var info = err['error']
+            if (info['exception'].includes('ExpiredJwtException')) {
+                this.cookieService.delete('token')
+                this.cookieService.delete('userrole')
+                this.cookieService.delete('email')
+                this.router.navigateByUrl('/login');
+                return EMPTY;
+            } else {
+                return throwError(err);
+            }
+       }));
     }
 
     setIsDelete(del : boolean) {

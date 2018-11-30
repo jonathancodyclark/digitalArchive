@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service'
+import { catchError } from 'rxjs/operators';
+import { EMPTY, throwError } from 'rxjs';
 
 @Injectable()
 export class LoginService {
@@ -25,7 +27,18 @@ export class LoginService {
     //login to account using username and password
     login(username : string, password : string) {
          return this.http.post(this.backendUrl, JSON.stringify({"useremail": `${username}`, "userpassword": `${password}`}),
-         this.options).pipe();
+         this.options).pipe(catchError( err => {
+            var info = err['error']
+            if (info['exception'].includes('ExpiredJwtException')) {
+                this.cookieService.delete('token')
+                this.cookieService.delete('userrole')
+                this.cookieService.delete('email')
+                this.router.navigateByUrl('/login');
+                return EMPTY;
+            } else {
+                return throwError(err);
+            }
+       }));
     }
     //deletes local user data using cookieservice
     logout() {

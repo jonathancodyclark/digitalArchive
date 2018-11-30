@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service'
+import { catchError } from 'rxjs/operators';
+import { EMPTY, throwError } from 'rxjs';
 
 @Injectable()
 export class ImageService {
@@ -27,7 +29,18 @@ export class ImageService {
         var fd = new FormData();
         fd.append('File', selectedFile, selectedFile.name)
         console.log(fd.get('file'));
-        return this.http.post(this.backendUrl + `/${artifactId}/uploadFile`, fd, this.options).pipe();
+        return this.http.post(this.backendUrl + `/${artifactId}/uploadFile`, fd, this.options).pipe(catchError( err => {
+            var info = err['error']
+            if (info['exception'].includes('ExpiredJwtException')) {
+                this.cookieService.delete('token')
+                this.cookieService.delete('userrole')
+                this.cookieService.delete('email')
+                this.router.navigateByUrl('/login');
+                return EMPTY;
+            } else {
+                return throwError(err);
+            }
+       }));
     }
 
     editImage(artifactId: number, selectedFile : File) {
