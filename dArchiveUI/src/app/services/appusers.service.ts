@@ -48,97 +48,31 @@ export class AppUsersService {
 
   //retrieves list of users from the database.
   getUsers() {
-    return this.http.get<AppUsers[]>(this.backendUrl + '/all/', this.options).pipe(catchError( err => {
-      var info = err['error']
-      if (info['exception'].includes('ExpiredJwtException')) {
-          this.cookieService.delete('token')
-          this.cookieService.delete('userrole')
-          this.cookieService.delete('email')
-          this.router.navigateByUrl('/login');
-          return EMPTY;
-      } else {
-          return throwError(err);
-      }
- }));
+    return this.http.get<AppUsers[]>(this.backendUrl + '/all/', this.options).pipe();
   }
 
   //retrieves specific user by email from the database.
   getUser(useremail : string) {
-    return this.http.get<AppUsers>(this.backendUrl + `/getByEmail/${useremail}/`, this.options).pipe(catchError( err => {
-      var info = err['error']
-      if (info['exception'].includes('ExpiredJwtException')) {
-          this.cookieService.delete('token')
-          this.cookieService.delete('userrole')
-          this.cookieService.delete('email')
-          this.router.navigateByUrl('/login');
-          return EMPTY;
-      } else {
-          return throwError(err);
-      }
- }));
+    return this.http.get<AppUsers>(this.backendUrl + `/getByEmail/${useremail}/`, this.options).pipe();
   }
 
   //adds a new user to the database.
   addUser(user: AppUsers) { 
-    return this.http.post(this.backendUrl + '/postAppUsers/', JSON.stringify(user), this.options).pipe(catchError( err => {
-      var info = err['error']
-      if (info['exception'].includes('ExpiredJwtException')) {
-          this.cookieService.delete('token')
-          this.cookieService.delete('userrole')
-          this.cookieService.delete('email')
-          this.router.navigateByUrl('/login');
-          return EMPTY;
-      } else {
-          return throwError(err);
-      }
- }));
+    return this.http.post(this.backendUrl + '/postAppUsers/', JSON.stringify(user), this.options).pipe();
   }
 
   //updates a user's fields in the database.
   updateUser(user: AppUsers) {
-    return this.http.put(this.backendUrl + '/update/' + user.userId, JSON.stringify(user), this.options).pipe(catchError( err => {
-      var info = err['error']
-      if (info['exception'].includes('ExpiredJwtException')) {
-          this.cookieService.delete('token')
-          this.cookieService.delete('userrole')
-          this.cookieService.delete('email')
-          this.router.navigateByUrl('/login');
-          return EMPTY;
-      } else {
-          return throwError(err);
-      }
- }));
+    return this.http.put(this.backendUrl + '/update/' + user.userId, JSON.stringify(user), this.options).pipe();
   }
 
   updateUserAndPassword(user: AppUsers) {
-    return this.http.put(this.backendUrl + '/updatePass/' + user.userId, JSON.stringify(user), this.options).pipe(catchError( err => {
-      var info = err['error']
-      if (info['exception'].includes('ExpiredJwtException')) {
-          this.cookieService.delete('token')
-          this.cookieService.delete('userrole')
-          this.cookieService.delete('email')
-          this.router.navigateByUrl('/login');
-          return EMPTY;
-      } else {
-          return throwError(err);
-      }
- }));
+    return this.http.put(this.backendUrl + '/updatePass/' + user.userId, JSON.stringify(user), this.options).pipe();
   }
 
   //deletes a particular user from the database. 
   deleteUser(user: AppUsers) {
-    return this.http.delete(this.backendUrl + '/delete/' + user.userId, this.options).pipe(catchError( err => {
-      var info = err['error']
-      if (info['exception'].includes('ExpiredJwtException')) {
-          this.cookieService.delete('token')
-          this.cookieService.delete('userrole')
-          this.cookieService.delete('email')
-          this.router.navigateByUrl('/login');
-          return EMPTY;
-      } else {
-          return throwError(err);
-      }
- }));
+    return this.http.delete(this.backendUrl + '/delete/' + user.userId, this.options).pipe();
   }
 
   //sends an email from the spring backend to a particular provided user with their new password.

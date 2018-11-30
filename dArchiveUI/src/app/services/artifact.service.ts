@@ -45,66 +45,22 @@ export class ArtifactService {
   //retrieves list of artifacts from the database.
   getArtifacts() { 
     let id = this.router.url.replace('/artifacts/', '');
-    return this.http.get<Artifact[]>(this.backendUrl + '/exhibits/' + id, this.options).pipe(catchError( err => {
-      var info = err['error']
-      if (info['exception'].includes('ExpiredJwtException')) {
-          this.cookieService.delete('token')
-          this.cookieService.delete('userrole')
-          this.cookieService.delete('email')
-          this.router.navigateByUrl('/login');
-          return EMPTY;
-      } else {
-          return throwError(err);
-      }
- }));
+    return this.http.get<Artifact[]>(this.backendUrl + '/exhibits/' + id, this.options).pipe();
   }
 
   //addes a particuar artifact to the database. 
   addArtifact(artifact: Artifact) { 
-    return this.http.post(this.backendUrl + '/postArtifacts', JSON.stringify(artifact), this.options).pipe(catchError( err => {
-      var info = err['error']
-      if (info['exception'].includes('ExpiredJwtException')) {
-          this.cookieService.delete('token')
-          this.cookieService.delete('userrole')
-          this.cookieService.delete('email')
-          this.router.navigateByUrl('/login');
-          return EMPTY;
-      } else {
-          return throwError(err);
-      }
- }));
+    return this.http.post(this.backendUrl + '/postArtifacts', JSON.stringify(artifact), this.options).pipe();
   }
 
   //updates a particular artifact in the database with whatever changes were made. 
   updateArtifact(artifact : Artifact) {
-    return this.http.put(this.backendUrl + '/update/' + artifact.artifactid, JSON.stringify(artifact), this.options).pipe(catchError( err => {
-      var info = err['error']
-      if (info['exception'].includes('ExpiredJwtException')) {
-          this.cookieService.delete('token')
-          this.cookieService.delete('userrole')
-          this.cookieService.delete('email')
-          this.router.navigateByUrl('/login');
-          return EMPTY;
-      } else {
-          return throwError(err);
-      }
- }));
+    return this.http.put(this.backendUrl + '/update/' + artifact.artifactid, JSON.stringify(artifact), this.options).pipe();
   }
 
   //deletes a particular artifact from the database.
   deleteArtifact(row : Artifact) {
-    return this.http.delete(this.backendUrl + '/delete/' + row.artifactid, this.options).pipe(catchError( err => {
-      var info = err['error']
-      if (info['exception'].includes('ExpiredJwtException')) {
-          this.cookieService.delete('token')
-          this.cookieService.delete('userrole')
-          this.cookieService.delete('email')
-          this.router.navigateByUrl('/login');
-          return EMPTY;
-      } else {
-          return throwError(err);
-      }
- }));
+    return this.http.delete(this.backendUrl + '/delete/' + row.artifactid, this.options).pipe();
   }
 
   setIsDelete(del : boolean) {

@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
                 //console.log(res['userrole'])
                 this.cookieService.set('token',res['Token']);
                 this.cookieService.set('email', this.username)
+                console.log(this.cookieService.get('token'))
                 
                 
                 this.appusersService.getUser(this.username).subscribe(res => {

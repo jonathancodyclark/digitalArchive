@@ -36,78 +36,23 @@ export class ExhibitService {
     ){}
 
     getExhibits() : Observable<Exhibit[]> {
-        return this.http.get<Exhibit[]>(this.backendUrl + '/all', this.options).pipe(catchError( err => {
-            var info = err['error']
-            if (info['exception'].includes('ExpiredJwtException')) {
-                this.cookieService.delete('token')
-                this.cookieService.delete('userrole')
-                this.cookieService.delete('email')
-                this.router.navigateByUrl('/login');
-                return EMPTY;
-            } else {
-                return throwError(err);
-            }
-       }));
+        return this.http.get<Exhibit[]>(this.backendUrl + '/all', this.options).pipe();
     }
     getExhibit(exhibitId: number) {
-        return this.http.get<Exhibit>(this.backendUrl + '/' + exhibitId, this.options).pipe(catchError( err => {
-            var info = err['error']
-            if (info['exception'].includes('ExpiredJwtException')) {
-                this.cookieService.delete('token')
-                this.cookieService.delete('userrole')
-                this.cookieService.delete('email')
-                this.router.navigateByUrl('/login');
-                return EMPTY;
-            } else {
-                return throwError(err);
-            }
-       }));
+        return this.http.get<Exhibit>(this.backendUrl + '/' + exhibitId, this.options).pipe();
     }
 
     addExhibit(exhibit: Exhibit) { 
         console.log(JSON.stringify(exhibit));
-        return this.http.post(this.backendUrl + '/postExhibits', JSON.stringify(exhibit), this.options).pipe(catchError( err => {
-            var info = err['error']
-            if (info['exception'].includes('ExpiredJwtException')) {
-                this.cookieService.delete('token')
-                this.cookieService.delete('userrole')
-                this.cookieService.delete('email')
-                this.router.navigateByUrl('/login');
-                return EMPTY;
-            } else {
-                return throwError(err);
-            }
-       }));
+        return this.http.post(this.backendUrl + '/postExhibits', JSON.stringify(exhibit), this.options).pipe();
     }
 
     updateExhibit(exhibit: Exhibit) { 
-        return this.http.put(this.backendUrl + '/update/' + exhibit.exhibitId, JSON.stringify(exhibit), this.options).pipe(catchError( err => {
-            var info = err['error']
-            if (info['exception'].includes('ExpiredJwtException')) {
-                this.cookieService.delete('token')
-                this.cookieService.delete('userrole')
-                this.cookieService.delete('email')
-                this.router.navigateByUrl('/login');
-                return EMPTY;
-            } else {
-                return throwError(err);
-            }
-       }));
+        return this.http.put(this.backendUrl + '/update/' + exhibit.exhibitId, JSON.stringify(exhibit), this.options).pipe();
     }
 
     deleteExhibit(row: Exhibit) {
-        return this.http.delete(this.backendUrl + '/delete/' + row.exhibitId, this.options).pipe(catchError( err => {
-            var info = err['error']
-            if (info['exception'].includes('ExpiredJwtException')) {
-                this.cookieService.delete('token')
-                this.cookieService.delete('userrole')
-                this.cookieService.delete('email')
-                this.router.navigateByUrl('/login');
-                return EMPTY;
-            } else {
-                return throwError(err);
-            }
-       }));
+        return this.http.delete(this.backendUrl + '/delete/' + row.exhibitId, this.options).pipe();
     }
 
     setIsDelete(del : boolean) {

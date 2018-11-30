@@ -63,7 +63,7 @@ export class ExhibitsComponent implements OnInit {
     })
   
     this.exhibitService.getExhibits().subscribe(res => {
-
+      console.log(res);
       this.dataSource = new MatTableDataSource<Exhibit>(res);
       this.dataSource.paginator = this.paginator;
       this.dataSource.data.sort();

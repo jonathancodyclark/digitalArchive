@@ -27,18 +27,7 @@ export class LoginService {
     //login to account using username and password
     login(username : string, password : string) {
          return this.http.post(this.backendUrl, JSON.stringify({"useremail": `${username}`, "userpassword": `${password}`}),
-         this.options).pipe(catchError( err => {
-            var info = err['error']
-            if (info['exception'].includes('ExpiredJwtException')) {
-                this.cookieService.delete('token')
-                this.cookieService.delete('userrole')
-                this.cookieService.delete('email')
-                this.router.navigateByUrl('/login');
-                return EMPTY;
-            } else {
-                return throwError(err);
-            }
-       }));
+         this.options).pipe();
     }
     //deletes local user data using cookieservice
     logout() {
