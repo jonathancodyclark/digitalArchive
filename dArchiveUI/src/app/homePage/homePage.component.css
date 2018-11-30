@@ -1,6 +1,17 @@
+    
 html {
+    padding:0;
+    margin:0;
+  
+    top:0;
+    left:0;
+  
+    width: 100%;
+    height: 100%;
+
     font-family: "Trebuchet MS";
 }
+
 .title {    
     text-align: center;
     color: white;
@@ -9,25 +20,18 @@ html {
 #homeBtn
 {
     position:absolute;
-    top:15px;
-    left:15px;
+    top: 22px;
+    left: 22px;
     
 }
 #loginBtn
 {
     width: 18px;
     position:absolute;
-    top:10px;
-    right:15px;
+    top:15px;
+    right:22px;
 }
-#exhBtn
-{
-    text-align: center;
-    width: 18px;
-    position:absolute;
-    top:10px;
-    right:140px;
-}
+
 
 #mylogo {
     float: left;
@@ -160,9 +164,7 @@ section h2 {
     height: 250px;
 }
 
-.box h2 {
 
-}
 .box p {
     padding: 10px;
 }
