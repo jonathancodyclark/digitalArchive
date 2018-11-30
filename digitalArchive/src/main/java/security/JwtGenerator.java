@@ -37,11 +37,16 @@ public class JwtGenerator {
             claims.put("useremail", jwtCredentials.getUseremail());
             claims.put("userrole", temp.getUserrole());
             Map<String, String> map = new HashMap<String, String>();
-            Date fifteenMinutes = new Date(System.currentTimeMillis() + 1800000); //current date plus milliseconds
+            //Date thirtyMinutes = new Date(System.currentTimeMillis() + 1800000); //current date plus milliseconds
+//            map.put("Token", Jwts.builder()
+//                    .setClaims(claims)
+//                    .signWith(SignatureAlgorithm.HS512, "africa")
+//                    .setExpiration(thirtyMinutes)
+//                    .compact());
+//            map.put("Role", temp.getUserrole());
             map.put("Token", Jwts.builder()
                     .setClaims(claims)
                     .signWith(SignatureAlgorithm.HS512, "africa")
-                    .setExpiration(fifteenMinutes)
                     .compact());
             map.put("Role", temp.getUserrole());
             return map;

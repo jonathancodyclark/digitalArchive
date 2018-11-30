@@ -28,14 +28,14 @@ public class JwtValidator {
                 .setSigningKey(secret)
                 .parseClaimsJws(token)
                 .getBody();
-        if (System.currentTimeMillis() < body.getExpiration().getTime()) {
+        //if (System.currentTimeMillis() < body.getExpiration().getTime()) {
             jwtUser = new JwtUser();
             jwtUser.setUserid(Long.parseLong((String) body.get("userid")));
             jwtUser.setUseremail((String) body.get("useremail"));
             jwtUser.setUserrole((String) body.get("userrole"));
-        } else {
-            throw new RuntimeException("JWT Token has expired");
-        }
+        //} else {
+            //throw new RuntimeException("JWT Token has expired");
+        //}
         return jwtUser;
     }
 }
