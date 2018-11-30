@@ -23,7 +23,7 @@ export class ArtifactDetailComponent implements OnInit {
     artifact : Artifact = {
     artifactid : undefined,
     name : '',
-    exhibitId : this.artifactService.selectedExhibit,
+    exhibitId : <number><any>this.cookieService.get('exhibit'),
     description: '',
     onDisplay: undefined,
     filepath: '',
@@ -64,7 +64,7 @@ export class ArtifactDetailComponent implements OnInit {
           })
 
           //record selected exhibit url for navigation later
-          this.artifactService.selectedExhibit = this.router.url.replace('/artifacts/', '');
+          //this.cookieService.set('exhibit', this.router.url.replace('/artifacts/artifac', ''))
 
         //check whether page has been loaded in an add or edit capacity
         this.editing = false;
@@ -102,7 +102,8 @@ export class ArtifactDetailComponent implements OnInit {
 
     //navigate to list of artifacts page.
     backToArtifacts() {
-        this.router.navigate(['/artifacts/' + this.artifactService.selectedExhibit]); 
+        console.log(this.cookieService.get('exhibit'))
+        this.router.navigate(['/artifacts/' + this.cookieService.get('exhibit')]); 
     }
 
     //record file information when an image is selected

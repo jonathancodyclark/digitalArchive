@@ -71,7 +71,8 @@ export class ExhibitsComponent implements OnInit {
 
   /* Opens the artifacts page associated with the exhibit */
   openExhibit(row: any) {
-    this.artifactService.selectedExhibit = row.exhibitId;
+    this.cookieService.set('exhibit', row.exhibitId)
+    //this.artifactService.selectedExhibit = row.exhibitId;
     this.router.navigate(['artifacts/' + row.exhibitId]); 
   }
 

@@ -67,6 +67,7 @@ export class ArtifactsComponent implements OnInit {
         this.dataSource.data.sort();
       });
     })
+    console.log('hi')
     this.exhibitService.getExhibit(parseInt(this.router.url.replace('/artifacts/', ''))).subscribe(res => {
       
       //set exhibit to exhibit from db  
@@ -97,7 +98,8 @@ export class ArtifactsComponent implements OnInit {
   //navigate to the add artifact page and record which exhibit we are inside in order to
   //return later
   addArtifact() {
-    this.artifactService.selectedExhibit = this.router.url.replace('/artifacts/', '');
+    this.cookieService.set('exhibit', this.router.url.replace('/artifacts/', ''))
+    //this.artifactService.selectedExhibit = this.router.url.replace('/artifacts/', '');
     this.router.navigate(['artifact-detail/']); 
   }
 
