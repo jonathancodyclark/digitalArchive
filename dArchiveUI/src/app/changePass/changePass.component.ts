@@ -38,7 +38,6 @@ export class ChangePassComponent implements OnInit {
   
   ngOnInit() {
     this.appuser = this.appusersservice.editedAppUser;
-    console.log(this.appuser)
 
     //verify the user is logged in and direct them to do so if they are not.
     if(this.cookieService.get('token') == '') {
@@ -52,8 +51,6 @@ export class ChangePassComponent implements OnInit {
       if (this.password1 == this.password2) {
         this.appuser.userpassword = this.password1
         this.appuser.newuser = 0;
-        console.log(this.appuser);
-        console.log(this.appuser.userpassword);
         this.appusersservice.updateUserAndPassword(this.appuser).subscribe(res => {
           this.loginService.logout();
           this.loginService.login(this.appuser.useremail, this.appuser.userpassword)
