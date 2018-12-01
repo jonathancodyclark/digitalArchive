@@ -61,7 +61,10 @@ Troubleshoot: For mac's might need to run sudo npm install instead because of se
 2. Run ng serve -o in terminal or command line like stated above
 
 ### Website Run:
-Go to link
+Go to link:
+http://digital-archive-angular-dist.s3-website.us-east-2.amazonaws.com/
+
+Note you will not be able to login without permission from our client but this is where the application is hosted.
 
 ## Troubleshooting:
 1. Make sure to import all as told above when opening project in IntelliJ
