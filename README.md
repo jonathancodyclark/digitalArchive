@@ -8,8 +8,7 @@ Team members: Jonathan Clark, Neeraj Sabapathy, Parsa Hassanipak, Kenan Herbert,
 ## New Features
 1. Added dialog boxes to double check if user wants to delete or update something
 2. Added profile page for user
-2. Deleted some buttons that do not work properly
-3. Fixed a bug where user could not login after editing profile
+3. Added search in all pages
 
 ## Bug Fixes
 1. Deleted some buttons on homepage which did not work properly
