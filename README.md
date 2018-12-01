@@ -32,15 +32,13 @@ Make sure to do both builds for the application to be fully built
 Troubleshoot: Make sure to import all so that application will work, IntelliJ will have a Pop-up appear and click Enable All Imports
 
 ### Angular Build:
-1.Go to digitalArchive/dArchiveUI directory using command prompt or terminal
-2.Put in command npm install (This installs necessary packages for Angular Material and Swimlane ngx-datatable widget.)
-3.Put in command ng serve -o (Will open application in browser at localhost:4200/)
+1. Go to digitalArchive/dArchiveUI directory using command prompt or terminal
+2. Put in command npm install (This installs necessary packages for Angular Material and Swimlane ngx-datatable widget.)
+3. Put in command ng serve -o (Will open application in browser at localhost:4200/)
 
 Troubleshoot: For mac's might need to run sudo npm install instead because of security
 
 ## Run Instructions:
-2 ways to run application
-
 ### Locally Run:
 1. Run DemoApplication in IntelliJ (digitalArchive/digitalArchive/src/main/java/demo/DemoApplication)
 2. Run ng serve -o in terminal or command line like stated above
