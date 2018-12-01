@@ -29,7 +29,7 @@ Will need to have resources folder which contains passwords of database and s3bu
 2. Click Download Zip
 
 ## Install Dependent Libraries:
-1. Node.js (nodejs.org)
+1. Node.js (https://nodejs.org/en/)
 2. Angular (https://angular.io/guide/quickstart)
 3. IntelliJ (https://www.jetbrains.com/idea/)
 
