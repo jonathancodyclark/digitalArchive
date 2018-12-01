@@ -33,7 +33,7 @@ Will need to have resources folder which contains passwords of database and s3bu
 2. Angular (https://angular.io/guide/quickstart)
 3. IntelliJ (https://www.jetbrains.com/idea/)
 
-Build Instructions and Installation of Actual Application:
+## Build Instructions and Installation of Actual Application:
 Make sure to do both builds for the application to be fully built
 
 ### Java Build:
