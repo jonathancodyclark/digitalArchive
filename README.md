@@ -6,7 +6,7 @@ Team members: Jonathan Clark, Neeraj Sabapathy, Parsa Hassanipak, Kenan Herbert,
 # Release Version 1.0 Notes
 
 ## New Features:
-1. Added dialog boxes to double check if user wants to delete or update something
+1. Added dialog boxes to double check if user wants to delete or update other users, artifacts, or exhibits
 2. Added profile page for user
 3. Added search in all pages
 
