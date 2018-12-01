@@ -1,68 +1,51 @@
-﻿This is the Digital Archive Project 
+﻿This is the Digital Archive Project for Sights and Sounds Museum
 Team members: Jonathan Clark, Neeraj Sabapathy, Parsa Hassanipak, Kenan Herbert, Kai Roman, Burke Taylor
 
-When pulling for development:
+Install Guide
+Pre-Requisites:
+Will need to have resources folder which contains passwords of database and s3bucket to use application, which would be located at digitalArchive/digitalArchive/src/main/resources
 
-Make sure to install Node.js and Angular before attempting to run.
-https://angular.io/guide/quickstart
+Download Instructions:
+1. Click Clone or Download button
+2. Click Download Zip
 
-Build Instructions:
-1. Install maven
-2. Go to digitalArchive/digitalArchive directory in command line or terminal
-3. mvn install:install-file -Dfile=\\path\\to\\(digitalArchive\digitalArchive)\\ojdbc7.jar 
+Install Dependent Libraries:
+1. Node.js (nodejs.org)
+2. Angular (https://angular.io/guide/quickstart)
+3. IntelliJ (https://www.jetbrains.com/idea/)
+
+Build Instructions and Installation of Actual Application:
+Make sure to do both builds for the application to be fully built
+
+Java Build:
+1. Install IntelliJ
+2. Download Repository ether by git clone or downloading zip from GitHub
+3. Go to digitalArchive/digitalArchive directory and open project in IntelliJ
+4. View -> Tool Windows -> Maven Projects -> Maven Console
+5. Run mvn install:install-file -Dfile=\\path\\to\\(digitalArchive\digitalArchive)\\ojdbc7.jar 
       -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0 -Dpackaging=jar
-4. Build Entire Java Project
-5. Run DemoApplication
+6. Build Entire Java Project
+7. Run DemoApplication
 
+Troubleshoot: Make sure to import all so that application will work, IntelliJ will have a Pop-up appear and click Enable All Imports
 
-For the Frontend to start:
-cd ..
-cd dArchiveUI
-npm install
+Angular Build:
+1.Go to digitalArchive/dArchiveUI directory using command prompt or terminal
+2.Put in command npm install (This installs necessary packages for Angular Material and Swimlane ngx-datatable widget.)
+3.Put in command ng serve -o (Will open application in browser at localhost:4200/)
 
-This installs necessary packages for Angular Material and Swimlane ngx-datatable widget.
+Troubleshoot: For mac's might need to run sudo npm install instead because of security
 
-Finally, to run the front end at localhost:4200/ run the command:
-ng serve -o
+Run Instructions:
+2 ways to run application
+Locally Run:
+1. Run DemoApplication in IntelliJ (digitalArchive/digitalArchive/src/main/java/demo/DemoApplication)
+2. Run ng serve -o in terminal or command line like stated above
 
-Resources:
-Will only work if you create resources folder at digitalArchive/digitalArchive/src/main/resources which contains application.properties and application.yml also have to make email used allow less secure apps.
+Website Run:
+Go to link
 
-application.properties format:
-#Database connection
-spring.datasource.url=
-spring.datasource.username=
-spring.datasource.password=
-
-
-spring.datasource.hikari.connection.timeout=12000
-spring.datasource.hikari.maximum-pool-size=10
-
-logging.level.org.springframework.security= DEBUG
-logging.level.org.hibernate= DEGUG
-
-#springboot-starter-mail properties
-spring.mail.host=smtp.gmail.com
-spring.mail.port=587
-spring.mail.username=
-spring.mail.password=
-
-
-spring.mail.properties.mail.smtp.auth=true
-spring.mail.properties.mail.transport.protocol=smtps
-spring.mail.properties.mail.smtps.quitwait=false
-spring.mail.properties.mail.smtp.socketFactory.port = 25
-spring.mail.properties.mail.smtp.starttls.enable=true
-spring.mail.properties.mail.smtp.ssl.enable=true
-
-#application-properties
-send.from.email=
-
-application.yml format:
-amazonProperties:
-    endpointUrl: 
-    accessKey: 
-    secretKey: 
-    bucketName: 
-    region: 
-
+Troubleshooting:
+1. Make sure to import all as told above when opening project in IntelliJ
+2. Run sudo npm install as told above when using mac which has security problems with npm
+3. Make sure to put full path to ojdbc.jar not just from digitalArchive folder, but from where you saved the folder
