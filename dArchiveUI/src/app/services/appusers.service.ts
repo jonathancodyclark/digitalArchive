@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { of, Observable } from 'rxjs';
+import { of, Observable, EMPTY, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { CookieService } from 'ngx-cookie-service'
+import { catchError } from 'rxjs/operators';
 
 
 export class AppUsers {
@@ -47,12 +48,12 @@ export class AppUsersService {
 
   //retrieves list of users from the database.
   getUsers() {
-    return this.http.get<AppUsers[]>(this.backendUrl + '/all/', this.options);
+    return this.http.get<AppUsers[]>(this.backendUrl + '/all/', this.options).pipe();
   }
 
   //retrieves specific user by email from the database.
   getUser(useremail : string) {
-    return this.http.get<AppUsers>(this.backendUrl + `/getByEmail/${useremail}/`, this.options);
+    return this.http.get<AppUsers>(this.backendUrl + `/getByEmail/${useremail}/`, this.options).pipe();
   }
 
   //adds a new user to the database.

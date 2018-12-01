@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service'
+import { catchError } from 'rxjs/operators';
+import { EMPTY, throwError } from 'rxjs';
 
 @Injectable()
 export class ImageService {
@@ -26,14 +28,12 @@ export class ImageService {
 
         var fd = new FormData();
         fd.append('File', selectedFile, selectedFile.name)
-        console.log(fd.get('file'));
         return this.http.post(this.backendUrl + `/${artifactId}/uploadFile`, fd, this.options).pipe();
     }
 
     editImage(artifactId: number, selectedFile : File) {
         const fd = new FormData();
         fd.append('File', selectedFile, selectedFile.name)
-        console.log(fd);
         return this.http.post(this.backendUrl + `/${artifactId}/editFile`, fd, this.options).pipe();
     }
 

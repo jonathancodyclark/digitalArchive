@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { of, Observable } from 'rxjs';
+import { of, Observable, EMPTY, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { CookieService } from 'ngx-cookie-service'
+import { catchError } from 'rxjs/operators';
 
 export class Artifact {
   artifactid : number;
@@ -44,7 +45,7 @@ export class ArtifactService {
   //retrieves list of artifacts from the database.
   getArtifacts() { 
     let id = this.router.url.replace('/artifacts/', '');
-    return this.http.get<Artifact[]>(this.backendUrl + '/exhibits/' + id, this.options);
+    return this.http.get<Artifact[]>(this.backendUrl + '/exhibits/' + id, this.options).pipe();
   }
 
   //addes a particuar artifact to the database. 

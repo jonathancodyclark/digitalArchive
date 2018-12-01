@@ -30,15 +30,11 @@ export class LoginComponent implements OnInit {
     login() {
         this.loginService.login(this.username, this.password).subscribe(res => {
             if(res) {
-                //this.loginService.token = res['Token'];
-                //console.log(res['userrole'])
                 this.cookieService.set('token',res['Token']);
                 this.cookieService.set('email', this.username)
                 
-                
                 this.appusersService.getUser(this.username).subscribe(res => {
                     var x = res["newuser"];
-                    console.log(res);
                     this.cookieService.set('userrole', res['userrole'])
                     if (x == 1) {
                         this.appusersService.editedAppUser = res;

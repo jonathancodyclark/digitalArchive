@@ -55,7 +55,6 @@ export class ProfilePageComponent implements OnInit {
         
         //set user to user from db  
         this.user = res;
-        console.log(res);
         if (x == 1) {
             this.appusersService.editedAppUser = res;
             this.router.navigate(['change/']);
@@ -64,9 +63,6 @@ export class ProfilePageComponent implements OnInit {
         }
         
     })
-   console.log(this.user);
-
-
   }
 
   // navigates to the exhibits page 
@@ -75,7 +71,6 @@ export class ProfilePageComponent implements OnInit {
   }
   // navigates to the users page
   toUsers() {
-    console.log('hi');
     this.router.navigate(['manageusers/']); 
   }
   /* Saves the changes made to the user */
@@ -83,7 +78,6 @@ export class ProfilePageComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogProfileEditComponent);
     dialogRef.afterClosed().subscribe(() => {
       if (this.loginService.isSave == true) {
-        console.log(this.user);
         if(this.editing) {
           this.appusersService.updateUser(this.user).subscribe(user => {
               this.router.navigate(['/exhibits']);

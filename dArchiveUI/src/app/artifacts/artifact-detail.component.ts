@@ -53,7 +53,6 @@ export class ArtifactDetailComponent implements OnInit {
         //if they are using an auto-generated one have the user change it
         this.appusersService.getUser(this.cookieService.get('email')).subscribe(res => {
             var x = res["newuser"];
-            console.log(res);
             if (x == 1) {
                 this.appusersService.editedAppUser = res;
                 this.router.navigate(['change/']);
@@ -102,15 +101,12 @@ export class ArtifactDetailComponent implements OnInit {
 
     //navigate to list of artifacts page.
     backToArtifacts() {
-        console.log(this.cookieService.get('exhibit'))
         this.router.navigate(['/artifacts/' + this.cookieService.get('exhibit')]); 
     }
 
     //record file information when an image is selected
     onFileSelected(event) {
-        console.log(event);
         this.selectedFile = event.target.files[0];
-        console.log(this.selectedFile);
     }
 
     //either replace current or add new image to the database linked to this artifact

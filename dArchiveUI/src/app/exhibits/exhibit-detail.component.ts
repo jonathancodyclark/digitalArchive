@@ -45,7 +45,6 @@ export class ExhibitDetailComponent implements OnInit {
         //if they are using an auto-generated one have the user change it
         this.appusersService.getUser(this.cookieService.get('email')).subscribe(res => {
             var x = res["newuser"];
-            console.log(res);
             if (x == 1) {
                 this.appusersService.editedAppUser = res;
                 this.router.navigate(['change/']);
