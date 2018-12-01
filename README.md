@@ -3,6 +3,23 @@ This is the Digital Archive Project for Sights and Sounds Museum
 
 Team members: Jonathan Clark, Neeraj Sabapathy, Parsa Hassanipak, Kenan Herbert, Kai Roman, Burke Taylor
 
+# Release Version 1.0 Notes
+
+## New Features
+1. Added dialog boxes to double check if user wants to delete or update something
+2. Added profile page for user
+2. Deleted some buttons that do not work properly
+3. Fixed a bug where user could not login after editing profile
+
+## Bug Fixes
+1. Deleted some buttons on homepage which did not work properly
+2. Fixed a bug where edited user could not login after admin edited user
+3. Fixed a bug where image would not be set to artifact image
+
+## Known Bugs and Defects
+1. Format for Homepage and Forgot Password only works when screen is maximized, will scrunch up buttons when minimized
+2. No timeout for login
+
 # Install Guide
 
 ## Pre-Requisites
